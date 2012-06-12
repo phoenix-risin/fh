@@ -5,6 +5,7 @@
 #include "../include/sqlite3.h"
 #include "../include/libircclient.h"
 #include "../include/irc.h"
+#include "../include/log.h"
 
 /**
 * Main application. Use config file if shell is not used. 

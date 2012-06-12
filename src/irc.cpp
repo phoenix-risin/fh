@@ -4,20 +4,20 @@
 
 #include "../include/sqlite3.h"
 #include "../include/libircclient.h"
-#include "../include/connect.h"
+#include "../include/irc.h"
 #include "../include/log.h"
 
 /**
-* Event for connecting to server
-*
-* @param irc_session_t session
-* @param char event
-* @param char origin
-* @param char params
-* @param in count
-*
-* @return void
-*/
+ * Event for connecting to server
+ * 
+ * @param irc_session_t session
+ * @param char event
+ * @param char origin
+ * @param char params
+ * @param in count
+ *
+ * @return void
+ */
 void event_connect(irc_session_t* session, const char* event, const char* origin, const char** params, unsigned int count)
 {
 	irc_ctx_t* ctx = (irc_ctx_t*) irc_get_ctx(session);
@@ -29,8 +29,8 @@ void event_connect(irc_session_t* session, const char* event, const char* origin
 }
 
 /**
-* Event for joining to server
-*
+* Event for connecting to server
+* 
 * @param irc_session_t session
 * @param char event
 * @param char origin
@@ -64,36 +64,44 @@ void event_channel(irc_session_t* session, const char* event, const char* origin
 {
 	irc_ctx_t* ctx = (irc_ctx_t*) irc_get_ctx(session);
 
-	if (!strcmp(params[1], ctx->nick))
-		irc_cmd_msg(session, params[0], "Ja bitte?");
+	if (!strcmp(params[1], ctx->nick)) {
+		irc_cmd_msg(session, params[0], "Hello?");
+	}
 
 	if (!strcmp (params[1], "!quit")) {
 		stop_log(db);
-		irc_cmd_quit (session, "Ich beende.");
+		irc_cmd_quit (session, "Quit.");
+	}
+	if (strstr (params[1], "!nick ") == params[1]) {
+		irc_cmd_nick (session, params[1] + 6);
+	}
+
+	if (strstr (params[1], "!channel ") == params[1]) {
+		irc_cmd_join (session, params[1] + 9, NULL);
+	}
+
+	if (strstr (params[1], "!topic ") == params[1]) {
+		irc_cmd_join (session, ctx->channel, params[1] + 7);
 	}
 
 	if (!strcmp (params[1], "!log")) {
 		if (enableLog) {
 			stop_log(db);
-			irc_cmd_msg(session, params[0], "Logging ausgeschaltet.");
+			irc_cmd_msg(session, params[0], "Logging deactivated");
 		} else {
 			activate_log(db);
-			irc_cmd_msg(session, params[0], "Logging eingeschaltet.");
+			irc_cmd_msg(session, params[0], "Logging activated");
 		}
 	}
-
 	if (!strcmp (params[1], "!post_log")) {
 		if (enableLog) {
 			irc_cmd_msg(session, params[0], "Poste log:");
 			irc_cmd_msg(session, params[0], get_log(db));
 		} else {
-			irc_cmd_msg(session, params[0], "Logging ausgeschaltet, kann nicht posten.");
+			irc_cmd_msg(session, params[0], "Logging deactivated");
 		}
 	}
 
-	if (strstr (params[1], "!nick ") == params[1]) {
-		irc_cmd_nick (session, params[1] + 6);
-	}
 
 	if (enableLog) {
 		log_event(session, event, origin, params, count);

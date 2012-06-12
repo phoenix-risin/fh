@@ -6,105 +6,142 @@
 #include "../include/libircclient.h"
 #include "../include/log.h"
 
-//! IRC callback.
-/*!
-  IRC callback zum loggen eines events.
- */
+/**
+* Log each event
+*
+* @param irc_session_t session
+* @param char event
+* @param char origin
+* @param char params
+* @param int count
+*
+* @return void
+*/
 void log_event(irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
 	char buf[512];
 	int cnt;
 
 	buf[0] = '\0';
-
-	for (cnt = 0; cnt < count; cnt++)
-	{
-		if (cnt)
+	for (cnt = 0; cnt < count; cnt++) {
+		if (cnt) {
 			strcat (buf, "|");
-
+		}
 		strcat(buf, params[cnt]);
 	}
 
-	log(event, origin ? origin : "NULL", cnt, buf);
+	insert_log(event, origin ? origin : "NULL", cnt, buf);
 }
 
-//! Aktiviert logging.
-/*!
-  Aktiviert logging. Gibt bei Erfolg 0, bei Misserfolg 1 zurück.
- */
-int start_log(sqlite3* db)
+/**
+* Start logging
+*
+* @param sqlite3 db
+*
+* @return int
+*/
+int activate_log(sqlite3* db)
 {
 	remove("log.db");
 
-	if (sqlite3_open("log.db", &db))
-	{
-		printf("Error opening log database\n");
-		sqlite3_close(db);
-		loggingEnabled = 0;
-		return 1;
+	if (open_database(db)) {
+		if (create_table(db)) {
+			enableLog = 1;
+			return 1;
+		}
 	}
-	if (sqlite3_exec(db, "CREATE TABLE Log(Event TEXT, Origin TEXT, Count TEXT, Buffer TEXT)", NULL, 0, NULL) != SQLITE_OK)
-	{
-		printf("Error opening log database\n");
-		sqlite3_close(db);
-		loggingEnabled = 0;
-		return 1;
-	}
-
-	loggingEnabled = 1;
-	return 0;
 }
 
-//! Stoppt logging.
-/*!
-  Stoppt logging.
- */
+/**
+* Open database connection
+*
+* @param sqlite3 db
+*
+* @return in
+*/
+int open_database(sqlite3* db)
+{
+	if (sqlite3_open("log.db", &db) != SQLITE_OK) {
+		sqlite3_close(db);
+		return 0;
+	}
+
+	return 1;
+}
+
+/**
+* Create table for log files
+*
+* @param sqlite3 db
+*
+* @return int
+*/
+int create_table(sqlite3* db)
+{
+	if (sqlite3_exec(db, "CREATE TABLE Log(Event TEXT, Origin TEXT, Count INT, Buffer TEXT)", NULL, 0, NULL) != SQLITE_OK) {
+		printf("Cannot create table\n");
+		sqlite3_close(db);
+		return 0;
+	}
+
+	return 1;
+}
+
+/**
+* Stop logging
+*
+* @param sqlite3 db
+*
+* @return void
+*/
 void stop_log(sqlite3* db)
 {
 	sqlite3_close(db);
-	loggingEnabled = 0;
+	enableLog = 0;
 }
 
-//! Loggt einen Eintrag.
-/*!
-  Loggt einen Eintrag.
- */
-void log(const char* event, const char* origin, int count, char* buffer)
+/**
+* Insert into logfile
+*
+* @param char event
+* @param char origin
+* @param int count
+* @param char buffer
+*
+* @return void
+*/
+void insert_log(const char* event, const char* origin, int count, char* buffer)
 {
-	char* errMsg = 0;
-	char* buf;
-	sprintf("INSERT INTO Log VALUES (%s, %s, %i, %s)", event, origin, count, buffer);
-	sqlite3_exec(db, buf, NULL, 0, NULL);
+	char* sql_query;
+	sprintf(sql_query, "INSERT INTO Log VALUES (%s, %s, %i, %s)", event, origin, count, buffer);
+	sqlite3_exec(db, sql_query, NULL, NULL, NULL);
 }
 
-//! Gibt aktuelles log zurück.
-/*!
-  Gibt aktuelles log zurück oder 0 bei Fehlschlag.
- */
+/**
+* Get complete log
+*
+* @param sqlite3 db
+*
+* @return char
+*/
 char* get_log(sqlite3* db)
 {
-	char* sql = "SELECT * FROM Log";
-	sqlite3_stmt* stmt;
 	char* buffer;
+	char* sql_query = "SELECT * FROM Log";
+	sqlite3_stmt* vm;
 	int i = 0;
 
-	sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
-	while (1)
-	{
-		int s;
-		s = sqlite3_step(stmt);
-		if (s == SQLITE_ROW)
-		{
-			if (i == 0)
-				sprintf(buffer, "Event \"%s\", origin: \"%s\", params: %s [%s]\n", sqlite3_column_text(stmt, 0), sqlite3_column_text(stmt, 1), sqlite3_column_text(stmt, 2), sqlite3_column_text(stmt, 3));
-			else
-				sprintf(buffer, "%sEvent \"%s\", origin: \"%s\", params: %s [%s]\n", buffer, sqlite3_column_text(stmt, 0), sqlite3_column_text(stmt, 1), sqlite3_column_text(stmt, 2), sqlite3_column_text(stmt, 3));
+	sqlite3_prepare(db, sql_query, strlen(sql_query) + 1, &vm, NULL);
+	while(sqlite3_step(vm) != SQLITE_DONE) {
+		if (i == 0) {
+			sprintf(buffer, "Event \"%s\", Origin: \"%s\", Params: %s [%s]\n", sqlite3_column_text(vm, 0), sqlite3_column_text(vm, 1), sqlite3_column_text(vm, 2), sqlite3_column_text(vm, 3));
+		} else {
+			sprintf(buffer, "%sEvent \"%s\", Origin: \"%s\", Params: %s [%s]\n", buffer, sqlite3_column_text(vm, 0), sqlite3_column_text(vm, 1), sqlite3_column_text(vm, 2), sqlite3_column_text(vm, 3));
 		}
-		else if (s == SQLITE_DONE)
-			break;
-		else
-			return 0;
+
+		i++;
 	}
 
+	sqlite3_finalize(vm);
 	return buffer;
 }
