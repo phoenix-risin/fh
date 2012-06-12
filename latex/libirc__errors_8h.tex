@@ -1,0 +1,250 @@
+\hypertarget{libirc__errors_8h}{
+\section{include/libirc\_\-errors.h File Reference}
+\label{libirc__errors_8h}\index{include/libirc\_\-errors.h@{include/libirc\_\-errors.h}}
+}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{libirc__errors_8h_7614d0e18de5a72ac8f64a9435a8c856}{LIBIRC\_\-ERR\_\-OK}~0
+\item 
+\#define \hyperlink{libirc__errors_8h_4b8be458368833c2c72d19cccd33ac34}{LIBIRC\_\-ERR\_\-INVAL}~1
+\begin{CompactList}\small\item\em Invalid argument. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_8603eb7b72065c7bf48e89ed7aab09cd}{LIBIRC\_\-ERR\_\-RESOLV}~2
+\begin{CompactList}\small\item\em Could not resolve host. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_f48bc4c473962372807277dfeb6cf070}{LIBIRC\_\-ERR\_\-SOCKET}~3
+\begin{CompactList}\small\item\em Could not create socket. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_a3a48839adc6e93968e77bf92606ac07}{LIBIRC\_\-ERR\_\-CONNECT}~4
+\begin{CompactList}\small\item\em Could not connect. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_f932ba7fb2e7bf4f6ed970b5cb8e715b}{LIBIRC\_\-ERR\_\-CLOSED}~5
+\begin{CompactList}\small\item\em Connection closed by remote peer. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_1ec9f29808aef1acaf8872d45395764b}{LIBIRC\_\-ERR\_\-NOMEM}~6
+\begin{CompactList}\small\item\em Out of memory. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_abf548a884eaf6f7f72b62be6f5946d4}{LIBIRC\_\-ERR\_\-ACCEPT}~7
+\begin{CompactList}\small\item\em Could not accept new connection. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_7aebc49be2d25f795ef1e0fe8e96f12f}{LIBIRC\_\-ERR\_\-NODCCSEND}~9
+\begin{CompactList}\small\item\em Could not send this. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_a276fdc66a5e96ab31b86269775ad681}{LIBIRC\_\-ERR\_\-READ}~10
+\begin{CompactList}\small\item\em Could not read DCC file or socket. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_68d74be1d70d3a15df8976c186e4563a}{LIBIRC\_\-ERR\_\-WRITE}~11
+\begin{CompactList}\small\item\em Could not write DCC file or socket. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_4d4d45b7610aeacd2a142c078a57d38a}{LIBIRC\_\-ERR\_\-STATE}~12
+\begin{CompactList}\small\item\em Invalid state. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_cb3673b06a83b11e915bbe53232f2225}{LIBIRC\_\-ERR\_\-TIMEOUT}~13
+\begin{CompactList}\small\item\em Operation timed out. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_bb77f834415ae0a332f823540a5b3245}{LIBIRC\_\-ERR\_\-OPENFILE}~14
+\begin{CompactList}\small\item\em Could not open file for DCC send. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_18e0ddcfe90da17b27e52e273a5ec1f5}{LIBIRC\_\-ERR\_\-TERMINATED}~15
+\begin{CompactList}\small\item\em IRC server connection terminated. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_5880d5a307f66aaaaf7df7cbf4c165a6}{LIBIRC\_\-ERR\_\-NOIPV6}~16
+\begin{CompactList}\small\item\em IPv6 not supported. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_627f1cdbe080bdc2c19d1c0de8cc9f43}{LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED}~17
+\begin{CompactList}\small\item\em SSL not supported. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_d40aa1c23a166a89fe649409ddb0d869}{LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED}~18
+\begin{CompactList}\small\item\em SSL initialization failed. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_e83dd0aa678ddc0313cc37ca51a9b571}{LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED}~19
+\begin{CompactList}\small\item\em SSL connection failed. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_e35fbcfe494af60f99f74c0c30b03bfb}{LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED}~20
+\begin{CompactList}\small\item\em SSL certificate verify failed. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__errors_8h_994ba7b13dca6ba4d1461e84e4356efa}{LIBIRC\_\-ERR\_\-MAX}~21
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{libirc__errors_8h_abf548a884eaf6f7f72b62be6f5946d4}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-ACCEPT@{LIBIRC\_\-ERR\_\-ACCEPT}}
+\index{LIBIRC\_\-ERR\_\-ACCEPT@{LIBIRC\_\-ERR\_\-ACCEPT}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-ACCEPT]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-ACCEPT~7}}
+\label{libirc__errors_8h_abf548a884eaf6f7f72b62be6f5946d4}
+
+
+Could not accept new connection. 
+
+A DCC chat/send connection from the remote peer could not be accepted. Either the connection was just terminated before it is accepted, or there is a bug in libircclient. \hypertarget{libirc__errors_8h_f932ba7fb2e7bf4f6ed970b5cb8e715b}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-CLOSED@{LIBIRC\_\-ERR\_\-CLOSED}}
+\index{LIBIRC\_\-ERR\_\-CLOSED@{LIBIRC\_\-ERR\_\-CLOSED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-CLOSED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-CLOSED~5}}
+\label{libirc__errors_8h_f932ba7fb2e7bf4f6ed970b5cb8e715b}
+
+
+Connection closed by remote peer. 
+
+The IRC connection was closed by the IRC server (which could mean that an IRC operator just have banned you from the server :)), or the DCC connection was closed by remote peer - for example, the other side just quits his mIrc. Usually it is not an error.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect} \hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} \end{Desc}
+\hypertarget{libirc__errors_8h_a3a48839adc6e93968e77bf92606ac07}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-CONNECT@{LIBIRC\_\-ERR\_\-CONNECT}}
+\index{LIBIRC\_\-ERR\_\-CONNECT@{LIBIRC\_\-ERR\_\-CONNECT}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-CONNECT]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-CONNECT~4}}
+\label{libirc__errors_8h_a3a48839adc6e93968e77bf92606ac07}
+
+
+Could not connect. 
+
+The socket could not connect to the IRC server, or to the destination DCC part. Usually means that either the IRC server is down or its address is invalid. For DCC the reason usually is the firewall on your or destination computer, which refuses DCC transfer.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect} \end{Desc}
+\hypertarget{libirc__errors_8h_e83dd0aa678ddc0313cc37ca51a9b571}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED@{LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED}}
+\index{LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED@{LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-CONNECT\_\-SSL\_\-FAILED~19}}
+\label{libirc__errors_8h_e83dd0aa678ddc0313cc37ca51a9b571}
+
+
+SSL connection failed. 
+
+SSL handshare failed when attempting to connect to the server. Typically this means you're trying to use SSL but attempting to connect to a non-SSL port. \hypertarget{libirc__errors_8h_4b8be458368833c2c72d19cccd33ac34}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-INVAL@{LIBIRC\_\-ERR\_\-INVAL}}
+\index{LIBIRC\_\-ERR\_\-INVAL@{LIBIRC\_\-ERR\_\-INVAL}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-INVAL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-INVAL~1}}
+\label{libirc__errors_8h_4b8be458368833c2c72d19cccd33ac34}
+
+
+Invalid argument. 
+
+An invalid value was given for one of the arguments to a function. For example, supplying the NULL value for {\em channel\/} argument of \hyperlink{libircclient_8h_4960c546c2a077e8fb01fc7aa5ae7add}{irc\_\-cmd\_\-join()} produces LIBIRC\_\-ERR\_\-INVAL error. You should fix the code. \hypertarget{libirc__errors_8h_994ba7b13dca6ba4d1461e84e4356efa}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-MAX@{LIBIRC\_\-ERR\_\-MAX}}
+\index{LIBIRC\_\-ERR\_\-MAX@{LIBIRC\_\-ERR\_\-MAX}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-MAX]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-MAX~21}}
+\label{libirc__errors_8h_994ba7b13dca6ba4d1461e84e4356efa}
+
+
+\hypertarget{libirc__errors_8h_7aebc49be2d25f795ef1e0fe8e96f12f}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-NODCCSEND@{LIBIRC\_\-ERR\_\-NODCCSEND}}
+\index{LIBIRC\_\-ERR\_\-NODCCSEND@{LIBIRC\_\-ERR\_\-NODCCSEND}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-NODCCSEND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-NODCCSEND~9}}
+\label{libirc__errors_8h_7aebc49be2d25f795ef1e0fe8e96f12f}
+
+
+Could not send this. 
+
+A {\em filename\/} supplied to \hyperlink{libircclient_8h_f9e8a307113cd27d08e082fda6264262}{irc\_\-dcc\_\-sendfile()} could not be sent. Either is is not a file (a directory or a socket, for example), or it is not readable. $\ast$
+
+\begin{Desc}
+\item[See also:]\hyperlink{libirc__errors_8h_bb77f834415ae0a332f823540a5b3245}{LIBIRC\_\-ERR\_\-OPENFILE} \end{Desc}
+\hypertarget{libirc__errors_8h_5880d5a307f66aaaaf7df7cbf4c165a6}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-NOIPV6@{LIBIRC\_\-ERR\_\-NOIPV6}}
+\index{LIBIRC\_\-ERR\_\-NOIPV6@{LIBIRC\_\-ERR\_\-NOIPV6}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-NOIPV6]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-NOIPV6~16}}
+\label{libirc__errors_8h_5880d5a307f66aaaaf7df7cbf4c165a6}
+
+
+IPv6 not supported. 
+
+The function which requires IPv6 support was called, but the IPv6 support was not compiled into the application \hypertarget{libirc__errors_8h_1ec9f29808aef1acaf8872d45395764b}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-NOMEM@{LIBIRC\_\-ERR\_\-NOMEM}}
+\index{LIBIRC\_\-ERR\_\-NOMEM@{LIBIRC\_\-ERR\_\-NOMEM}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-NOMEM]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-NOMEM~6}}
+\label{libirc__errors_8h_1ec9f29808aef1acaf8872d45395764b}
+
+
+Out of memory. 
+
+There are two possible reasons for this error. First is that memory could not be allocated for libircclient use, and this error usually is fatal. Second reason is that the command queue (which keeps command ready to be sent to the IRC server) is full, and could not accept more commands yet. In this case you should just wait, and repeat the command later. \hypertarget{libirc__errors_8h_7614d0e18de5a72ac8f64a9435a8c856}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-OK@{LIBIRC\_\-ERR\_\-OK}}
+\index{LIBIRC\_\-ERR\_\-OK@{LIBIRC\_\-ERR\_\-OK}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-OK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-OK~0}}
+\label{libirc__errors_8h_7614d0e18de5a72ac8f64a9435a8c856}
+
+
+brief No error \hypertarget{libirc__errors_8h_bb77f834415ae0a332f823540a5b3245}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-OPENFILE@{LIBIRC\_\-ERR\_\-OPENFILE}}
+\index{LIBIRC\_\-ERR\_\-OPENFILE@{LIBIRC\_\-ERR\_\-OPENFILE}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-OPENFILE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-OPENFILE~14}}
+\label{libirc__errors_8h_bb77f834415ae0a332f823540a5b3245}
+
+
+Could not open file for DCC send. 
+
+The file specified in \hyperlink{libircclient_8h_f9e8a307113cd27d08e082fda6264262}{irc\_\-dcc\_\-sendfile()} could not be opened. \hypertarget{libirc__errors_8h_a276fdc66a5e96ab31b86269775ad681}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-READ@{LIBIRC\_\-ERR\_\-READ}}
+\index{LIBIRC\_\-ERR\_\-READ@{LIBIRC\_\-ERR\_\-READ}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-READ]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-READ~10}}
+\label{libirc__errors_8h_a276fdc66a5e96ab31b86269775ad681}
+
+
+Could not read DCC file or socket. 
+
+Either a DCC file could not be read (for example, was truncated during sending), or a DCC socket returns a read error, which usually means that the network connection is terminated. \hypertarget{libirc__errors_8h_8603eb7b72065c7bf48e89ed7aab09cd}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-RESOLV@{LIBIRC\_\-ERR\_\-RESOLV}}
+\index{LIBIRC\_\-ERR\_\-RESOLV@{LIBIRC\_\-ERR\_\-RESOLV}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-RESOLV]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-RESOLV~2}}
+\label{libirc__errors_8h_8603eb7b72065c7bf48e89ed7aab09cd}
+
+
+Could not resolve host. 
+
+The host name supplied for \hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect()} function could not be resolved into valid IP address. Usually means that host name is invalid. \hypertarget{libirc__errors_8h_f48bc4c473962372807277dfeb6cf070}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-SOCKET@{LIBIRC\_\-ERR\_\-SOCKET}}
+\index{LIBIRC\_\-ERR\_\-SOCKET@{LIBIRC\_\-ERR\_\-SOCKET}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-SOCKET]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-SOCKET~3}}
+\label{libirc__errors_8h_f48bc4c473962372807277dfeb6cf070}
+
+
+Could not create socket. 
+
+The new socket could not be created or made non-blocking. Usually means that the server is out of resources, or (rarely :) a bug in libircclient. \hypertarget{libirc__errors_8h_e35fbcfe494af60f99f74c0c30b03bfb}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED@{LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED}}
+\index{LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED@{LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-SSL\_\-CERT\_\-VERIFY\_\-FAILED~20}}
+\label{libirc__errors_8h_e35fbcfe494af60f99f74c0c30b03bfb}
+
+
+SSL certificate verify failed. 
+
+The server is using the self-signed certificate. Use LIBIRC\_\-OPTION\_\-SSL\_\-NO\_\-VERIFY option to connect to it. \hypertarget{libirc__errors_8h_d40aa1c23a166a89fe649409ddb0d869}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED@{LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED}}
+\index{LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED@{LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-SSL\_\-INIT\_\-FAILED~18}}
+\label{libirc__errors_8h_d40aa1c23a166a89fe649409ddb0d869}
+
+
+SSL initialization failed. 
+
+The SSL connection was required but the library was not compiled with SSL support \hypertarget{libirc__errors_8h_627f1cdbe080bdc2c19d1c0de8cc9f43}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED@{LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED}}
+\index{LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED@{LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-SSL\_\-NOT\_\-SUPPORTED~17}}
+\label{libirc__errors_8h_627f1cdbe080bdc2c19d1c0de8cc9f43}
+
+
+SSL not supported. 
+
+The SSL connection was required but the library was not compiled with SSL support \hypertarget{libirc__errors_8h_4d4d45b7610aeacd2a142c078a57d38a}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-STATE@{LIBIRC\_\-ERR\_\-STATE}}
+\index{LIBIRC\_\-ERR\_\-STATE@{LIBIRC\_\-ERR\_\-STATE}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-STATE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-STATE~12}}
+\label{libirc__errors_8h_4d4d45b7610aeacd2a142c078a57d38a}
+
+
+Invalid state. 
+
+The function is called when it is not allowed to be called. For example, \hyperlink{libircclient_8h_4960c546c2a077e8fb01fc7aa5ae7add}{irc\_\-cmd\_\-join()} was called before the connection to IRC server succeed, and \hyperlink{irc_8cpp_16fff293c8b50f13dc8ac4852a8f975e}{event\_\-connect} is called. \hypertarget{libirc__errors_8h_18e0ddcfe90da17b27e52e273a5ec1f5}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-TERMINATED@{LIBIRC\_\-ERR\_\-TERMINATED}}
+\index{LIBIRC\_\-ERR\_\-TERMINATED@{LIBIRC\_\-ERR\_\-TERMINATED}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-TERMINATED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-TERMINATED~15}}
+\label{libirc__errors_8h_18e0ddcfe90da17b27e52e273a5ec1f5}
+
+
+IRC server connection terminated. 
+
+The connection to the IRC server was terminated - possibly, by network error. Try to \hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect()} again. \hypertarget{libirc__errors_8h_cb3673b06a83b11e915bbe53232f2225}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-TIMEOUT@{LIBIRC\_\-ERR\_\-TIMEOUT}}
+\index{LIBIRC\_\-ERR\_\-TIMEOUT@{LIBIRC\_\-ERR\_\-TIMEOUT}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-TIMEOUT]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-TIMEOUT~13}}
+\label{libirc__errors_8h_cb3673b06a83b11e915bbe53232f2225}
+
+
+Operation timed out. 
+
+The DCC request is timed out. There is a timer for each DCC request, which tracks connecting, accepting and non-accepted/declined DCC requests. For every request this timer is currently 60 seconds. If the DCC request was not connected, accepted or declined during this time, it will be terminated with this error. \hypertarget{libirc__errors_8h_68d74be1d70d3a15df8976c186e4563a}{
+\index{libirc\_\-errors.h@{libirc\_\-errors.h}!LIBIRC\_\-ERR\_\-WRITE@{LIBIRC\_\-ERR\_\-WRITE}}
+\index{LIBIRC\_\-ERR\_\-WRITE@{LIBIRC\_\-ERR\_\-WRITE}!libirc_errors.h@{libirc\_\-errors.h}}
+\subsubsection[LIBIRC\_\-ERR\_\-WRITE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-ERR\_\-WRITE~11}}
+\label{libirc__errors_8h_68d74be1d70d3a15df8976c186e4563a}
+
+
+Could not write DCC file or socket. 
+
+Either a DCC file could not be written (for example, there is no free space on disk), or a DCC socket returns a write error, which usually means that the network connection is terminated. 

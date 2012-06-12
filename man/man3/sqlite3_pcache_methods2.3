@@ -1,0 +1,86 @@
+.TH "sqlite3_pcache_methods2" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sqlite3_pcache_methods2 \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sqlite3.h>\fP
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBiVersion\fP"
+.br
+.ti -1c
+.RI "void * \fBpArg\fP"
+.br
+.ti -1c
+.RI "int(* \fBxInit\fP )(void *)"
+.br
+.ti -1c
+.RI "void(* \fBxShutdown\fP )(void *)"
+.br
+.ti -1c
+.RI "\fBsqlite3_pcache\fP *(* \fBxCreate\fP )(int szPage, int szExtra, int bPurgeable)"
+.br
+.ti -1c
+.RI "void(* \fBxCachesize\fP )(\fBsqlite3_pcache\fP *, int nCachesize)"
+.br
+.ti -1c
+.RI "int(* \fBxPagecount\fP )(\fBsqlite3_pcache\fP *)"
+.br
+.ti -1c
+.RI "\fBsqlite3_pcache_page\fP *(* \fBxFetch\fP )(\fBsqlite3_pcache\fP *, unsigned key, int createFlag)"
+.br
+.ti -1c
+.RI "void(* \fBxUnpin\fP )(\fBsqlite3_pcache\fP *, \fBsqlite3_pcache_page\fP *, int discard)"
+.br
+.ti -1c
+.RI "void(* \fBxRekey\fP )(\fBsqlite3_pcache\fP *, \fBsqlite3_pcache_page\fP *, unsigned oldKey, unsigned newKey)"
+.br
+.ti -1c
+.RI "void(* \fBxTruncate\fP )(\fBsqlite3_pcache\fP *, unsigned iLimit)"
+.br
+.ti -1c
+.RI "void(* \fBxDestroy\fP )(\fBsqlite3_pcache\fP *)"
+.br
+.ti -1c
+.RI "void(* \fBxShrink\fP )(\fBsqlite3_pcache\fP *)"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBsqlite3_pcache_methods2::iVersion\fP"
+.PP
+.SS "void* \fBsqlite3_pcache_methods2::pArg\fP"
+.PP
+.SS "int(* \fBsqlite3_pcache_methods2::xInit\fP)(void *)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xShutdown\fP)(void *)"
+.PP
+.SS "\fBsqlite3_pcache\fP*(* \fBsqlite3_pcache_methods2::xCreate\fP)(int szPage, int szExtra, int bPurgeable)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xCachesize\fP)(\fBsqlite3_pcache\fP *, int nCachesize)"
+.PP
+.SS "int(* \fBsqlite3_pcache_methods2::xPagecount\fP)(\fBsqlite3_pcache\fP *)"
+.PP
+.SS "\fBsqlite3_pcache_page\fP*(* \fBsqlite3_pcache_methods2::xFetch\fP)(\fBsqlite3_pcache\fP *, unsigned key, int createFlag)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xUnpin\fP)(\fBsqlite3_pcache\fP *, \fBsqlite3_pcache_page\fP *, int discard)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xRekey\fP)(\fBsqlite3_pcache\fP *, \fBsqlite3_pcache_page\fP *, unsigned oldKey, unsigned newKey)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xTruncate\fP)(\fBsqlite3_pcache\fP *, unsigned iLimit)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xDestroy\fP)(\fBsqlite3_pcache\fP *)"
+.PP
+.SS "void(* \fBsqlite3_pcache_methods2::xShrink\fP)(\fBsqlite3_pcache\fP *)"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

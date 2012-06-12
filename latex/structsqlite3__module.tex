@@ -1,0 +1,224 @@
+\hypertarget{structsqlite3__module}{
+\section{sqlite3\_\-module Struct Reference}
+\label{structsqlite3__module}\index{sqlite3\_\-module@{sqlite3\_\-module}}
+}
+{\tt \#include $<$sqlite3.h$>$}
+
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+int \hyperlink{structsqlite3__module_42b11d080dc205aea43581b18f925afe}{iVersion}
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_95e327c9d32abd731013395d9e12b8f9}{xCreate} )(\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$, void $\ast$pAux, int argc, const char $\ast$const $\ast$argv, \hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$$\ast$ppVTab, char $\ast$$\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_cdd9ccc4a6acff230b2d579172ae32d0}{xConnect} )(\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$, void $\ast$pAux, int argc, const char $\ast$const $\ast$argv, \hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$$\ast$ppVTab, char $\ast$$\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_66577e230ca8de525b30ee6f287eafb1}{xBestIndex} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab, \hyperlink{structsqlite3__index__info}{sqlite3\_\-index\_\-info} $\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_5dbaa6ff075eaff25ccfddaedba06934}{xDisconnect} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_296dae8dadd4eb1f7d0f1187650c7aa5}{xDestroy} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_2cb9f8c149617189efa6ceec0a3211e9}{xOpen} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab, \hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$$\ast$ppCursor)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_514c66634a5297ca9879947fa6f8f10f}{xClose} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_1ddde32dcae461910096ebb2c42d1a6a}{xFilter} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$, int idxNum, const char $\ast$idxStr, int argc, \hyperlink{sqlite3_8h_5bc19e6eab34ccccd953717c04137d88}{sqlite3\_\-value} $\ast$$\ast$argv)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_a739d9a2081db7bf786f1f9fb9d92264}{xNext} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_e10cf7d9a7edfecf1daa34a214bf6a64}{xEof} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_4c82dc60335ba40c816cdd6c4dce2950}{xColumn} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$, \hyperlink{sqlite3_8h_3b519553ffec8fc42b2356f5b1ebdc57}{sqlite3\_\-context} $\ast$, int)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_1e119b28bd3ad706d1982aaa938aac79}{xRowid} )(\hyperlink{structsqlite3__vtab__cursor}{sqlite3\_\-vtab\_\-cursor} $\ast$, \hyperlink{sqlite3_8h_0a4d3e6c1ad46f90e746b920ab6ca0d2}{sqlite3\_\-int64} $\ast$pRowid)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_029d0713dbb3c847a6de773a0a179605}{xUpdate} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$, int, \hyperlink{sqlite3_8h_5bc19e6eab34ccccd953717c04137d88}{sqlite3\_\-value} $\ast$$\ast$, \hyperlink{sqlite3_8h_0a4d3e6c1ad46f90e746b920ab6ca0d2}{sqlite3\_\-int64} $\ast$)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_f3ea97df2b110da6ceb4797222e6d86f}{xBegin} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_895d78529db2e28e13d1d842512770b6}{xSync} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_465df78231717713e98677c19e60cece}{xCommit} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_3f8676e941a3080557fe10528e04e2f1}{xRollback} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_e70a020a7dda960b91943e9f67695dbb}{xFindFunction} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVtab, int nArg, const char $\ast$zName, void($\ast$$\ast$pxFunc)(\hyperlink{sqlite3_8h_3b519553ffec8fc42b2356f5b1ebdc57}{sqlite3\_\-context} $\ast$, int, \hyperlink{sqlite3_8h_5bc19e6eab34ccccd953717c04137d88}{sqlite3\_\-value} $\ast$$\ast$), void $\ast$$\ast$ppArg)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_f886782e9a1ea5c4b131b2bc373c8092}{xRename} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVtab, const char $\ast$zNew)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_f90f1df803fce1b90048864aeeeee890}{xSavepoint} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab, int)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_8dcaa6dc6d9563c8da57e4c8c5055609}{xRelease} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab, int)
+\item 
+int($\ast$ \hyperlink{structsqlite3__module_767753c6c97d1f622e5113367a0547b5}{xRollbackTo} )(\hyperlink{structsqlite3__vtab}{sqlite3\_\-vtab} $\ast$pVTab, int)
+\end{CompactItemize}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structsqlite3__module_42b11d080dc205aea43581b18f925afe}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!iVersion@{iVersion}}
+\index{iVersion@{iVersion}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[iVersion]{\setlength{\rightskip}{0pt plus 5cm}int {\bf sqlite3\_\-module::iVersion}}}
+\label{structsqlite3__module_42b11d080dc205aea43581b18f925afe}
+
+
+\hypertarget{structsqlite3__module_95e327c9d32abd731013395d9e12b8f9}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xCreate@{xCreate}}
+\index{xCreate@{xCreate}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xCreate]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xCreate})({\bf sqlite3} $\ast$, void $\ast$pAux, int argc, const char $\ast$const $\ast$argv, {\bf sqlite3\_\-vtab} $\ast$$\ast$ppVTab, char $\ast$$\ast$)}}
+\label{structsqlite3__module_95e327c9d32abd731013395d9e12b8f9}
+
+
+\hypertarget{structsqlite3__module_cdd9ccc4a6acff230b2d579172ae32d0}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xConnect@{xConnect}}
+\index{xConnect@{xConnect}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xConnect]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xConnect})({\bf sqlite3} $\ast$, void $\ast$pAux, int argc, const char $\ast$const $\ast$argv, {\bf sqlite3\_\-vtab} $\ast$$\ast$ppVTab, char $\ast$$\ast$)}}
+\label{structsqlite3__module_cdd9ccc4a6acff230b2d579172ae32d0}
+
+
+\hypertarget{structsqlite3__module_66577e230ca8de525b30ee6f287eafb1}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xBestIndex@{xBestIndex}}
+\index{xBestIndex@{xBestIndex}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xBestIndex]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xBestIndex})({\bf sqlite3\_\-vtab} $\ast$pVTab, {\bf sqlite3\_\-index\_\-info} $\ast$)}}
+\label{structsqlite3__module_66577e230ca8de525b30ee6f287eafb1}
+
+
+\hypertarget{structsqlite3__module_5dbaa6ff075eaff25ccfddaedba06934}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xDisconnect@{xDisconnect}}
+\index{xDisconnect@{xDisconnect}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xDisconnect]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xDisconnect})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_5dbaa6ff075eaff25ccfddaedba06934}
+
+
+\hypertarget{structsqlite3__module_296dae8dadd4eb1f7d0f1187650c7aa5}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xDestroy@{xDestroy}}
+\index{xDestroy@{xDestroy}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xDestroy]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xDestroy})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_296dae8dadd4eb1f7d0f1187650c7aa5}
+
+
+\hypertarget{structsqlite3__module_2cb9f8c149617189efa6ceec0a3211e9}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xOpen@{xOpen}}
+\index{xOpen@{xOpen}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xOpen]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xOpen})({\bf sqlite3\_\-vtab} $\ast$pVTab, {\bf sqlite3\_\-vtab\_\-cursor} $\ast$$\ast$ppCursor)}}
+\label{structsqlite3__module_2cb9f8c149617189efa6ceec0a3211e9}
+
+
+\hypertarget{structsqlite3__module_514c66634a5297ca9879947fa6f8f10f}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xClose@{xClose}}
+\index{xClose@{xClose}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xClose]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xClose})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$)}}
+\label{structsqlite3__module_514c66634a5297ca9879947fa6f8f10f}
+
+
+\hypertarget{structsqlite3__module_1ddde32dcae461910096ebb2c42d1a6a}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xFilter@{xFilter}}
+\index{xFilter@{xFilter}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xFilter]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xFilter})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$, int idxNum, const char $\ast$idxStr, int argc, {\bf sqlite3\_\-value} $\ast$$\ast$argv)}}
+\label{structsqlite3__module_1ddde32dcae461910096ebb2c42d1a6a}
+
+
+\hypertarget{structsqlite3__module_a739d9a2081db7bf786f1f9fb9d92264}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xNext@{xNext}}
+\index{xNext@{xNext}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xNext]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xNext})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$)}}
+\label{structsqlite3__module_a739d9a2081db7bf786f1f9fb9d92264}
+
+
+\hypertarget{structsqlite3__module_e10cf7d9a7edfecf1daa34a214bf6a64}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xEof@{xEof}}
+\index{xEof@{xEof}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xEof]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xEof})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$)}}
+\label{structsqlite3__module_e10cf7d9a7edfecf1daa34a214bf6a64}
+
+
+\hypertarget{structsqlite3__module_4c82dc60335ba40c816cdd6c4dce2950}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xColumn@{xColumn}}
+\index{xColumn@{xColumn}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xColumn]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xColumn})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$, {\bf sqlite3\_\-context} $\ast$, int)}}
+\label{structsqlite3__module_4c82dc60335ba40c816cdd6c4dce2950}
+
+
+\hypertarget{structsqlite3__module_1e119b28bd3ad706d1982aaa938aac79}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xRowid@{xRowid}}
+\index{xRowid@{xRowid}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xRowid]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xRowid})({\bf sqlite3\_\-vtab\_\-cursor} $\ast$, {\bf sqlite3\_\-int64} $\ast$pRowid)}}
+\label{structsqlite3__module_1e119b28bd3ad706d1982aaa938aac79}
+
+
+\hypertarget{structsqlite3__module_029d0713dbb3c847a6de773a0a179605}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xUpdate@{xUpdate}}
+\index{xUpdate@{xUpdate}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xUpdate]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xUpdate})({\bf sqlite3\_\-vtab} $\ast$, int, {\bf sqlite3\_\-value} $\ast$$\ast$, {\bf sqlite3\_\-int64} $\ast$)}}
+\label{structsqlite3__module_029d0713dbb3c847a6de773a0a179605}
+
+
+\hypertarget{structsqlite3__module_f3ea97df2b110da6ceb4797222e6d86f}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xBegin@{xBegin}}
+\index{xBegin@{xBegin}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xBegin]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xBegin})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_f3ea97df2b110da6ceb4797222e6d86f}
+
+
+\hypertarget{structsqlite3__module_895d78529db2e28e13d1d842512770b6}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xSync@{xSync}}
+\index{xSync@{xSync}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xSync]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xSync})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_895d78529db2e28e13d1d842512770b6}
+
+
+\hypertarget{structsqlite3__module_465df78231717713e98677c19e60cece}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xCommit@{xCommit}}
+\index{xCommit@{xCommit}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xCommit]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xCommit})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_465df78231717713e98677c19e60cece}
+
+
+\hypertarget{structsqlite3__module_3f8676e941a3080557fe10528e04e2f1}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xRollback@{xRollback}}
+\index{xRollback@{xRollback}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xRollback]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xRollback})({\bf sqlite3\_\-vtab} $\ast$pVTab)}}
+\label{structsqlite3__module_3f8676e941a3080557fe10528e04e2f1}
+
+
+\hypertarget{structsqlite3__module_e70a020a7dda960b91943e9f67695dbb}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xFindFunction@{xFindFunction}}
+\index{xFindFunction@{xFindFunction}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xFindFunction]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xFindFunction})({\bf sqlite3\_\-vtab} $\ast$pVtab, int nArg, const char $\ast$zName, void($\ast$$\ast$pxFunc)({\bf sqlite3\_\-context} $\ast$, int, {\bf sqlite3\_\-value} $\ast$$\ast$), void $\ast$$\ast$ppArg)}}
+\label{structsqlite3__module_e70a020a7dda960b91943e9f67695dbb}
+
+
+\hypertarget{structsqlite3__module_f886782e9a1ea5c4b131b2bc373c8092}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xRename@{xRename}}
+\index{xRename@{xRename}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xRename]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xRename})({\bf sqlite3\_\-vtab} $\ast$pVtab, const char $\ast$zNew)}}
+\label{structsqlite3__module_f886782e9a1ea5c4b131b2bc373c8092}
+
+
+\hypertarget{structsqlite3__module_f90f1df803fce1b90048864aeeeee890}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xSavepoint@{xSavepoint}}
+\index{xSavepoint@{xSavepoint}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xSavepoint]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xSavepoint})({\bf sqlite3\_\-vtab} $\ast$pVTab, int)}}
+\label{structsqlite3__module_f90f1df803fce1b90048864aeeeee890}
+
+
+\hypertarget{structsqlite3__module_8dcaa6dc6d9563c8da57e4c8c5055609}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xRelease@{xRelease}}
+\index{xRelease@{xRelease}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xRelease]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xRelease})({\bf sqlite3\_\-vtab} $\ast$pVTab, int)}}
+\label{structsqlite3__module_8dcaa6dc6d9563c8da57e4c8c5055609}
+
+
+\hypertarget{structsqlite3__module_767753c6c97d1f622e5113367a0547b5}{
+\index{sqlite3\_\-module@{sqlite3\_\-module}!xRollbackTo@{xRollbackTo}}
+\index{xRollbackTo@{xRollbackTo}!sqlite3_module@{sqlite3\_\-module}}
+\subsubsection[xRollbackTo]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-module::xRollbackTo})({\bf sqlite3\_\-vtab} $\ast$pVTab, int)}}
+\label{structsqlite3__module_767753c6c97d1f622e5113367a0547b5}
+
+
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+include/\hyperlink{sqlite3_8h}{sqlite3.h}\end{CompactItemize}

@@ -1,0 +1,1509 @@
+\hypertarget{libirc__rfcnumeric_8h}{
+\section{include/libirc\_\-rfcnumeric.h File Reference}
+\label{libirc__rfcnumeric_8h}\index{include/libirc\_\-rfcnumeric.h@{include/libirc\_\-rfcnumeric.h}}
+}
+This file defines RFC numeric reply codes, which should be used in event\_\-numeric callback. Every code also has a comment regarding its arguments. 
+
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e7edeafc2c34c3f1e47b47e0c4eec2b4}{LIBIRC\_\-RFC\_\-RPL\_\-WELCOME}~001
+\begin{CompactList}\small\item\em 001 Welcome to the Internet Relay Network $<$nick$>$!$<$user$>$@$<$host$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_8b051fab649312894ef8a186c3b6b8ff}{LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST}~002
+\begin{CompactList}\small\item\em 002 Your host is $<$servername$>$, running version $<$ver$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_457848e59212b9c34b195408b3499e36}{LIBIRC\_\-RFC\_\-RPL\_\-CREATED}~003
+\begin{CompactList}\small\item\em 003 This server was created $<$date$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_79965ea78224aaea217c27e8bd2ea565}{LIBIRC\_\-RFC\_\-RPL\_\-MYINFO}~004
+\begin{CompactList}\small\item\em 004 $<$servername$>$ $<$version$>$ $<$available user modes$>$ $<$available channel modes$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_20089bb4db6f4edf6ad9c55b21f79351}{LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE}~005
+\begin{CompactList}\small\item\em 005 Try server $<$server name$>$, port $<$port number$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_cc4d487e441bc6d2b9186697676d5c83}{LIBIRC\_\-RFC\_\-RPL\_\-USERHOST}~302
+\begin{CompactList}\small\item\em 302 :$\ast$1$<$reply$>$ $\ast$( \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_27bd750af38efdb964ae3f2dea384469}{LIBIRC\_\-RFC\_\-RPL\_\-ISON}~303
+\begin{CompactList}\small\item\em 303 :$\ast$1$<$nick$>$ $\ast$( \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{LIBIRC\_\-RFC\_\-RPL\_\-AWAY}~301
+\begin{CompactList}\small\item\em 301 $<$nick$>$ :$<$away message$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_8ea7395ce19cbc1e55c6699dab32048a}{LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY}~305
+\begin{CompactList}\small\item\em 305 :You are no longer marked as being away \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_223f4d11b29fa52405ae2c5c92a6f57c}{LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY}~306
+\begin{CompactList}\small\item\em 306 :You have been marked as being away \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_401ee0bce20717f8fc20240158d9eed3}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER}~311
+\begin{CompactList}\small\item\em 311 $<$nick$>$ $<$user$>$ $<$host$>$ $\ast$ :$<$real name$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_7df656c3ce9c9d2e0b9cf84e5672beca}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER}~312
+\begin{CompactList}\small\item\em 312 $<$nick$>$ $<$server$>$ :$<$server info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_992b1c08e5c48abc86701826d25a2884}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR}~313
+\begin{CompactList}\small\item\em 313 $<$nick$>$ :is an IRC operator \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_af3e96b0ee5bb9b9e3a3e28e2d75f6e4}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE}~317
+\begin{CompactList}\small\item\em 317 $<$nick$>$ $<$integer$>$ :seconds idle \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e8c2ae654f4d2502eeea46cd6116687f}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS}~318
+\begin{CompactList}\small\item\em 318 $<$nick$>$ :End of WHOIS list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_61c0201bfafc1f0b39f49dbadbffe4a9}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS}~319
+\begin{CompactList}\small\item\em 319 \char`\"{}$<$nick$>$ :$\ast$( ( \char`\"{}@\char`\"{} / \char`\"{}+\char`\"{} ) $<$channel$>$ \char`\"{} \char`\"{} )\char`\"{} \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b3daebb8bacf9bf796358f067ae8422c}{LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER}~314
+\begin{CompactList}\small\item\em 314 $<$nick$>$ $<$user$>$ $<$host$>$ $\ast$ :$<$real name$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_8eb840d1d812efc90a7dbc2e4c5487a6}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS}~369
+\begin{CompactList}\small\item\em 369 $<$nick$>$ :End of WHOWAS \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_7cd68428c26cc9867a1b35a25b4acb64}{LIBIRC\_\-RFC\_\-RPL\_\-LIST}~322
+\begin{CompactList}\small\item\em 322 $<$channel$>$ $<$\# visible$>$ :$<$topic$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b986ca08f325c8113fbada41a99c84bf}{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND}~323
+\begin{CompactList}\small\item\em 323 :End of LIST \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e7613a900a0aaa5c2a4f9dcf57d20a54}{LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS}~325
+\begin{CompactList}\small\item\em 325 $<$channel$>$ $<$nickname$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_ce33e328528f4ae2e7843478839301e5}{LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS}~324
+\begin{CompactList}\small\item\em 324 $<$channel$>$ $<$mode$>$ $<$mode params$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f467ce06debba2e77db229b14f5bbe38}{LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC}~331
+\begin{CompactList}\small\item\em 331 $<$channel$>$ :No topic is set \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}~332
+\begin{CompactList}\small\item\em 332 $<$channel$>$ :$<$topic$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_5de83e9710137226a986fdc6aece31da}{LIBIRC\_\-RFC\_\-RPL\_\-INVITING}~341
+\begin{CompactList}\small\item\em 341 $<$channel$>$ $<$nick$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_1751c0d93a35da59ede9ea222d543c2a}{LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING}~342
+\begin{CompactList}\small\item\em 342 $<$user$>$ :Summoning user to IRC \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c7ccfca1aee7957b59043cd14b4c2199}{LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST}~346
+\begin{CompactList}\small\item\em 346 $<$channel$>$ $<$invitemask$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_897411552f08a25005bc424ba1483f27}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST}~347
+\begin{CompactList}\small\item\em 347 $<$channel$>$ :End of channel invite list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_5d238f6d71acb8652de17f1e2178ef83}{LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST}~348
+\begin{CompactList}\small\item\em 348 $<$channel$>$ $<$exceptionmask$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_2edbebc4a6ebc19a4cf718785f05cdce}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST}~349
+\begin{CompactList}\small\item\em 349 $<$channel$>$ :End of channel exception list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4cda85dc41efa4c24e775ea55275b6b6}{LIBIRC\_\-RFC\_\-RPL\_\-VERSION}~351
+\begin{CompactList}\small\item\em 351 $<$version$>$.$<$debuglevel$>$ $<$server$>$ :$<$comments$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_560c4915ca8d0c28551fac8b879f0c6f}{LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY}~352
+\begin{CompactList}\small\item\em 352 $<$channel$>$ $<$user$>$ $<$host$>$ $<$server$>$ $<$nick$>$ ( \char`\"{}H \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_aad7e5e89e006bdb5c24ff41cf1eda91}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO}~315
+\begin{CompactList}\small\item\em 315 $<$name$>$ :End of WHO list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY}~353
+\begin{CompactList}\small\item\em 353 ( \char`\"{}= \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_ed45893cd1a15247dc7200d16a224a76}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES}~366
+\begin{CompactList}\small\item\em 366 $<$channel$>$ :End of NAMES list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_bd1f4f6dd81b23d93a8d8670b52ee75c}{LIBIRC\_\-RFC\_\-RPL\_\-LINKS}~364
+\begin{CompactList}\small\item\em 364 $<$mask$>$ $<$server$>$ :$<$hopcount$>$ $<$server info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_3aca62d5fe10d6acdf37ee24f8d9b76d}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS}~365
+\begin{CompactList}\small\item\em 365 $<$mask$>$ :End of LINKS list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_a188a0d60499bb3546fdc75b07ee5680}{LIBIRC\_\-RFC\_\-RPL\_\-BANLIST}~367
+\begin{CompactList}\small\item\em 367 $<$channel$>$ $<$banmask$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6040ae147ea3044f201f314fec1a1791}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST}~368
+\begin{CompactList}\small\item\em 368 $<$channel$>$ :End of channel ban list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_25e458084627c7c5cc04846128ce7f99}{LIBIRC\_\-RFC\_\-RPL\_\-INFO}~371
+\begin{CompactList}\small\item\em 371 :$<$string$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_3f7aa466f616bc7645c9deed702ecbfd}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO}~374
+\begin{CompactList}\small\item\em 374 :End of INFO list \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_98acf0bf2e6a0fbf654dbaf4e8b7e674}{LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART}~375
+\begin{CompactList}\small\item\em 375 :- $<$server$>$ Message of the day - \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_d6008de6ef3a06b3817bb42d8d501d67}{LIBIRC\_\-RFC\_\-RPL\_\-MOTD}~372
+\begin{CompactList}\small\item\em 372 :- $<$text$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_ceb2ecc1ff91805c62886c945bf3a200}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD}~376
+\begin{CompactList}\small\item\em 376 :End of MOTD command \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_a262842cfa504db62230d71dd60863ae}{LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER}~381
+\begin{CompactList}\small\item\em 381 :You are now an IRC operator \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_16341382589ad8a0ea33870690a2eacd}{LIBIRC\_\-RFC\_\-RPL\_\-REHASHING}~382
+\begin{CompactList}\small\item\em 382 $<$config file$>$ :Rehashing \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_14f3d0e8389976c395115bc47ab56d1f}{LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE}~383
+\begin{CompactList}\small\item\em 383 You are service $<$servicename$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_0326959553f325f18a6b23ddb0847be6}{LIBIRC\_\-RFC\_\-RPL\_\-TIME}~391
+\begin{CompactList}\small\item\em 391 $<$server$>$ :$<$string showing server's local time$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_7c9d31c8960d9b510ffb81eff3f0df55}{LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART}~392
+\begin{CompactList}\small\item\em 392 :UserID Terminal Host \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f3358e349d5e16e5bc436fc4d2d488e6}{LIBIRC\_\-RFC\_\-RPL\_\-USERS}~393
+\begin{CompactList}\small\item\em 393 :$<$username$>$ $<$ttyline$>$ $<$hostname$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c6bbc01052466794fe1998e4d9316bff}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS}~394
+\begin{CompactList}\small\item\em 394 :End of users \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_08119bd0358f01a771e4d0f0c2aabb32}{LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS}~395
+\begin{CompactList}\small\item\em 395 :Nobody logged in \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_0ef1797805c029473397f07eb0e8e5d0}{LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK}~200
+\begin{CompactList}\small\item\em 200 Link $<$version \& debug level$>$ $<$destination$>$ $<$next server$>$ V$<$protocol version$>$ $<$link uptime in seconds$>$ $<$backstream sendq$>$ $<$upstream sendq$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b5334d2fba02850cb8706d3486fcc31e}{LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING}~201
+\begin{CompactList}\small\item\em 201 Try. $<$class$>$ $<$server$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4a427d0bdd9cac2bae6fb651f791fd8f}{LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE}~202
+\begin{CompactList}\small\item\em 202 H.S. $<$class$>$ $<$server$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_434485e9f3fa12fa5ab379913002e9ce}{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN}~203
+\begin{CompactList}\small\item\em 203 ???? $<$class$>$ \mbox{[}$<$client IP address in dot form$>$\mbox{]} \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_2f1f64dd28787026e6b4f4f5250842ae}{LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR}~204
+\begin{CompactList}\small\item\em 204 Oper $<$class$>$ $<$nick$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_22db1d704c89691b20346fb683a4b1c4}{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER}~205
+\begin{CompactList}\small\item\em 205 User $<$class$>$ $<$nick$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_fa8d1963799e46db6b6a5c724193db32}{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER}~206
+\begin{CompactList}\small\item\em 206 Serv $<$class$>$ $<$int$>$S $<$int$>$C $<$server$>$ $<$nick!user$|$$\ast$!$\ast$$>$@$<$host$|$server$>$ V$<$protocol version$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_3e81b657f2ed0d38aee95c2b91da4acc}{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE}~207
+\begin{CompactList}\small\item\em 207 Service $<$class$>$ $<$name$>$ $<$type$>$ $<$active type$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b7fb76aadf15893f6e4ebeb881efc929}{LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE}~208
+\begin{CompactList}\small\item\em 208 $<$newtype$>$ 0 $<$client name$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6497ecbb3653fbe3a981a9f0d61ef278}{LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS}~209
+\begin{CompactList}\small\item\em 209 Class $<$class$>$ $<$count$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f9cdd749cf9d71fa536d81b9d6ef941a}{LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG}~261
+\begin{CompactList}\small\item\em 261 File $<$logfile$>$ $<$debug level$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_3b2d52ed29933fdb22d79ea342fc2f26}{LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND}~262
+\begin{CompactList}\small\item\em 262 $<$server name$>$ $<$version \& debug level$>$ :End of TRACE \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_9e11276a19249878b2970d9006534783}{LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO}~211
+\begin{CompactList}\small\item\em 211 $<$linkname$>$ $<$sendq$>$ $<$sent messages$>$ $<$sent Kbytes$>$ $<$received messages$>$ $<$received Kbytes$>$ $<$time open$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_cfc1bd556f14f42907a45df17a15bd71}{LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS}~212
+\begin{CompactList}\small\item\em 212 $<$command$>$ $<$count$>$ $<$byte count$>$ $<$remote count$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_aa0efa6298a7b86c61e4b1721c857e71}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS}~219
+\begin{CompactList}\small\item\em 219 $<$stats letter$>$ :End of STATS report \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b63dde0b78690895bd2d37d0991dc0b9}{LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME}~242
+\begin{CompactList}\small\item\em 242 :Server Up d days d:02d:02d \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b5aa35b134c37d012d79b5246259a127}{LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE}~243
+\begin{CompactList}\small\item\em 243 O $<$hostmask$>$ $\ast$ $<$name$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_dad4d02196dcef34bd0627b428f60863}{LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS}~221
+\begin{CompactList}\small\item\em 221 $<$user mode string$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_bcb0ebc54eb0885b1d36ed13474783b6}{LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST}~234
+\begin{CompactList}\small\item\em 234 $<$name$>$ $<$server$>$ $<$mask$>$ $<$type$>$ $<$hopcount$>$ $<$info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_bd19df966082bf87e63ad541b8297385}{LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND}~235
+\begin{CompactList}\small\item\em 235 $<$mask$>$ $<$type$>$ :End of service listing \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_150a28b2e4ce27dbdceadbb1143c1a23}{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT}~251
+\begin{CompactList}\small\item\em 251 :There are $<$integer$>$ users and $<$integer$>$ services on $<$integer$>$ servers \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_9c401c244142ef0ac85b84d1e06881e0}{LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP}~252
+\begin{CompactList}\small\item\em 252 $<$integer$>$ :operator(s) online \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b398de728cca589e82df42d6e9a08f50}{LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN}~253
+\begin{CompactList}\small\item\em 253 $<$integer$>$ :unknown connection(s) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f479e546cbc0060f38f5475f7a1256ef}{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS}~254
+\begin{CompactList}\small\item\em 254 $<$integer$>$ :channels formed \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_ca6a0c4e04579223b005f76e9119cee0}{LIBIRC\_\-RFC\_\-RPL\_\-LUSERME}~255
+\begin{CompactList}\small\item\em 255 :I have $<$integer$>$ clients and $<$integer$>$ servers \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e050978abb7478ab656f4b0b610a4e9c}{LIBIRC\_\-RFC\_\-RPL\_\-ADMINME}~256
+\begin{CompactList}\small\item\em 256 $<$server$>$ :Administrative info \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b7499cdf5c8c4f59e0b1364c03e938c8}{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1}~257
+\begin{CompactList}\small\item\em 257 :$<$admin info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_0e6696d5d4918c9575956f87c78a2c75}{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2}~258
+\begin{CompactList}\small\item\em 258 :$<$admin info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_eb9af936a2d2c03374417d05ade2cdb3}{LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL}~259
+\begin{CompactList}\small\item\em 259 :$<$admin info$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e5329b95eb3402990675ebf8b705ad66}{LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN}~263
+\begin{CompactList}\small\item\em 263 $<$command$>$ :Please wait a while and try again. \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}~401
+\begin{CompactList}\small\item\em 401 $<$nickname$>$ :No such nick/channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_8108addfd19326f00eacd71c26809348}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER}~402
+\begin{CompactList}\small\item\em 402 $<$server name$>$ :No such server \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}~403
+\begin{CompactList}\small\item\em 403 $<$channel name$>$ :No such channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}~404
+\begin{CompactList}\small\item\em 404 $<$channel name$>$ :Cannot send to channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_784de3929f568ce298c37c42acb4bfef}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS}~405
+\begin{CompactList}\small\item\em 405 $<$channel name$>$ :You have joined too many channels \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f36d875f2f4d88a959aaf75978c8c02e}{LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK}~406
+\begin{CompactList}\small\item\em 406 $<$nickname$>$ :There was no such nickname \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}~407
+\begin{CompactList}\small\item\em 407 $<$target$>$ :$<$error code$>$ recipients. $<$abort message$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6ef41b1c7955888d2d608e6b9213039a}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE}~408
+\begin{CompactList}\small\item\em 408 $<$service name$>$ :No such service \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_5253a98a0673962ecdf9239c42fd3cfc}{LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN}~409
+\begin{CompactList}\small\item\em 409 :No origin specified \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}~411
+\begin{CompactList}\small\item\em 411 :No recipient given ($<$command$>$) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}~412
+\begin{CompactList}\small\item\em 412 :No text to send \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}~413
+\begin{CompactList}\small\item\em 413 $<$mask$>$ :No toplevel domain specified \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}~414
+\begin{CompactList}\small\item\em 414 $<$mask$>$ :Wildcard in toplevel domain \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4b1891745acf0880af1d93d1da71c87b}{LIBIRC\_\-RFC\_\-ERR\_\-BADMASK}~415
+\begin{CompactList}\small\item\em 415 $<$mask$>$ :Bad Server/host mask \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c9700c81583082d145a5236748efcbad}{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND}~421
+\begin{CompactList}\small\item\em 421 $<$command$>$ :Unknown command \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_eeb61823055c58ed089c138b7768b899}{LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD}~422
+\begin{CompactList}\small\item\em 422 :MOTD File is missing \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_aec4021499b205247f9d4c1ee33ba8f1}{LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO}~423
+\begin{CompactList}\small\item\em 423 $<$server$>$ :No administrative info available \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6b69683ac06754b38388a0d25e29b4b6}{LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR}~424
+\begin{CompactList}\small\item\em 424 :File error doing $<$file op$>$ on $<$file$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c754b9522b1f4c4376f809d2e3acbee4}{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN}~431
+\begin{CompactList}\small\item\em 431 :No nickname given \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_177a2b46f518e603271b3d55ae2f84ab}{LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME}~432
+\begin{CompactList}\small\item\em 432 $<$nick$>$ :Erroneous nickname \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_2dabe26bb4ab3b90974a6a645f7d7545}{LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE}~433
+\begin{CompactList}\small\item\em 433 $<$nick$>$ :Nickname is already in use \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_929657e2facbf0e46a540aa8e7516774}{LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION}~436
+\begin{CompactList}\small\item\em 436 $<$nick$>$ :Nickname collision KILL from $<$user$>$@$<$host$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c387f0d26f0df419f744e6e0ea6ce005}{LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE}~437
+\begin{CompactList}\small\item\em 437 $<$nick/channel$>$ :Nick/channel is temporarily unavailable \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_929d5bc041ad99b161b6685aa05e4f64}{LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL}~441
+\begin{CompactList}\small\item\em 441 $<$nick$>$ $<$channel$>$ :They aren't on that channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}~442
+\begin{CompactList}\small\item\em 442 $<$channel$>$ :You're not on that channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_aa927136c2fe8a8d4e45b17dfea70303}{LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL}~443
+\begin{CompactList}\small\item\em 443 $<$user$>$ $<$channel$>$ :is already on channel \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_82b53ec1f6a19a95c1d7d376a49f3cac}{LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN}~444
+\begin{CompactList}\small\item\em 444 $<$user$>$ :User not logged in \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_d0834a3cc4431206ac130e604c81803f}{LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED}~445
+\begin{CompactList}\small\item\em 445 :SUMMON has been disabled \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4560dabc75ada66f19872b372e4e30cd}{LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED}~446
+\begin{CompactList}\small\item\em 446 :USERS has been disabled \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_787a41ffa63671e56da644fb32be180a}{LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED}~451
+\begin{CompactList}\small\item\em 451 :You have not registered \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}~461
+\begin{CompactList}\small\item\em 461 $<$command$>$ :Not enough parameters \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_1701898fa06e1935d9305222c65d66a6}{LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED}~462
+\begin{CompactList}\small\item\em 462 :Unauthorized command (already registered) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_4a62ec37ba0929b54cc3e77be973ecf1}{LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST}~463
+\begin{CompactList}\small\item\em 463 :Your host isn't among the privileged \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c6f7ea25e5bdd8b1f7a271232ebafcf2}{LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH}~464
+\begin{CompactList}\small\item\em 464 :Password incorrect \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e98bc10404f5961bbdf3747c2e509dc3}{LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP}~465
+\begin{CompactList}\small\item\em 465 :You are banned from this server \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_1091fd61652ee8f30df898a9091dac88}{LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED}~466
+\begin{CompactList}\small\item\em 466 :You will be banned from this server \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_43267525d047db03b1c8f402cfe549f3}{LIBIRC\_\-RFC\_\-ERR\_\-KEYSET}~467
+\begin{CompactList}\small\item\em 467 $<$channel$>$ :Channel key already set \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_8644827c4d45e5669a342b1d70a0904e}{LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL}~471
+\begin{CompactList}\small\item\em 471 $<$channel$>$ :Cannot join channel (+l) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_66d80c7acd49ba08f1a14b8775347ed1}{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE}~472
+\begin{CompactList}\small\item\em 472 $<$char$>$ :is unknown mode char to me for $<$channel$>$ \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_dfa3659a762a5023cd37615a54f70a2e}{LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN}~473
+\begin{CompactList}\small\item\em 473 $<$channel$>$ :Cannot join channel (+i) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_c5bf83f758e914ca36d5f379e5819103}{LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN}~474
+\begin{CompactList}\small\item\em 474 $<$channel$>$ :Cannot join channel (+b) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_04a2e9664d25bece875e5c207c6a2697}{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY}~475
+\begin{CompactList}\small\item\em 475 $<$channel$>$ :Cannot join channel (+k) \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6e40a8054eb0a0c0c6882cd97f344853}{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK}~476
+\begin{CompactList}\small\item\em 476 $<$channel$>$ :Bad Channel Mask \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_281b65b85e248598a7ca0cad7fb1fb42}{LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES}~477
+\begin{CompactList}\small\item\em 477 $<$channel$>$ :Channel doesn't support modes \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_9090b770689a1b8b2bb8bb3e463cb6ea}{LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL}~478
+\begin{CompactList}\small\item\em 478 $<$channel$>$ $<$char$>$ :Channel list is full \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_6afd77656919ffebf8468b1aa828be00}{LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES}~481
+\begin{CompactList}\small\item\em 481 :Permission Denied- You're not an IRC operator \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}~482
+\begin{CompactList}\small\item\em 482 $<$channel$>$ :You're not channel operator \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_f8a5c81b0413911e6120af8b6c51cf06}{LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER}~483
+\begin{CompactList}\small\item\em 483 :You can't kill a server! \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_0f12c365aee869c60022e1cfbc6c2158}{LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED}~484
+\begin{CompactList}\small\item\em 484 :Your connection is restricted! \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_e567a12bbbaa3d2964a4fe43f5b13fa4}{LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED}~485
+\begin{CompactList}\small\item\em 485 :You're not the original channel operator \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_bc83a42c94926342d1149f0572c07767}{LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST}~491
+\begin{CompactList}\small\item\em 491 :No O-lines for your host \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_0c3eb9db119a7f1b9c8c9be9e9b82ae1}{LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG}~501
+\begin{CompactList}\small\item\em 501 :Unknown MODE flag \item\end{CompactList}\item 
+\#define \hyperlink{libirc__rfcnumeric_8h_109b90448c6e8f7e2537a5f4f323745b}{LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH}~502
+\begin{CompactList}\small\item\em 502 :Cannot change mode for other users \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This file defines RFC numeric reply codes, which should be used in event\_\-numeric callback. Every code also has a comment regarding its arguments. 
+
+\begin{Desc}
+\item[Author:]Georgy Yunaev \end{Desc}
+\begin{Desc}
+\item[Version:]1.0 \end{Desc}
+\begin{Desc}
+\item[Date:]09.2004 \end{Desc}
+
+
+\subsection{Define Documentation}
+\hypertarget{libirc__rfcnumeric_8h_1701898fa06e1935d9305222c65d66a6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED@{LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED@{LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-ALREADYREGISTRED~462}}
+\label{libirc__rfcnumeric_8h_1701898fa06e1935d9305222c65d66a6}
+
+
+462 :Unauthorized command (already registered) 
+
+Returned by the server to any link which tries to change part of the registered details (such as password or user details from second USER message). \hypertarget{libirc__rfcnumeric_8h_6e40a8054eb0a0c0c6882cd97f344853}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK@{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK@{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK~476}}
+\label{libirc__rfcnumeric_8h_6e40a8054eb0a0c0c6882cd97f344853}
+
+
+476 $<$channel$>$ :Bad Channel Mask 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_04a2e9664d25bece875e5c207c6a2697}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY@{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY@{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY~475}}
+\label{libirc__rfcnumeric_8h_04a2e9664d25bece875e5c207c6a2697}
+
+
+475 $<$channel$>$ :Cannot join channel (+k) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_4b1891745acf0880af1d93d1da71c87b}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-BADMASK@{LIBIRC\_\-RFC\_\-ERR\_\-BADMASK}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-BADMASK@{LIBIRC\_\-RFC\_\-ERR\_\-BADMASK}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-BADMASK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-BADMASK~415}}
+\label{libirc__rfcnumeric_8h_4b1891745acf0880af1d93d1da71c87b}
+
+
+415 $<$mask$>$ :Bad Server/host mask 
+
+412 - 415 are returned by PRIVMSG to indicate that the message wasn't delivered for some reason. ERR\_\-NOTOPLEVEL and ERR\_\-WILDTOPLEVEL are errors that are returned when an invalid use of \char`\"{}PRIVMSG \$$<$server$>$\char`\"{} or \char`\"{}PRIVMSG \#$<$host$>$\char`\"{} is attempted. \hypertarget{libirc__rfcnumeric_8h_9090b770689a1b8b2bb8bb3e463cb6ea}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL@{LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL@{LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-BANLISTFULL~478}}
+\label{libirc__rfcnumeric_8h_9090b770689a1b8b2bb8bb3e463cb6ea}
+
+
+478 $<$channel$>$ $<$char$>$ :Channel list is full 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_c5bf83f758e914ca36d5f379e5819103}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN~474}}
+\label{libirc__rfcnumeric_8h_c5bf83f758e914ca36d5f379e5819103}
+
+
+474 $<$channel$>$ :Cannot join channel (+b) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN~404}}
+\label{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}
+
+
+404 $<$channel name$>$ :Cannot send to channel 
+
+Sent to a user who is either (a) not on a channel which is mode +n or (b) not a chanop (or mode +v) on a channel which has mode +m set or where the user is banned and is trying to send a PRIVMSG message to that channel. \hypertarget{libirc__rfcnumeric_8h_f8a5c81b0413911e6120af8b6c51cf06}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER@{LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER@{LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-CANTKILLSERVER~483}}
+\label{libirc__rfcnumeric_8h_f8a5c81b0413911e6120af8b6c51cf06}
+
+
+483 :You can't kill a server! 
+
+Any attempts to use the KILL command on a server are to be refused and this error returned directly to the client. \hypertarget{libirc__rfcnumeric_8h_8644827c4d45e5669a342b1d70a0904e}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL@{LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL@{LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL~471}}
+\label{libirc__rfcnumeric_8h_8644827c4d45e5669a342b1d70a0904e}
+
+
+471 $<$channel$>$ :Cannot join channel (+l) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED@{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED@{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED~482}}
+\label{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}
+
+
+482 $<$channel$>$ :You're not channel operator 
+
+Any command requiring 'chanop' privileges (such as MODE messages) MUST return this error if the client making the attempt is not a chanop on the specified channel. \hypertarget{libirc__rfcnumeric_8h_177a2b46f518e603271b3d55ae2f84ab}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME@{LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME@{LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME~432}}
+\label{libirc__rfcnumeric_8h_177a2b46f518e603271b3d55ae2f84ab}
+
+
+432 $<$nick$>$ :Erroneous nickname 
+
+Returned after receiving a NICK message which contains characters which do not fall in the defined set. See section 2.3.1 for details on valid nicknames. \hypertarget{libirc__rfcnumeric_8h_6b69683ac06754b38388a0d25e29b4b6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR@{LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR@{LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-FILEERROR~424}}
+\label{libirc__rfcnumeric_8h_6b69683ac06754b38388a0d25e29b4b6}
+
+
+424 :File error doing $<$file op$>$ on $<$file$>$ 
+
+Generic error message used to report a failed file operation during the processing of a message. \hypertarget{libirc__rfcnumeric_8h_dfa3659a762a5023cd37615a54f70a2e}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN@{LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN~473}}
+\label{libirc__rfcnumeric_8h_dfa3659a762a5023cd37615a54f70a2e}
+
+
+473 $<$channel$>$ :Cannot join channel (+i) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_43267525d047db03b1c8f402cfe549f3}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-KEYSET@{LIBIRC\_\-RFC\_\-ERR\_\-KEYSET}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-KEYSET@{LIBIRC\_\-RFC\_\-ERR\_\-KEYSET}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-KEYSET]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-KEYSET~467}}
+\label{libirc__rfcnumeric_8h_43267525d047db03b1c8f402cfe549f3}
+
+
+467 $<$channel$>$ :Channel key already set 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS@{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS@{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS~461}}
+\label{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}
+
+
+461 $<$command$>$ :Not enough parameters 
+
+Returned by the server by numerous commands to indicate to the client that it didn't supply enough parameters. \hypertarget{libirc__rfcnumeric_8h_929657e2facbf0e46a540aa8e7516774}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION@{LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION@{LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION~436}}
+\label{libirc__rfcnumeric_8h_929657e2facbf0e46a540aa8e7516774}
+
+
+436 $<$nick$>$ :Nickname collision KILL from $<$user$>$@$<$host$>$ 
+
+Returned by a server to a client when it detects a nickname collision (registered of a NICK that already exists by another server). \hypertarget{libirc__rfcnumeric_8h_2dabe26bb4ab3b90974a6a645f7d7545}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE@{LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE@{LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE~433}}
+\label{libirc__rfcnumeric_8h_2dabe26bb4ab3b90974a6a645f7d7545}
+
+
+433 $<$nick$>$ :Nickname is already in use 
+
+Returned when a NICK message is processed that results in an attempt to change to a currently existing nickname. \hypertarget{libirc__rfcnumeric_8h_aec4021499b205247f9d4c1ee33ba8f1}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO@{LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO@{LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOADMININFO~423}}
+\label{libirc__rfcnumeric_8h_aec4021499b205247f9d4c1ee33ba8f1}
+
+
+423 $<$server$>$ :No administrative info available 
+
+Returned by a server in response to an ADMIN message when there is an error in finding the appropriate information. \hypertarget{libirc__rfcnumeric_8h_281b65b85e248598a7ca0cad7fb1fb42}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES@{LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES@{LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOCHANMODES~477}}
+\label{libirc__rfcnumeric_8h_281b65b85e248598a7ca0cad7fb1fb42}
+
+
+477 $<$channel$>$ :Channel doesn't support modes 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_82b53ec1f6a19a95c1d7d376a49f3cac}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN@{LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN@{LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOLOGIN~444}}
+\label{libirc__rfcnumeric_8h_82b53ec1f6a19a95c1d7d376a49f3cac}
+
+
+444 $<$user$>$ :User not logged in 
+
+Returned by the summon after a SUMMON command for a user was unable to be performed since they were not logged in. \hypertarget{libirc__rfcnumeric_8h_eeb61823055c58ed089c138b7768b899}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD@{LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD@{LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOMOTD~422}}
+\label{libirc__rfcnumeric_8h_eeb61823055c58ed089c138b7768b899}
+
+
+422 :MOTD File is missing 
+
+Server's MOTD file could not be opened by the server. \hypertarget{libirc__rfcnumeric_8h_c754b9522b1f4c4376f809d2e3acbee4}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN@{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN@{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN~431}}
+\label{libirc__rfcnumeric_8h_c754b9522b1f4c4376f809d2e3acbee4}
+
+
+431 :No nickname given 
+
+Returned when a nickname parameter expected for a command and isn't found. \hypertarget{libirc__rfcnumeric_8h_bc83a42c94926342d1149f0572c07767}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST@{LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST@{LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOOPERHOST~491}}
+\label{libirc__rfcnumeric_8h_bc83a42c94926342d1149f0572c07767}
+
+
+491 :No O-lines for your host 
+
+If a client sends an OPER message and the server has not been configured to allow connections from the client's host as an operator, this error MUST be returned. \hypertarget{libirc__rfcnumeric_8h_5253a98a0673962ecdf9239c42fd3cfc}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN@{LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN@{LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOORIGIN~409}}
+\label{libirc__rfcnumeric_8h_5253a98a0673962ecdf9239c42fd3cfc}
+
+
+409 :No origin specified 
+
+PING or PONG message missing the originator parameter. \hypertarget{libirc__rfcnumeric_8h_4a62ec37ba0929b54cc3e77be973ecf1}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST@{LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST@{LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOPERMFORHOST~463}}
+\label{libirc__rfcnumeric_8h_4a62ec37ba0929b54cc3e77be973ecf1}
+
+
+463 :Your host isn't among the privileged 
+
+Returned to a client which attempts to register with a server which does not been setup to allow connections from the host the attempted connection is tried. \hypertarget{libirc__rfcnumeric_8h_6afd77656919ffebf8468b1aa828be00}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES@{LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES@{LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOPRIVILEGES~481}}
+\label{libirc__rfcnumeric_8h_6afd77656919ffebf8468b1aa828be00}
+
+
+481 :Permission Denied- You're not an IRC operator 
+
+Any command requiring operator privileges to operate MUST return this error to indicate the attempt was unsuccessful. \hypertarget{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT@{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT@{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT~411}}
+\label{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}
+
+
+411 :No recipient given ($<$command$>$) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL~403}}
+\label{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}
+
+
+403 $<$channel name$>$ :No such channel 
+
+Used to indicate the given channel name is invalid. \hypertarget{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK~401}}
+\label{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}
+
+
+401 $<$nickname$>$ :No such nick/channel 
+
+Used to indicate the nickname parameter supplied to a command is currently unused. \hypertarget{libirc__rfcnumeric_8h_8108addfd19326f00eacd71c26809348}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER~402}}
+\label{libirc__rfcnumeric_8h_8108addfd19326f00eacd71c26809348}
+
+
+402 $<$server name$>$ :No such server 
+
+Used to indicate the server name given currently does not exist. \hypertarget{libirc__rfcnumeric_8h_6ef41b1c7955888d2d608e6b9213039a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE@{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVICE~408}}
+\label{libirc__rfcnumeric_8h_6ef41b1c7955888d2d608e6b9213039a}
+
+
+408 $<$service name$>$ :No such service 
+
+Returned to a client which is attempting to send a SQUERY to a service which does not exist. \hypertarget{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND@{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND@{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND~412}}
+\label{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}
+
+
+412 :No text to send 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL~442}}
+\label{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}
+
+
+442 $<$channel$>$ :You're not on that channel 
+
+Returned by the server whenever a client tries to perform a channel affecting command for which the client isn't a member. \hypertarget{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL@{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL~413}}
+\label{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}
+
+
+413 $<$mask$>$ :No toplevel domain specified 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_787a41ffa63671e56da644fb32be180a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED@{LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED@{LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-NOTREGISTERED~451}}
+\label{libirc__rfcnumeric_8h_787a41ffa63671e56da644fb32be180a}
+
+
+451 :You have not registered 
+
+Returned by the server to indicate that the client MUST be registered before the server will allow it to be parsed in detail. \hypertarget{libirc__rfcnumeric_8h_c6f7ea25e5bdd8b1f7a271232ebafcf2}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH@{LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH@{LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-PASSWDMISMATCH~464}}
+\label{libirc__rfcnumeric_8h_c6f7ea25e5bdd8b1f7a271232ebafcf2}
+
+
+464 :Password incorrect 
+
+Returned to indicate a failed attempt at registering a connection for which a password was required and was either not given or incorrect. \hypertarget{libirc__rfcnumeric_8h_0f12c365aee869c60022e1cfbc6c2158}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED@{LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED@{LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-RESTRICTED~484}}
+\label{libirc__rfcnumeric_8h_0f12c365aee869c60022e1cfbc6c2158}
+
+
+484 :Your connection is restricted! 
+
+Sent by the server to a user upon connection to indicate the restricted nature of the connection (user mode \char`\"{}+r\char`\"{}). \hypertarget{libirc__rfcnumeric_8h_d0834a3cc4431206ac130e604c81803f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED@{LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED@{LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-SUMMONDISABLED~445}}
+\label{libirc__rfcnumeric_8h_d0834a3cc4431206ac130e604c81803f}
+
+
+445 :SUMMON has been disabled 
+
+Returned as a response to the SUMMON command. MUST be returned by any server which doesn't implement it. \hypertarget{libirc__rfcnumeric_8h_784de3929f568ce298c37c42acb4bfef}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS@{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS@{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS~405}}
+\label{libirc__rfcnumeric_8h_784de3929f568ce298c37c42acb4bfef}
+
+
+405 $<$channel name$>$ :You have joined too many channels 
+
+Sent to a user when they have joined the maximum number of allowed channels and they try to join another channel. \hypertarget{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS@{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS@{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS~407}}
+\label{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}
+
+
+407 $<$target$>$ :$<$error code$>$ recipients. $<$abort message$>$ 
+
+Returned to a client which is attempting to send a PRIVMSG/NOTICE using the user@host destination format and for a user@host which has several occurrences. - Returned to a client which trying to send a PRIVMSG/NOTICE to too many recipients. - Returned to a client which is attempting to JOIN a safe channel using the shortname when there are more than one such channel. \hypertarget{libirc__rfcnumeric_8h_0c3eb9db119a7f1b9c8c9be9e9b82ae1}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG@{LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG@{LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG~501}}
+\label{libirc__rfcnumeric_8h_0c3eb9db119a7f1b9c8c9be9e9b82ae1}
+
+
+501 :Unknown MODE flag 
+
+Returned by the server to indicate that a MODE message was sent with a nickname parameter and that the a mode flag sent was not recognized. \hypertarget{libirc__rfcnumeric_8h_c387f0d26f0df419f744e6e0ea6ce005}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE@{LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE@{LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-UNAVAILRESOURCE~437}}
+\label{libirc__rfcnumeric_8h_c387f0d26f0df419f744e6e0ea6ce005}
+
+
+437 $<$nick/channel$>$ :Nick/channel is temporarily unavailable 
+
+Returned by a server to a user trying to join a channel currently blocked by the channel delay mechanism. - Returned by a server to a user trying to change nickname when the desired nickname is blocked by the nick delay mechanism. \hypertarget{libirc__rfcnumeric_8h_e567a12bbbaa3d2964a4fe43f5b13fa4}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED@{LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED@{LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-UNIQOPPRIVSNEEDED~485}}
+\label{libirc__rfcnumeric_8h_e567a12bbbaa3d2964a4fe43f5b13fa4}
+
+
+485 :You're not the original channel operator 
+
+Any MODE requiring \char`\"{}channel creator\char`\"{} privileges MUST return this error if the client making the attempt is not a chanop on the specified channel. \hypertarget{libirc__rfcnumeric_8h_c9700c81583082d145a5236748efcbad}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND@{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND@{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNCOMMAND~421}}
+\label{libirc__rfcnumeric_8h_c9700c81583082d145a5236748efcbad}
+
+
+421 $<$command$>$ :Unknown command 
+
+Returned to a registered client to indicate that the command sent is unknown by the server. \hypertarget{libirc__rfcnumeric_8h_66d80c7acd49ba08f1a14b8775347ed1}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE@{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE@{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE~472}}
+\label{libirc__rfcnumeric_8h_66d80c7acd49ba08f1a14b8775347ed1}
+
+
+472 $<$char$>$ :is unknown mode char to me for $<$channel$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_929d5bc041ad99b161b6685aa05e4f64}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-USERNOTINCHANNEL~441}}
+\label{libirc__rfcnumeric_8h_929d5bc041ad99b161b6685aa05e4f64}
+
+
+441 $<$nick$>$ $<$channel$>$ :They aren't on that channel 
+
+Returned by the server to indicate that the target user of the command is not on the given channel. \hypertarget{libirc__rfcnumeric_8h_aa927136c2fe8a8d4e45b17dfea70303}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL@{LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-USERONCHANNEL~443}}
+\label{libirc__rfcnumeric_8h_aa927136c2fe8a8d4e45b17dfea70303}
+
+
+443 $<$user$>$ $<$channel$>$ :is already on channel 
+
+Returned when a client tries to invite a user to a channel they are already on. \hypertarget{libirc__rfcnumeric_8h_4560dabc75ada66f19872b372e4e30cd}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED@{LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED@{LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-USERSDISABLED~446}}
+\label{libirc__rfcnumeric_8h_4560dabc75ada66f19872b372e4e30cd}
+
+
+446 :USERS has been disabled 
+
+Returned as a response to the USERS command. MUST be returned by any server which does not implement it. \hypertarget{libirc__rfcnumeric_8h_109b90448c6e8f7e2537a5f4f323745b}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH@{LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH@{LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH~502}}
+\label{libirc__rfcnumeric_8h_109b90448c6e8f7e2537a5f4f323745b}
+
+
+502 :Cannot change mode for other users 
+
+Error sent to any user trying to view or change the user mode for a user other than themselves. \hypertarget{libirc__rfcnumeric_8h_f36d875f2f4d88a959aaf75978c8c02e}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK@{LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK@{LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-WASNOSUCHNICK~406}}
+\label{libirc__rfcnumeric_8h_f36d875f2f4d88a959aaf75978c8c02e}
+
+
+406 $<$nickname$>$ :There was no such nickname 
+
+Returned by WHOWAS to indicate there is no history information for that nickname. \hypertarget{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL@{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL@{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL~414}}
+\label{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}
+
+
+414 $<$mask$>$ :Wildcard in toplevel domain 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_e98bc10404f5961bbdf3747c2e509dc3}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP@{LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP@{LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-YOUREBANNEDCREEP~465}}
+\label{libirc__rfcnumeric_8h_e98bc10404f5961bbdf3747c2e509dc3}
+
+
+465 :You are banned from this server 
+
+Returned after an attempt to connect and register yourself with a server which has been setup to explicitly deny connections to you. \hypertarget{libirc__rfcnumeric_8h_1091fd61652ee8f30df898a9091dac88}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED@{LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED}}
+\index{LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED@{LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-ERR\_\-YOUWILLBEBANNED~466}}
+\label{libirc__rfcnumeric_8h_1091fd61652ee8f30df898a9091dac88}
+
+
+466 :You will be banned from this server 
+
+Sent by a server to a user to inform that access to the server will soon be denied. \hypertarget{libirc__rfcnumeric_8h_eb9af936a2d2c03374417d05ade2cdb3}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ADMINEMAIL~259}}
+\label{libirc__rfcnumeric_8h_eb9af936a2d2c03374417d05ade2cdb3}
+
+
+259 :$<$admin info$>$ 
+
+When replying to an ADMIN message, a server is expected to use replies RPL\_\-ADMINME through to RPL\_\-ADMINEMAIL and provide a text message with each. For RPL\_\-ADMINLOC1 a description of what city, state and country the server is in is expected, followed by details of the institution (RPL\_\-ADMINLOC2) and finally the administrative contact for the server (an email address here is REQUIRED) in RPL\_\-ADMINEMAIL. \hypertarget{libirc__rfcnumeric_8h_b7499cdf5c8c4f59e0b1364c03e938c8}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC1~257}}
+\label{libirc__rfcnumeric_8h_b7499cdf5c8c4f59e0b1364c03e938c8}
+
+
+257 :$<$admin info$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_0e6696d5d4918c9575956f87c78a2c75}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ADMINLOC2~258}}
+\label{libirc__rfcnumeric_8h_0e6696d5d4918c9575956f87c78a2c75}
+
+
+258 :$<$admin info$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_e050978abb7478ab656f4b0b610a4e9c}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ADMINME@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINME}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ADMINME@{LIBIRC\_\-RFC\_\-RPL\_\-ADMINME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ADMINME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ADMINME~256}}
+\label{libirc__rfcnumeric_8h_e050978abb7478ab656f4b0b610a4e9c}
+
+
+256 $<$server$>$ :Administrative info 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-AWAY@{LIBIRC\_\-RFC\_\-RPL\_\-AWAY}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-AWAY@{LIBIRC\_\-RFC\_\-RPL\_\-AWAY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-AWAY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-AWAY~301}}
+\label{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}
+
+
+301 $<$nick$>$ :$<$away message$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_a188a0d60499bb3546fdc75b07ee5680}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-BANLIST@{LIBIRC\_\-RFC\_\-RPL\_\-BANLIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-BANLIST@{LIBIRC\_\-RFC\_\-RPL\_\-BANLIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-BANLIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-BANLIST~367}}
+\label{libirc__rfcnumeric_8h_a188a0d60499bb3546fdc75b07ee5680}
+
+
+367 $<$channel$>$ $<$banmask$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_20089bb4db6f4edf6ad9c55b21f79351}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE@{LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE@{LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-BOUNCE~005}}
+\label{libirc__rfcnumeric_8h_20089bb4db6f4edf6ad9c55b21f79351}
+
+
+005 Try server $<$server name$>$, port $<$port number$>$ 
+
+Sent by the server to a user to suggest an alternative server. This is often used when the connection is refused because the server is already full. \hypertarget{libirc__rfcnumeric_8h_ce33e328528f4ae2e7843478839301e5}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS@{LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS@{LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS~324}}
+\label{libirc__rfcnumeric_8h_ce33e328528f4ae2e7843478839301e5}
+
+
+324 $<$channel$>$ $<$mode$>$ $<$mode params$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_457848e59212b9c34b195408b3499e36}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-CREATED@{LIBIRC\_\-RFC\_\-RPL\_\-CREATED}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-CREATED@{LIBIRC\_\-RFC\_\-RPL\_\-CREATED}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-CREATED]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-CREATED~003}}
+\label{libirc__rfcnumeric_8h_457848e59212b9c34b195408b3499e36}
+
+
+003 This server was created $<$date$>$ 
+
+The server sends replies 001 to 004 to a user upon successful registration. \hypertarget{libirc__rfcnumeric_8h_6040ae147ea3044f201f314fec1a1791}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST~368}}
+\label{libirc__rfcnumeric_8h_6040ae147ea3044f201f314fec1a1791}
+
+
+368 $<$channel$>$ :End of channel ban list 
+
+When listing the active 'bans' for a given channel, a server is required to send the list back using the RPL\_\-BANLIST and RPL\_\-ENDOFBANLIST messages. A separate RPL\_\-BANLIST is sent for each active banmask. After the banmasks have been listed (or if none present) a RPL\_\-ENDOFBANLIST MUST be sent. \hypertarget{libirc__rfcnumeric_8h_2edbebc4a6ebc19a4cf718785f05cdce}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFEXCEPTLIST~349}}
+\label{libirc__rfcnumeric_8h_2edbebc4a6ebc19a4cf718785f05cdce}
+
+
+349 $<$channel$>$ :End of channel exception list 
+
+When listing the 'exception masks' for a given channel, a server is required to send the list back using the RPL\_\-EXCEPTLIST and RPL\_\-ENDOFEXCEPTLIST messages. A separate RPL\_\-EXCEPTLIST is sent for each active mask. After the masks have been listed (or if none present) a RPL\_\-ENDOFEXCEPTLIST MUST be sent. \hypertarget{libirc__rfcnumeric_8h_3f7aa466f616bc7645c9deed702ecbfd}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINFO~374}}
+\label{libirc__rfcnumeric_8h_3f7aa466f616bc7645c9deed702ecbfd}
+
+
+374 :End of INFO list 
+
+A server responding to an INFO message is required to send all its 'info' in a series of RPL\_\-INFO messages with a RPL\_\-ENDOFINFO reply to indicate the end of the replies. \hypertarget{libirc__rfcnumeric_8h_897411552f08a25005bc424ba1483f27}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFINVITELIST~347}}
+\label{libirc__rfcnumeric_8h_897411552f08a25005bc424ba1483f27}
+
+
+347 $<$channel$>$ :End of channel invite list 
+
+When listing the 'invitations masks' for a given channel, a server is required to send the list back using the RPL\_\-INVITELIST and RPL\_\-ENDOFINVITELIST messages. A separate RPL\_\-INVITELIST is sent for each active mask. After the masks have been listed (or if none present) a RPL\_\-ENDOFINVITELIST MUST be sent. \hypertarget{libirc__rfcnumeric_8h_3aca62d5fe10d6acdf37ee24f8d9b76d}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFLINKS~365}}
+\label{libirc__rfcnumeric_8h_3aca62d5fe10d6acdf37ee24f8d9b76d}
+
+
+365 $<$mask$>$ :End of LINKS list 
+
+In replying to the LINKS message, a server MUST send replies back using the RPL\_\-LINKS numeric and mark the end of the list using an RPL\_\-ENDOFLINKS reply. \hypertarget{libirc__rfcnumeric_8h_ceb2ecc1ff91805c62886c945bf3a200}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFMOTD~376}}
+\label{libirc__rfcnumeric_8h_ceb2ecc1ff91805c62886c945bf3a200}
+
+
+376 :End of MOTD command 
+
+When responding to the MOTD message and the MOTD file is found, the file is displayed line by line, with each line no longer than 80 characters, using RPL\_\-MOTD format replies. These MUST be surrounded by a RPL\_\-MOTDSTART (before the RPL\_\-MOTDs) and an RPL\_\-ENDOFMOTD (after). \hypertarget{libirc__rfcnumeric_8h_ed45893cd1a15247dc7200d16a224a76}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES~366}}
+\label{libirc__rfcnumeric_8h_ed45893cd1a15247dc7200d16a224a76}
+
+
+366 $<$channel$>$ :End of NAMES list 
+
+To reply to a NAMES message, a reply pair consisting of RPL\_\-NAMREPLY and RPL\_\-ENDOFNAMES is sent by the server back to the client. If there is no channel found as in the query, then only RPL\_\-ENDOFNAMES is returned. The exception to this is when a NAMES message is sent with no parameters and all visible channels and contents are sent back in a series of RPL\_\-NAMEREPLY messages with a RPL\_\-ENDOFNAMES to mark the end. \hypertarget{libirc__rfcnumeric_8h_aa0efa6298a7b86c61e4b1721c857e71}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFSTATS~219}}
+\label{libirc__rfcnumeric_8h_aa0efa6298a7b86c61e4b1721c857e71}
+
+
+219 $<$stats letter$>$ :End of STATS report 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_c6bbc01052466794fe1998e4d9316bff}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFUSERS~394}}
+\label{libirc__rfcnumeric_8h_c6bbc01052466794fe1998e4d9316bff}
+
+
+394 :End of users 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_aad7e5e89e006bdb5c24ff41cf1eda91}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHO~315}}
+\label{libirc__rfcnumeric_8h_aad7e5e89e006bdb5c24ff41cf1eda91}
+
+
+315 $<$name$>$ :End of WHO list 
+
+The RPL\_\-WHOREPLY and RPL\_\-ENDOFWHO pair are used to answer a WHO message. The RPL\_\-WHOREPLY is only sent if there is an appropriate match to the WHO query. If there is a list of parameters supplied with a WHO message, a RPL\_\-ENDOFWHO MUST be sent after processing each list item with $<$name$>$ being the item. \hypertarget{libirc__rfcnumeric_8h_e8c2ae654f4d2502eeea46cd6116687f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS~318}}
+\label{libirc__rfcnumeric_8h_e8c2ae654f4d2502eeea46cd6116687f}
+
+
+318 $<$nick$>$ :End of WHOIS list 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_8eb840d1d812efc90a7dbc2e4c5487a6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS@{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOWAS~369}}
+\label{libirc__rfcnumeric_8h_8eb840d1d812efc90a7dbc2e4c5487a6}
+
+
+369 $<$nick$>$ :End of WHOWAS 
+
+When replying to a WHOWAS message, a server MUST use the replies RPL\_\-WHOWASUSER, RPL\_\-WHOISSERVER or ERR\_\-WASNOSUCHNICK for each nickname in the presented list. At the end of all reply batches, there MUST be RPL\_\-ENDOFWHOWAS (even if there was only one reply and it was an error). \hypertarget{libirc__rfcnumeric_8h_5d238f6d71acb8652de17f1e2178ef83}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST@{LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST@{LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-EXCEPTLIST~348}}
+\label{libirc__rfcnumeric_8h_5d238f6d71acb8652de17f1e2178ef83}
+
+
+348 $<$channel$>$ $<$exceptionmask$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_25e458084627c7c5cc04846128ce7f99}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-INFO@{LIBIRC\_\-RFC\_\-RPL\_\-INFO}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-INFO@{LIBIRC\_\-RFC\_\-RPL\_\-INFO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-INFO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-INFO~371}}
+\label{libirc__rfcnumeric_8h_25e458084627c7c5cc04846128ce7f99}
+
+
+371 :$<$string$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_c7ccfca1aee7957b59043cd14b4c2199}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST@{LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST@{LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-INVITELIST~346}}
+\label{libirc__rfcnumeric_8h_c7ccfca1aee7957b59043cd14b4c2199}
+
+
+346 $<$channel$>$ $<$invitemask$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_5de83e9710137226a986fdc6aece31da}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-INVITING@{LIBIRC\_\-RFC\_\-RPL\_\-INVITING}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-INVITING@{LIBIRC\_\-RFC\_\-RPL\_\-INVITING}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-INVITING]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-INVITING~341}}
+\label{libirc__rfcnumeric_8h_5de83e9710137226a986fdc6aece31da}
+
+
+341 $<$channel$>$ $<$nick$>$ 
+
+Returned by the server to indicate that the attempted INVITE message was successful and is being passed onto the end client. \hypertarget{libirc__rfcnumeric_8h_27bd750af38efdb964ae3f2dea384469}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-ISON@{LIBIRC\_\-RFC\_\-RPL\_\-ISON}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-ISON@{LIBIRC\_\-RFC\_\-RPL\_\-ISON}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-ISON]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-ISON~303}}
+\label{libirc__rfcnumeric_8h_27bd750af38efdb964ae3f2dea384469}
+
+
+303 :$\ast$1$<$nick$>$ $\ast$( 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_bd1f4f6dd81b23d93a8d8670b52ee75c}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LINKS@{LIBIRC\_\-RFC\_\-RPL\_\-LINKS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LINKS@{LIBIRC\_\-RFC\_\-RPL\_\-LINKS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LINKS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LINKS~364}}
+\label{libirc__rfcnumeric_8h_bd1f4f6dd81b23d93a8d8670b52ee75c}
+
+
+364 $<$mask$>$ $<$server$>$ :$<$hopcount$>$ $<$server info$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_7cd68428c26cc9867a1b35a25b4acb64}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LIST@{LIBIRC\_\-RFC\_\-RPL\_\-LIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LIST@{LIBIRC\_\-RFC\_\-RPL\_\-LIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LIST~322}}
+\label{libirc__rfcnumeric_8h_7cd68428c26cc9867a1b35a25b4acb64}
+
+
+322 $<$channel$>$ $<$\# visible$>$ :$<$topic$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b986ca08f325c8113fbada41a99c84bf}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LISTEND@{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND@{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LISTEND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LISTEND~323}}
+\label{libirc__rfcnumeric_8h_b986ca08f325c8113fbada41a99c84bf}
+
+
+323 :End of LIST 
+
+Replies RPL\_\-LIST, RPL\_\-LISTEND mark the actual replies with data and end of the server's response to a LIST command. If there are no channels available to return, only the end reply MUST be sent. \hypertarget{libirc__rfcnumeric_8h_f479e546cbc0060f38f5475f7a1256ef}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LUSERCHANNELS~254}}
+\label{libirc__rfcnumeric_8h_f479e546cbc0060f38f5475f7a1256ef}
+
+
+254 $<$integer$>$ :channels formed 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_150a28b2e4ce27dbdceadbb1143c1a23}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LUSERCLIENT~251}}
+\label{libirc__rfcnumeric_8h_150a28b2e4ce27dbdceadbb1143c1a23}
+
+
+251 :There are $<$integer$>$ users and $<$integer$>$ services on $<$integer$>$ servers 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_ca6a0c4e04579223b005f76e9119cee0}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LUSERME@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERME}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LUSERME@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LUSERME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LUSERME~255}}
+\label{libirc__rfcnumeric_8h_ca6a0c4e04579223b005f76e9119cee0}
+
+
+255 :I have $<$integer$>$ clients and $<$integer$>$ servers 
+
+In processing an LUSERS message, the server sends a set of replies from RPL\_\-LUSERCLIENT, RPL\_\-LUSEROP, RPL\_\-USERUNKNOWN, RPL\_\-LUSERCHANNELS and RPL\_\-LUSERME. When replying, a server MUST send back RPL\_\-LUSERCLIENT and RPL\_\-LUSERME. The other replies are only sent back if a non-zero count is found for them. \hypertarget{libirc__rfcnumeric_8h_9c401c244142ef0ac85b84d1e06881e0}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP@{LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP@{LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LUSEROP~252}}
+\label{libirc__rfcnumeric_8h_9c401c244142ef0ac85b84d1e06881e0}
+
+
+252 $<$integer$>$ :operator(s) online 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b398de728cca589e82df42d6e9a08f50}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN@{LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-LUSERUNKNOWN~253}}
+\label{libirc__rfcnumeric_8h_b398de728cca589e82df42d6e9a08f50}
+
+
+253 $<$integer$>$ :unknown connection(s) 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_d6008de6ef3a06b3817bb42d8d501d67}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-MOTD@{LIBIRC\_\-RFC\_\-RPL\_\-MOTD}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-MOTD@{LIBIRC\_\-RFC\_\-RPL\_\-MOTD}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-MOTD]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-MOTD~372}}
+\label{libirc__rfcnumeric_8h_d6008de6ef3a06b3817bb42d8d501d67}
+
+
+372 :- $<$text$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_98acf0bf2e6a0fbf654dbaf4e8b7e674}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART@{LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART@{LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-MOTDSTART~375}}
+\label{libirc__rfcnumeric_8h_98acf0bf2e6a0fbf654dbaf4e8b7e674}
+
+
+375 :- $<$server$>$ Message of the day - 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_79965ea78224aaea217c27e8bd2ea565}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-MYINFO@{LIBIRC\_\-RFC\_\-RPL\_\-MYINFO}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-MYINFO@{LIBIRC\_\-RFC\_\-RPL\_\-MYINFO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-MYINFO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-MYINFO~004}}
+\label{libirc__rfcnumeric_8h_79965ea78224aaea217c27e8bd2ea565}
+
+
+004 $<$servername$>$ $<$version$>$ $<$available user modes$>$ $<$available channel modes$>$ 
+
+The server sends replies 001 to 004 to a user upon successful registration. \hypertarget{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY@{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY@{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY~353}}
+\label{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}
+
+
+353 ( \char`\"{}= 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_f467ce06debba2e77db229b14f5bbe38}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC@{LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC@{LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC~331}}
+\label{libirc__rfcnumeric_8h_f467ce06debba2e77db229b14f5bbe38}
+
+
+331 $<$channel$>$ :No topic is set 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_08119bd0358f01a771e4d0f0c2aabb32}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS@{LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS@{LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-NOUSERS~395}}
+\label{libirc__rfcnumeric_8h_08119bd0358f01a771e4d0f0c2aabb32}
+
+
+395 :Nobody logged in 
+
+If the USERS message is handled by a server, the replies RPL\_\-USERSTART, RPL\_\-USERS, RPL\_\-ENDOFUSERS and RPL\_\-NOUSERS are used. RPL\_\-USERSSTART MUST be sent first, following by either a sequence of RPL\_\-USERS or a single RPL\_\-NOUSER. Following this is RPL\_\-ENDOFUSERS. \hypertarget{libirc__rfcnumeric_8h_223f4d11b29fa52405ae2c5c92a6f57c}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY@{LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY@{LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-NOWAWAY~306}}
+\label{libirc__rfcnumeric_8h_223f4d11b29fa52405ae2c5c92a6f57c}
+
+
+306 :You have been marked as being away 
+
+These replies are used with the AWAY command (if allowed). RPL\_\-AWAY is sent to any client sending a PRIVMSG to a client which is away. RPL\_\-AWAY is only sent by the server to which the client is connected. Replies RPL\_\-UNAWAY and RPL\_\-NOWAWAY are sent when the client removes and sets an AWAY message. \hypertarget{libirc__rfcnumeric_8h_16341382589ad8a0ea33870690a2eacd}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-REHASHING@{LIBIRC\_\-RFC\_\-RPL\_\-REHASHING}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-REHASHING@{LIBIRC\_\-RFC\_\-RPL\_\-REHASHING}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-REHASHING]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-REHASHING~382}}
+\label{libirc__rfcnumeric_8h_16341382589ad8a0ea33870690a2eacd}
+
+
+382 $<$config file$>$ :Rehashing 
+
+If the REHASH option is used and an operator sends a REHASH message, an RPL\_\-REHASHING is sent back to the operator. \hypertarget{libirc__rfcnumeric_8h_bcb0ebc54eb0885b1d36ed13474783b6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST@{LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST@{LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-SERVLIST~234}}
+\label{libirc__rfcnumeric_8h_bcb0ebc54eb0885b1d36ed13474783b6}
+
+
+234 $<$name$>$ $<$server$>$ $<$mask$>$ $<$type$>$ $<$hopcount$>$ $<$info$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_bd19df966082bf87e63ad541b8297385}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND@{LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND@{LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-SERVLISTEND~235}}
+\label{libirc__rfcnumeric_8h_bd19df966082bf87e63ad541b8297385}
+
+
+235 $<$mask$>$ $<$type$>$ :End of service listing 
+
+When listing services in reply to a SERVLIST message, a server is required to send the list back using the RPL\_\-SERVLIST and RPL\_\-SERVLISTEND messages. A separate RPL\_\-SERVLIST is sent for each service. After the services have been listed (or if none present) a RPL\_\-SERVLISTEND MUST be sent. \hypertarget{libirc__rfcnumeric_8h_cfc1bd556f14f42907a45df17a15bd71}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS@{LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS@{LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-STATSCOMMANDS~212}}
+\label{libirc__rfcnumeric_8h_cfc1bd556f14f42907a45df17a15bd71}
+
+
+212 $<$command$>$ $<$count$>$ $<$byte count$>$ $<$remote count$>$ 
+
+reports statistics on commands usage. \hypertarget{libirc__rfcnumeric_8h_9e11276a19249878b2970d9006534783}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO@{LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO@{LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-STATSLINKINFO~211}}
+\label{libirc__rfcnumeric_8h_9e11276a19249878b2970d9006534783}
+
+
+211 $<$linkname$>$ $<$sendq$>$ $<$sent messages$>$ $<$sent Kbytes$>$ $<$received messages$>$ $<$received Kbytes$>$ $<$time open$>$ 
+
+reports statistics on a connection. $<$linkname$>$ identifies the particular connection, $<$sendq$>$ is the amount of data that is queued and waiting to be sent $<$sent messages$>$ the number of messages sent, and $<$sent Kbytes$>$ the amount of data sent, in Kbytes. $<$received messages$>$ and $<$received Kbytes$>$ are the equivalent of $<$sent messages$>$ and $<$sent Kbytes$>$ for received data, respectively. $<$time open$>$ indicates how long ago the connection was opened, in seconds. \hypertarget{libirc__rfcnumeric_8h_b5aa35b134c37d012d79b5246259a127}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE@{LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE@{LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-STATSOLINE~243}}
+\label{libirc__rfcnumeric_8h_b5aa35b134c37d012d79b5246259a127}
+
+
+243 O $<$hostmask$>$ $\ast$ $<$name$>$ 
+
+reports the allowed hosts from where user may become IRC operators. \hypertarget{libirc__rfcnumeric_8h_b63dde0b78690895bd2d37d0991dc0b9}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME@{LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME@{LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-STATSUPTIME~242}}
+\label{libirc__rfcnumeric_8h_b63dde0b78690895bd2d37d0991dc0b9}
+
+
+242 :Server Up d days d:02d:02d 
+
+reports the server uptime. \hypertarget{libirc__rfcnumeric_8h_1751c0d93a35da59ede9ea222d543c2a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING@{LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING@{LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-SUMMONING~342}}
+\label{libirc__rfcnumeric_8h_1751c0d93a35da59ede9ea222d543c2a}
+
+
+342 $<$user$>$ :Summoning user to IRC 
+
+Returned by a server answering a SUMMON message to indicate that it is summoning that user. \hypertarget{libirc__rfcnumeric_8h_0326959553f325f18a6b23ddb0847be6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TIME@{LIBIRC\_\-RFC\_\-RPL\_\-TIME}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TIME@{LIBIRC\_\-RFC\_\-RPL\_\-TIME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TIME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TIME~391}}
+\label{libirc__rfcnumeric_8h_0326959553f325f18a6b23ddb0847be6}
+
+
+391 $<$server$>$ :$<$string showing server's local time$>$ 
+
+When replying to the TIME message, a server MUST send the reply using the RPL\_\-TIME format above. The string showing the time need only contain the correct day and time there. There is no further requirement for the time string. \hypertarget{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TOPIC@{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC@{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TOPIC]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TOPIC~332}}
+\label{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}
+
+
+332 $<$channel$>$ :$<$topic$>$ 
+
+When sending a TOPIC message to determine the channel topic, one of two replies is sent. If the topic is set, RPL\_\-TOPIC is sent back else RPL\_\-NOTOPIC. \hypertarget{libirc__rfcnumeric_8h_6497ecbb3653fbe3a981a9f0d61ef278}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS@{LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS@{LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACECLASS~209}}
+\label{libirc__rfcnumeric_8h_6497ecbb3653fbe3a981a9f0d61ef278}
+
+
+209 Class $<$class$>$ $<$count$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b5334d2fba02850cb8706d3486fcc31e}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING@{LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING@{LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACECONNECTING~201}}
+\label{libirc__rfcnumeric_8h_b5334d2fba02850cb8706d3486fcc31e}
+
+
+201 Try. $<$class$>$ $<$server$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_3b2d52ed29933fdb22d79ea342fc2f26}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACEEND~262}}
+\label{libirc__rfcnumeric_8h_3b2d52ed29933fdb22d79ea342fc2f26}
+
+
+262 $<$server name$>$ $<$version \& debug level$>$ :End of TRACE 
+
+The RPL\_\-TRACE$\ast$ are all returned by the server in response to the TRACE message. How many are returned is dependent on the TRACE message and whether it was sent by an operator or not. There is no predefined order for which occurs first. Replies RPL\_\-TRACEUNKNOWN, RPL\_\-TRACECONNECTING and RPL\_\-TRACEHANDSHAKE are all used for connections which have not been fully established and are either unknown, still attempting to connect or in the process of completing the 'server handshake'. RPL\_\-TRACELINK is sent by any server which handles a TRACE message and has to pass it on to another server. The list of RPL\_\-TRACELINKs sent in response to a TRACE command traversing the IRC network should reflect the actual connectivity of the servers themselves along that path. RPL\_\-TRACENEWTYPE is to be used for any connection which does not fit in the other categories but is being displayed anyway. RPL\_\-TRACEEND is sent to indicate the end of the list. \hypertarget{libirc__rfcnumeric_8h_4a427d0bdd9cac2bae6fb651f791fd8f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACEHANDSHAKE~202}}
+\label{libirc__rfcnumeric_8h_4a427d0bdd9cac2bae6fb651f791fd8f}
+
+
+202 H.S. $<$class$>$ $<$server$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_0ef1797805c029473397f07eb0e8e5d0}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK@{LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK@{LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACELINK~200}}
+\label{libirc__rfcnumeric_8h_0ef1797805c029473397f07eb0e8e5d0}
+
+
+200 Link $<$version \& debug level$>$ $<$destination$>$ $<$next server$>$ V$<$protocol version$>$ $<$link uptime in seconds$>$ $<$backstream sendq$>$ $<$upstream sendq$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_f9cdd749cf9d71fa536d81b9d6ef941a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG@{LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG@{LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACELOG~261}}
+\label{libirc__rfcnumeric_8h_f9cdd749cf9d71fa536d81b9d6ef941a}
+
+
+261 File $<$logfile$>$ $<$debug level$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b7fb76aadf15893f6e4ebeb881efc929}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACENEWTYPE~208}}
+\label{libirc__rfcnumeric_8h_b7fb76aadf15893f6e4ebeb881efc929}
+
+
+208 $<$newtype$>$ 0 $<$client name$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_2f1f64dd28787026e6b4f4f5250842ae}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACEOPERATOR~204}}
+\label{libirc__rfcnumeric_8h_2f1f64dd28787026e6b4f4f5250842ae}
+
+
+204 Oper $<$class$>$ $<$nick$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_fa8d1963799e46db6b6a5c724193db32}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER@{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER@{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVER~206}}
+\label{libirc__rfcnumeric_8h_fa8d1963799e46db6b6a5c724193db32}
+
+
+206 Serv $<$class$>$ $<$int$>$S $<$int$>$C $<$server$>$ $<$nick!user$|$$\ast$!$\ast$$>$@$<$host$|$server$>$ V$<$protocol version$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_3e81b657f2ed0d38aee95c2b91da4acc}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE@{LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACESERVICE~207}}
+\label{libirc__rfcnumeric_8h_3e81b657f2ed0d38aee95c2b91da4acc}
+
+
+207 Service $<$class$>$ $<$name$>$ $<$type$>$ $<$active type$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_434485e9f3fa12fa5ab379913002e9ce}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACEUNKNOWN~203}}
+\label{libirc__rfcnumeric_8h_434485e9f3fa12fa5ab379913002e9ce}
+
+
+203 ???? $<$class$>$ \mbox{[}$<$client IP address in dot form$>$\mbox{]} 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_22db1d704c89691b20346fb683a4b1c4}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER@{LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRACEUSER~205}}
+\label{libirc__rfcnumeric_8h_22db1d704c89691b20346fb683a4b1c4}
+
+
+205 User $<$class$>$ $<$nick$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_e5329b95eb3402990675ebf8b705ad66}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN@{LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN@{LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-TRYAGAIN~263}}
+\label{libirc__rfcnumeric_8h_e5329b95eb3402990675ebf8b705ad66}
+
+
+263 $<$command$>$ :Please wait a while and try again. 
+
+When a server drops a command without processing it, it MUST use the reply RPL\_\-TRYAGAIN to inform the originating client. \hypertarget{libirc__rfcnumeric_8h_dad4d02196dcef34bd0627b428f60863}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS@{LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS@{LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS~221}}
+\label{libirc__rfcnumeric_8h_dad4d02196dcef34bd0627b428f60863}
+
+
+221 $<$user mode string$>$ 
+
+To answer a query about a client's own mode, RPL\_\-UMODEIS is sent back. \hypertarget{libirc__rfcnumeric_8h_8ea7395ce19cbc1e55c6699dab32048a}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY@{LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY@{LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-UNAWAY~305}}
+\label{libirc__rfcnumeric_8h_8ea7395ce19cbc1e55c6699dab32048a}
+
+
+305 :You are no longer marked as being away 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_e7613a900a0aaa5c2a4f9dcf57d20a54}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS@{LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS@{LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-UNIQOPIS~325}}
+\label{libirc__rfcnumeric_8h_e7613a900a0aaa5c2a4f9dcf57d20a54}
+
+
+325 $<$channel$>$ $<$nickname$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_cc4d487e441bc6d2b9186697676d5c83}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-USERHOST@{LIBIRC\_\-RFC\_\-RPL\_\-USERHOST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-USERHOST@{LIBIRC\_\-RFC\_\-RPL\_\-USERHOST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-USERHOST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-USERHOST~302}}
+\label{libirc__rfcnumeric_8h_cc4d487e441bc6d2b9186697676d5c83}
+
+
+302 :$\ast$1$<$reply$>$ $\ast$( 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_f3358e349d5e16e5bc436fc4d2d488e6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-USERS@{LIBIRC\_\-RFC\_\-RPL\_\-USERS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-USERS@{LIBIRC\_\-RFC\_\-RPL\_\-USERS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-USERS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-USERS~393}}
+\label{libirc__rfcnumeric_8h_f3358e349d5e16e5bc436fc4d2d488e6}
+
+
+393 :$<$username$>$ $<$ttyline$>$ $<$hostname$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_7c9d31c8960d9b510ffb81eff3f0df55}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART@{LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART@{LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-USERSSTART~392}}
+\label{libirc__rfcnumeric_8h_7c9d31c8960d9b510ffb81eff3f0df55}
+
+
+392 :UserID Terminal Host 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_4cda85dc41efa4c24e775ea55275b6b6}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-VERSION@{LIBIRC\_\-RFC\_\-RPL\_\-VERSION}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-VERSION@{LIBIRC\_\-RFC\_\-RPL\_\-VERSION}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-VERSION]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-VERSION~351}}
+\label{libirc__rfcnumeric_8h_4cda85dc41efa4c24e775ea55275b6b6}
+
+
+351 $<$version$>$.$<$debuglevel$>$ $<$server$>$ :$<$comments$>$ 
+
+Reply by the server showing its version details. The $<$version$>$ is the version of the software being used (including any patchlevel revisions) and the $<$debuglevel$>$ is used to indicate if the server is running in \char`\"{}debug mode\char`\"{}. The \char`\"{}comments\char`\"{} field may contain any comments about the version or further version details. \hypertarget{libirc__rfcnumeric_8h_e7edeafc2c34c3f1e47b47e0c4eec2b4}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WELCOME@{LIBIRC\_\-RFC\_\-RPL\_\-WELCOME}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WELCOME@{LIBIRC\_\-RFC\_\-RPL\_\-WELCOME}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WELCOME]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WELCOME~001}}
+\label{libirc__rfcnumeric_8h_e7edeafc2c34c3f1e47b47e0c4eec2b4}
+
+
+001 Welcome to the Internet Relay Network $<$nick$>$!$<$user$>$@$<$host$>$ 
+
+The server sends replies 001 to 004 to a user upon successful registration. \hypertarget{libirc__rfcnumeric_8h_61c0201bfafc1f0b39f49dbadbffe4a9}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS~319}}
+\label{libirc__rfcnumeric_8h_61c0201bfafc1f0b39f49dbadbffe4a9}
+
+
+319 \char`\"{}$<$nick$>$ :$\ast$( ( \char`\"{}@\char`\"{} / \char`\"{}+\char`\"{} ) $<$channel$>$ \char`\"{} \char`\"{} )\char`\"{} 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_af3e96b0ee5bb9b9e3a3e28e2d75f6e4}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE~317}}
+\label{libirc__rfcnumeric_8h_af3e96b0ee5bb9b9e3a3e28e2d75f6e4}
+
+
+317 $<$nick$>$ $<$integer$>$ :seconds idle 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_992b1c08e5c48abc86701826d25a2884}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR~313}}
+\label{libirc__rfcnumeric_8h_992b1c08e5c48abc86701826d25a2884}
+
+
+313 $<$nick$>$ :is an IRC operator 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_7df656c3ce9c9d2e0b9cf84e5672beca}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER~312}}
+\label{libirc__rfcnumeric_8h_7df656c3ce9c9d2e0b9cf84e5672beca}
+
+
+312 $<$nick$>$ $<$server$>$ :$<$server info$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_401ee0bce20717f8fc20240158d9eed3}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER~311}}
+\label{libirc__rfcnumeric_8h_401ee0bce20717f8fc20240158d9eed3}
+
+
+311 $<$nick$>$ $<$user$>$ $<$host$>$ $\ast$ :$<$real name$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_560c4915ca8d0c28551fac8b879f0c6f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY@{LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY@{LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOREPLY~352}}
+\label{libirc__rfcnumeric_8h_560c4915ca8d0c28551fac8b879f0c6f}
+
+
+352 $<$channel$>$ $<$user$>$ $<$host$>$ $<$server$>$ $<$nick$>$ ( \char`\"{}H 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_b3daebb8bacf9bf796358f067ae8422c}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER@{LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-WHOWASUSER~314}}
+\label{libirc__rfcnumeric_8h_b3daebb8bacf9bf796358f067ae8422c}
+
+
+314 $<$nick$>$ $<$user$>$ $<$host$>$ $\ast$ :$<$real name$>$ 
+
+No description available in RFC \hypertarget{libirc__rfcnumeric_8h_a262842cfa504db62230d71dd60863ae}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER@{LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER@{LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-YOUREOPER~381}}
+\label{libirc__rfcnumeric_8h_a262842cfa504db62230d71dd60863ae}
+
+
+381 :You are now an IRC operator 
+
+RPL\_\-YOUREOPER is sent back to a client which has just successfully issued an OPER message and gained operator status. \hypertarget{libirc__rfcnumeric_8h_14f3d0e8389976c395115bc47ab56d1f}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE@{LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE@{LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-YOURESERVICE~383}}
+\label{libirc__rfcnumeric_8h_14f3d0e8389976c395115bc47ab56d1f}
+
+
+383 You are service $<$servicename$>$ 
+
+Sent by the server to a service upon successful registration. \hypertarget{libirc__rfcnumeric_8h_8b051fab649312894ef8a186c3b6b8ff}{
+\index{libirc\_\-rfcnumeric.h@{libirc\_\-rfcnumeric.h}!LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST@{LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST}}
+\index{LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST@{LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST}!libirc_rfcnumeric.h@{libirc\_\-rfcnumeric.h}}
+\subsubsection[LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST]{\setlength{\rightskip}{0pt plus 5cm}\#define LIBIRC\_\-RFC\_\-RPL\_\-YOURHOST~002}}
+\label{libirc__rfcnumeric_8h_8b051fab649312894ef8a186c3b6b8ff}
+
+
+002 Your host is $<$servername$>$, running version $<$ver$>$ 
+
+The server sends replies 001 to 004 to a user upon successful registration. 

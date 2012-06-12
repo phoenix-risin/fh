@@ -1,0 +1,61 @@
+.TH "sqlite3_mem_methods" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sqlite3_mem_methods \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sqlite3.h>\fP
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "void *(* \fBxMalloc\fP )(int)"
+.br
+.ti -1c
+.RI "void(* \fBxFree\fP )(void *)"
+.br
+.ti -1c
+.RI "void *(* \fBxRealloc\fP )(void *, int)"
+.br
+.ti -1c
+.RI "int(* \fBxSize\fP )(void *)"
+.br
+.ti -1c
+.RI "int(* \fBxRoundup\fP )(int)"
+.br
+.ti -1c
+.RI "int(* \fBxInit\fP )(void *)"
+.br
+.ti -1c
+.RI "void(* \fBxShutdown\fP )(void *)"
+.br
+.ti -1c
+.RI "void * \fBpAppData\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "void*(* \fBsqlite3_mem_methods::xMalloc\fP)(int)"
+.PP
+.SS "void(* \fBsqlite3_mem_methods::xFree\fP)(void *)"
+.PP
+.SS "void*(* \fBsqlite3_mem_methods::xRealloc\fP)(void *, int)"
+.PP
+.SS "int(* \fBsqlite3_mem_methods::xSize\fP)(void *)"
+.PP
+.SS "int(* \fBsqlite3_mem_methods::xRoundup\fP)(int)"
+.PP
+.SS "int(* \fBsqlite3_mem_methods::xInit\fP)(void *)"
+.PP
+.SS "void(* \fBsqlite3_mem_methods::xShutdown\fP)(void *)"
+.PP
+.SS "void* \fBsqlite3_mem_methods::pAppData\fP"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

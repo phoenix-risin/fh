@@ -1,0 +1,1249 @@
+\hypertarget{libircclient_8h}{
+\section{include/libircclient.h File Reference}
+\label{libircclient_8h}\index{include/libircclient.h@{include/libircclient.h}}
+}
+This file defines all prototypes and functions to use libircclient. 
+
+{\tt \#include $<$sys/select.h$>$}\par
+{\tt \#include \char`\"{}libirc\_\-errors.h\char`\"{}}\par
+{\tt \#include \char`\"{}libirc\_\-events.h\char`\"{}}\par
+{\tt \#include \char`\"{}libirc\_\-options.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{libircclient_8h_8aaae81dcdc9238af9805d75d0484ef2}{IN\_\-INCLUDE\_\-LIBIRC\_\-H}
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef struct irc\_\-session\_\-s \hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t}
+\begin{CompactList}\small\item\em A libircclient IRC session. \item\end{CompactList}\item 
+typedef struct irc\_\-dcc\_\-session\_\-s \hyperlink{libircclient_8h_25dc31f3073d8dffd01f659d19c76e5e}{irc\_\-dcc\_\-session\_\-t}
+\begin{CompactList}\small\item\em A libircclient DCC session. \item\end{CompactList}\item 
+typedef unsigned int \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t}
+\begin{CompactList}\small\item\em A DCC session identifier. \item\end{CompactList}\item 
+typedef void($\ast$ \hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} )(\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} id, int status, void $\ast$ctx, const char $\ast$data, unsigned int length)
+\begin{CompactList}\small\item\em A common DCC callback, used to inform you about the current DCC state or event. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$ \hyperlink{libircclient_8h_c5dada35ee77795d8bb77b6701853b98}{irc\_\-create\_\-session} (\hyperlink{structirc__callbacks__t}{irc\_\-callbacks\_\-t} $\ast$callbacks)
+\begin{CompactList}\small\item\em Creates and initiates a new IRC session. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}{irc\_\-destroy\_\-session} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Destroys previously created IRC session. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$server, unsigned short port, const char $\ast$server\_\-password, const char $\ast$nick, const char $\ast$username, const char $\ast$realname)
+\begin{CompactList}\small\item\em Initiates a connection to IRC server. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_5729f584833d55510ae114c8ac3d8e99}{irc\_\-connect6} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$server, unsigned short port, const char $\ast$server\_\-password, const char $\ast$nick, const char $\ast$username, const char $\ast$realname)
+\begin{CompactList}\small\item\em Initiates a connection to IRC server using IPv6. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_a5f6dd73d3f0bdecb53f53362e253aab}{irc\_\-disconnect} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Disconnects a connection to IRC server. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_90f826583118cb2e34135cb0e9b26cf8}{irc\_\-is\_\-connected} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Checks whether the session is connecting/connected to the IRC server. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Goes into forever-loop, processing IRC events and generating callbacks. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_75d2af4209ad2edbdbff77b0cfcabcab}{irc\_\-add\_\-select\_\-descriptors} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, fd\_\-set $\ast$in\_\-set, fd\_\-set $\ast$out\_\-set, int $\ast$maxfd)
+\begin{CompactList}\small\item\em Adds IRC socket(s) for the descriptor set to use in select(). \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_4526d10056559eac7bd777437d440170}{irc\_\-process\_\-select\_\-descriptors} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, fd\_\-set $\ast$in\_\-set, fd\_\-set $\ast$out\_\-set)
+\begin{CompactList}\small\item\em Processes the IRC socket(s), which descriptor(s) are set. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_d69addf9c9e45d888a71d6295429e05c}{irc\_\-send\_\-raw} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$format,...)
+\begin{CompactList}\small\item\em Sends raw data to the IRC server. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_a89bd6efb6dacf53f25ca5518a5aa4ee}{irc\_\-cmd\_\-quit} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$reason)
+\begin{CompactList}\small\item\em Sends QUIT command to the IRC server. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_4960c546c2a077e8fb01fc7aa5ae7add}{irc\_\-cmd\_\-join} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel, const char $\ast$key)
+\begin{CompactList}\small\item\em Joins the new IRC channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_db50b9a3a78693266fb0a257b997831b}{irc\_\-cmd\_\-part} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel)
+\begin{CompactList}\small\item\em Leaves the IRC channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_77e2b2c46c8883a7986180f36ca17247}{irc\_\-cmd\_\-invite} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nick, const char $\ast$channel)
+\begin{CompactList}\small\item\em Invites a user to invite-only channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_9b5d3f07ca8a44f0772fc48f677e5bdd}{irc\_\-cmd\_\-names} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel)
+\begin{CompactList}\small\item\em Obtains a list of users who're in channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_1f49929bca3afb8d95b2986dfb480d42}{irc\_\-cmd\_\-list} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel)
+\begin{CompactList}\small\item\em Obtains a list of active server channels with their topics. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_e088b8e83e3482875ea3d3f970dbb9a2}{irc\_\-cmd\_\-topic} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel, const char $\ast$topic)
+\begin{CompactList}\small\item\em Views or changes the channel topic. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_63489434dcf78d454389b7744624c1e7}{irc\_\-cmd\_\-channel\_\-mode} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$channel, const char $\ast$mode)
+\begin{CompactList}\small\item\em Views or changes the channel mode. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_71b0c8a534600d2b354be35e28735513}{irc\_\-cmd\_\-user\_\-mode} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$mode)
+\begin{CompactList}\small\item\em Views or changes your own user mode. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_19ae1ad61caf031e5c2dc950e24b7370}{irc\_\-cmd\_\-nick} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$newnick)
+\begin{CompactList}\small\item\em Changes your nick. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_7cfe0b48a060c5291ef1d59a3ea79b4f}{irc\_\-cmd\_\-whois} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nick)
+\begin{CompactList}\small\item\em Queries the information about the nick. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_8c2ec03f1a9ce7c739e11b64fd088ae5}{irc\_\-cmd\_\-msg} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nch, const char $\ast$text)
+\begin{CompactList}\small\item\em Sends the message to the nick or to the channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_09c7e471bf4062b57df10d31ee275fc5}{irc\_\-cmd\_\-me} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nch, const char $\ast$text)
+\begin{CompactList}\small\item\em Sends the /me (CTCP ACTION) message to the nick or to the channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_f537698d7ec582701fa3473a2dd6775f}{irc\_\-cmd\_\-notice} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nch, const char $\ast$text)
+\begin{CompactList}\small\item\em Sends the notice to the nick or to the channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_47a6c7a2b3f96c9fe41e7df82f0dbd7c}{irc\_\-cmd\_\-kick} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nick, const char $\ast$channel, const char $\ast$reason)
+\begin{CompactList}\small\item\em Kick some lazy ass out of channel. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_d3eb9e56b5988f157e6f4a9b73145382}{irc\_\-cmd\_\-ctcp\_\-request} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nick, const char $\ast$request)
+\begin{CompactList}\small\item\em Generates a CTCP request. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_62cba0ecb13b0d602403e77bbe78550e}{irc\_\-cmd\_\-ctcp\_\-reply} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$nick, const char $\ast$reply)
+\begin{CompactList}\small\item\em Generates a reply to the CTCP request. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_217df7c7c7dc5e60678dd14e24e41f03}{irc\_\-target\_\-get\_\-nick} (const char $\ast$target, char $\ast$nick, size\_\-t size)
+\begin{CompactList}\small\item\em Gets the nick part from the target. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_5929f96c251be831d1de66e6bba6299c}{irc\_\-target\_\-get\_\-host} (const char $\ast$target, char $\ast$nick, size\_\-t size)
+\begin{CompactList}\small\item\em Gets the host part from the target. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_d6958aac6d67f595966949d1ec5ae4a0}{irc\_\-dcc\_\-chat} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, void $\ast$ctx, const char $\ast$nick, \hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} callback, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} $\ast$dccid)
+\begin{CompactList}\small\item\em Initiates a DCC CHAT. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_b98b7ea58a36d7649c2dca6c4b3c8a7d}{irc\_\-dcc\_\-msg} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} dccid, const char $\ast$text)
+\begin{CompactList}\small\item\em Sends the message to the specific DCC CHAT. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_43f747d3b2252109f9d811ea8414745b}{irc\_\-dcc\_\-accept} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} dccid, void $\ast$ctx, \hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} callback)
+\begin{CompactList}\small\item\em Accepts a remote DCC CHAT or DCC RECVFILE request. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_3ff4ca78d346b7acf847cf28a7211bf4}{irc\_\-dcc\_\-decline} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} dccid)
+\begin{CompactList}\small\item\em Declines a remote DCC CHAT or DCC RECVFILE request. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_f9e8a307113cd27d08e082fda6264262}{irc\_\-dcc\_\-sendfile} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, void $\ast$ctx, const char $\ast$nick, const char $\ast$filename, \hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} callback, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} $\ast$dccid)
+\begin{CompactList}\small\item\em Sends a file via DCC. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_8b8aa3363ee93cc395bc89ac5cc9501c}{irc\_\-dcc\_\-destroy} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, \hyperlink{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{irc\_\-dcc\_\-t} dccid)
+\begin{CompactList}\small\item\em Destroys a DCC session. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_ebc090ad2392569b1998d7e2354c7bc7}{irc\_\-get\_\-version} (unsigned int $\ast$high, unsigned int $\ast$low)
+\begin{CompactList}\small\item\em Obtains a libircclient version. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_e0cf439a36aafce4abab8f4cce5ac5ff}{irc\_\-set\_\-ctx} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, void $\ast$ctx)
+\begin{CompactList}\small\item\em Sets the IRC session context. \item\end{CompactList}\item 
+void $\ast$ \hyperlink{libircclient_8h_341a8954613f29c7ff5a92413398ce7d}{irc\_\-get\_\-ctx} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Returns the IRC session context. \item\end{CompactList}\item 
+int \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session)
+\begin{CompactList}\small\item\em Returns the last error code. \item\end{CompactList}\item 
+const char $\ast$ \hyperlink{libircclient_8h_fdc70ca04626818d2fd9a55da0b90e5f}{irc\_\-strerror} (int ircerrno)
+\begin{CompactList}\small\item\em Returns the text error message associated with this error code. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_c5d81f651f1441690f3f59c3ddccaa48}{irc\_\-option\_\-set} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, unsigned int option)
+\begin{CompactList}\small\item\em Sets the libircclient option. \item\end{CompactList}\item 
+void \hyperlink{libircclient_8h_f56687ccad2045204ae23f70d2f54860}{irc\_\-option\_\-reset} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, unsigned int option)
+\begin{CompactList}\small\item\em Resets the libircclient option. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{libircclient_8h_2b94751f30cf4cdf444345808fe4ed6c}{irc\_\-color\_\-strip\_\-from\_\-mirc} (const char $\ast$message)
+\begin{CompactList}\small\item\em Removes all the color codes and format options. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{libircclient_8h_bb894bace7c39c70b5582bcdb4052bea}{irc\_\-color\_\-convert\_\-from\_\-mirc} (const char $\ast$message)
+\begin{CompactList}\small\item\em Converts all the color codes and format options to libircclient colors. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}{irc\_\-color\_\-convert\_\-to\_\-mirc} (const char $\ast$message)
+\begin{CompactList}\small\item\em Converts all the color codes from libircclient format to mIRC. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This file defines all prototypes and functions to use libircclient. 
+
+\begin{Desc}
+\item[Author:]George Yunaev \end{Desc}
+\begin{Desc}
+\item[Version:]1.5 \end{Desc}
+\begin{Desc}
+\item[Date:]01.2012 libircclient is a small but powerful library, which implements client-server IRC protocol. It is designed to be small, fast, portable and compatible to RFC standards, and most IRC clients. libircclient features include:\begin{itemize}
+\item Full multi-threading support.\item Single threads handles all the IRC processing.\item Support for single-threaded applications, and socket-based applications, which use select()\item Synchronous and asynchronous interfaces.\item CTCP support with optional build-in reply code.\item Flexible DCC support, including both DCC chat, and DCC file transfer.\item Can both initiate and react to initiated DCC.\item Can accept or decline DCC sessions asynchronously.\item Plain C interface and implementation (possible to use from C++ code, obviously)\item Compatible with RFC 1459 and most IRC clients.\item SSL support if compiled with --enable-openssl.\item Free, licensed under LGPL license.\end{itemize}
+\end{Desc}
+Note that to use libircclient, only \hyperlink{libircclient_8h}{libircclient.h} should be included into your program. Do not include other libirc\_\-$\ast$ headers. 
+
+\subsection{Define Documentation}
+\hypertarget{libircclient_8h_8aaae81dcdc9238af9805d75d0484ef2}{
+\index{libircclient.h@{libircclient.h}!IN\_\-INCLUDE\_\-LIBIRC\_\-H@{IN\_\-INCLUDE\_\-LIBIRC\_\-H}}
+\index{IN\_\-INCLUDE\_\-LIBIRC\_\-H@{IN\_\-INCLUDE\_\-LIBIRC\_\-H}!libircclient.h@{libircclient.h}}
+\subsubsection[IN\_\-INCLUDE\_\-LIBIRC\_\-H]{\setlength{\rightskip}{0pt plus 5cm}\#define IN\_\-INCLUDE\_\-LIBIRC\_\-H}}
+\label{libircclient_8h_8aaae81dcdc9238af9805d75d0484ef2}
+
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-callback\_\-t@{irc\_\-dcc\_\-callback\_\-t}}
+\index{irc\_\-dcc\_\-callback\_\-t@{irc\_\-dcc\_\-callback\_\-t}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-callback\_\-t]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ {\bf irc\_\-dcc\_\-callback\_\-t})({\bf irc\_\-session\_\-t} $\ast$session, {\bf irc\_\-dcc\_\-t} id, int status, void $\ast$ctx, const char $\ast$data, unsigned int length)}}
+\label{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}
+
+
+A common DCC callback, used to inform you about the current DCC state or event. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An IRC session which generates the callback \item[{\em id}]A DCC session id. \item[{\em status}]An error status. 0 means no error, otherwise error code. \item[{\em ctx}]A user-supplied context. \item[{\em data}]Data supplied (if available) \item[{\em length}]data length (if available)\end{description}
+\end{Desc}
+This callback is called for all DCC functions when state change occurs.
+
+For DCC CHAT, the callback is called in next circumstances:\begin{itemize}
+\item {\em status\/} is LIBIRC\_\-ERR\_\-CLOSED: connection is closed by remote peer. After returning from the callback, the DCC session is automatically destroyed.\item {\em status\/} is neither 0 nor LIBIRC\_\-ERR\_\-CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.\item {\em status\/} is 0: new chat message received, {\em data\/} contains the message (null-terminated string), {\em length\/} contains the message length.\end{itemize}
+
+
+For DCC SEND, while file is sending, callback called in next circumstances:\begin{itemize}
+\item {\em status\/} is neither 0 nor LIBIRC\_\-ERR\_\-CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.\item {\em status\/} is 0: new data received, {\em data\/} contains the data received, {\em length\/} contains the amount of data received.\end{itemize}
+
+
+For DCC RECV, while file is sending, callback called in next circumstances:\begin{itemize}
+\item {\em status\/} is neither 0 nor LIBIRC\_\-ERR\_\-CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.\item {\em status\/} is 0, and {\em data\/} is 0: file has been received successfully. After returning from the callback, the DCC session is automatically destroyed.\item {\em status\/} is 0, and {\em data\/} is not 0: new data received, {\em data\/} contains the data received, {\em length\/} contains the amount of data received. \end{itemize}
+\hypertarget{libircclient_8h_25dc31f3073d8dffd01f659d19c76e5e}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-session\_\-t@{irc\_\-dcc\_\-session\_\-t}}
+\index{irc\_\-dcc\_\-session\_\-t@{irc\_\-dcc\_\-session\_\-t}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-session\_\-t]{\setlength{\rightskip}{0pt plus 5cm}typedef struct irc\_\-dcc\_\-session\_\-s {\bf irc\_\-dcc\_\-session\_\-t}}}
+\label{libircclient_8h_25dc31f3073d8dffd01f659d19c76e5e}
+
+
+A libircclient DCC session. 
+
+This structure describes a DCC session used by libircclient. Its members are internal to libircclient, and should not be used directly. \hypertarget{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-t@{irc\_\-dcc\_\-t}}
+\index{irc\_\-dcc\_\-t@{irc\_\-dcc\_\-t}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-t]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf irc\_\-dcc\_\-t}}}
+\label{libircclient_8h_4136d52803e88f369d728e1e3b0e70f7}
+
+
+A DCC session identifier. 
+
+The irc\_\-dcc\_\-t type is a DCC session identifier, used to identify the DCC sessions in callbacks and various functions. \hypertarget{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{
+\index{libircclient.h@{libircclient.h}!irc\_\-session\_\-t@{irc\_\-session\_\-t}}
+\index{irc\_\-session\_\-t@{irc\_\-session\_\-t}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-session\_\-t]{\setlength{\rightskip}{0pt plus 5cm}typedef struct irc\_\-session\_\-s {\bf irc\_\-session\_\-t}}}
+\label{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}
+
+
+A libircclient IRC session. 
+
+This structure describes an IRC session. Its members are internal to libircclient, and should not be used directly. 
+
+\subsection{Function Documentation}
+\hypertarget{libircclient_8h_75d2af4209ad2edbdbff77b0cfcabcab}{
+\index{libircclient.h@{libircclient.h}!irc\_\-add\_\-select\_\-descriptors@{irc\_\-add\_\-select\_\-descriptors}}
+\index{irc\_\-add\_\-select\_\-descriptors@{irc\_\-add\_\-select\_\-descriptors}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-add\_\-select\_\-descriptors]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-add\_\-select\_\-descriptors ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  fd\_\-set $\ast$ {\em in\_\-set}, \/  fd\_\-set $\ast$ {\em out\_\-set}, \/  int $\ast$ {\em maxfd})}}
+\label{libircclient_8h_75d2af4209ad2edbdbff77b0cfcabcab}
+
+
+Adds IRC socket(s) for the descriptor set to use in select(). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em in\_\-set}]A FD\_\-IN descriptor set for select() \item[{\em out\_\-set}]A FD\_\-OUT descriptor set for select() \item[{\em maxfd}]A max descriptor found.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function should be used when you already have a program with select() based data processing. You prepare your descriptors, call this function to add session's descriptor(s) into set, and then call select(). When it returns, you should call irc\_\-add\_\-select\_\-descriptors, which sends/recvs all available data, parses received data, calls your callbacks(!), and returns. Then you can process your sockets from set. See the example.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_4526d10056559eac7bd777437d440170}{irc\_\-process\_\-select\_\-descriptors} \end{Desc}
+\hypertarget{libircclient_8h_63489434dcf78d454389b7744624c1e7}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-channel\_\-mode@{irc\_\-cmd\_\-channel\_\-mode}}
+\index{irc\_\-cmd\_\-channel\_\-mode@{irc\_\-cmd\_\-channel\_\-mode}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-channel\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-channel\_\-mode ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel}, \/  const char $\ast$ {\em mode})}}
+\label{libircclient_8h_63489434dcf78d454389b7744624c1e7}
+
+
+Views or changes the channel mode. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name to invite to. Must not be NULL. \item[{\em mode}]A channel mode, described below. If NULL, the channel mode is not changed, just the old mode is returned.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+The \hyperlink{libircclient_8h_63489434dcf78d454389b7744624c1e7}{irc\_\-cmd\_\-channel\_\-mode()} is used to change or view the channel modes. The {\em channel\/} mode is returned if the {\em mode\/} is NULL. If the {\em mode\/} is not NULL, the mode for the {\em channel\/} will be changed. Note that, only channel operators can change the channel modes.
+
+Channel mode is represended by the letters combination. Every letter has its own meaning in channel modes. Most channel mode letters are boolean (i.e. could only be set or reset), but a few channel mode letters accept a parameter. All channel options are set by adding a plus sign before the letter, and reset by adding a minus sign before the letter.
+
+Here is the list of 'standard' channel modes:
+
+\begin{itemize}
+\item {\em o\/} {\em nickname\/} - gives (+o nick) or takes (-o nick) the channel operator privileges from a {\em nickname\/}. This mode affects the users in channel, not the channel itself. Examples: \char`\"{}+o tim\char`\"{}, \char`\"{}-o watson\char`\"{}.\end{itemize}
+
+
+\begin{itemize}
+\item {\em p\/} - sets (+p) or resets (-p) private channel flag. Private channels are shown in channel list as 'Prv', without the topic.\end{itemize}
+
+
+\begin{itemize}
+\item {\em s\/} - sets (+p) or resets (-p) secret channel flag. Secret channels aren't shown in channel list at all.\end{itemize}
+
+
+\begin{itemize}
+\item {\em i\/} - sets (+i) or resets (-i) invite-only channel flag. When the flag is set, only the people who are invited by \hyperlink{libircclient_8h_77e2b2c46c8883a7986180f36ca17247}{irc\_\-cmd\_\-invite()}, can join this channel.\end{itemize}
+
+
+\begin{itemize}
+\item {\em t\/} - sets (+t) or resets (-t) topic settable by channel operator only flag. When the flag is set, only the channel operators can change the channel topic.\end{itemize}
+
+
+\begin{itemize}
+\item {\em n\/} - sets (+n) or resets (-n) the protection from the clients outside the channel. When the {\em +n\/} mode is set, only the clients, who are in channel, can send the messages to the channel.\end{itemize}
+
+
+\begin{itemize}
+\item {\em m\/} - sets (+m) or resets (-m) the moderation of the channel. When the moderation mode is set, only channel operators and the users who have the {\em +v\/} user mode can speak in the channel.\end{itemize}
+
+
+\begin{itemize}
+\item {\em v\/} {\em nickname\/} - gives (+v nick) or takes (-v nick) from user the ability to speak on a moderated channel. Examples: \char`\"{}+v tim\char`\"{}, \char`\"{}-v watson\char`\"{}.\end{itemize}
+
+
+\begin{itemize}
+\item {\em l\/} {\em number\/} - sets (+l 20) or removes (-l) the restriction of maximum users in channel. When the restriction is set, and there is a number of users in the channel, no one can join the channel anymore.\end{itemize}
+
+
+\begin{itemize}
+\item {\em k\/} {\em key\/} - sets (+k secret) or removes (-k) the password from the channel. When the restriction is set, any user joining the channel required to provide a channel key.\end{itemize}
+
+
+\begin{itemize}
+\item {\em b\/} {\em mask\/} - sets (+b $\ast$!$\ast$@$\ast$.mil) or removes (-b $\ast$!$\ast$@$\ast$.mil) the ban mask on a user to keep him out of channel. Note that to remove the ban you must specify the ban mask to remove, not just \char`\"{}-b\char`\"{}.\end{itemize}
+
+
+Note that the actual list of channel modes depends on the IRC server, and can be bigger. If you know the popular channel modes, which aren't mentioned here - please contact me at \href{mailto:tim@krasnogorsk.ru}{\tt tim@krasnogorsk.ru}
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_43267525d047db03b1c8f402cfe549f3}{LIBIRC\_\-RFC\_\-ERR\_\-KEYSET}\item \hyperlink{libirc__rfcnumeric_8h_66d80c7acd49ba08f1a14b8775347ed1}{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE}\item \hyperlink{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}\end{itemize}
+
+
+And the mode information is given using following reply codes:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_ce33e328528f4ae2e7843478839301e5}{LIBIRC\_\-RFC\_\-RPL\_\-CHANNELMODEIS}\item \hyperlink{libirc__rfcnumeric_8h_a188a0d60499bb3546fdc75b07ee5680}{LIBIRC\_\-RFC\_\-RPL\_\-BANLIST}\item \hyperlink{libirc__rfcnumeric_8h_6040ae147ea3044f201f314fec1a1791}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFBANLIST}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_e088b8e83e3482875ea3d3f970dbb9a2}{irc\_\-cmd\_\-topic} \hyperlink{libircclient_8h_1f49929bca3afb8d95b2986dfb480d42}{irc\_\-cmd\_\-list} \end{Desc}
+\hypertarget{libircclient_8h_62cba0ecb13b0d602403e77bbe78550e}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-ctcp\_\-reply@{irc\_\-cmd\_\-ctcp\_\-reply}}
+\index{irc\_\-cmd\_\-ctcp\_\-reply@{irc\_\-cmd\_\-ctcp\_\-reply}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-ctcp\_\-reply]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-ctcp\_\-reply ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em reply})}}
+\label{libircclient_8h_62cba0ecb13b0d602403e77bbe78550e}
+
+
+Generates a reply to the CTCP request. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nick}]A target nick to send request to. Must not be NULL. \item[{\em reply}]A reply string. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to send a reply to the CTCP request, generated by \hyperlink{structirc__callbacks__t_5f5d386a4df0d1334ffb96b3c406355f}{irc\_\-callbacks\_\-t::event\_\-ctcp\_\-req}. Note that you will not receive this event unless you specify your own handler as {\tt event\_\-ctcp\_\-req} callback during the IRC session initialization.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK} \end{itemize}
+\hypertarget{libircclient_8h_d3eb9e56b5988f157e6f4a9b73145382}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-ctcp\_\-request@{irc\_\-cmd\_\-ctcp\_\-request}}
+\index{irc\_\-cmd\_\-ctcp\_\-request@{irc\_\-cmd\_\-ctcp\_\-request}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-ctcp\_\-request]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-ctcp\_\-request ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em request})}}
+\label{libircclient_8h_d3eb9e56b5988f157e6f4a9b73145382}
+
+
+Generates a CTCP request. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nick}]A target nick to send request to. Must not be NULL. \item[{\em request}]A request string. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to send a CTCP request. There are four CTCP requests supported by Mirc: VERSION - get the client software name and version FINGER - get the client username, host and real name. PING - get the client delay. TIME - get the client local time.
+
+A reply to the CTCP request will be sent by the \hyperlink{structirc__callbacks__t_1e967e7534502bce5434dd4d4415bdd8}{irc\_\-callbacks\_\-t::event\_\-ctcp\_\-rep} callback; be sure to define it.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{structirc__callbacks__t_1e967e7534502bce5434dd4d4415bdd8}{irc\_\-callbacks\_\-t::event\_\-ctcp\_\-rep} \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric} \end{Desc}
+\hypertarget{libircclient_8h_77e2b2c46c8883a7986180f36ca17247}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-invite@{irc\_\-cmd\_\-invite}}
+\index{irc\_\-cmd\_\-invite@{irc\_\-cmd\_\-invite}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-invite]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-invite ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em channel})}}
+\label{libircclient_8h_77e2b2c46c8883a7986180f36ca17247}
+
+
+Invites a user to invite-only channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nick}]A nick to invite. Must not be NULL. \item[{\em channel}]A channel name to invite to. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to invite someone to invite-only channel. \char`\"{}Invite-only\char`\"{} is a channel mode, which restricts anyone, except invided, to join this channel. After invitation, the user could join this channel. The user, who is invited, will receive the \hyperlink{structirc__callbacks__t_e5f3325ab13c3a36ed84435e3bcf7b61}{irc\_\-callbacks\_\-t::event\_\-invite} event. Note that you must be a channel operator to INVITE the users.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item LIBIRC\_\-RFC\_\-ERR\_\-ERR\_\-USERONCHANNEL\item LIBIRC\_\-RFC\_\-ERR\_\-ERR\_\-CHANOPRIVSNEEDED\end{itemize}
+
+
+And on success one of the following replies returned:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_5de83e9710137226a986fdc6aece31da}{LIBIRC\_\-RFC\_\-RPL\_\-INVITING}\item \hyperlink{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{LIBIRC\_\-RFC\_\-RPL\_\-AWAY}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{structirc__callbacks__t_e5f3325ab13c3a36ed84435e3bcf7b61}{irc\_\-callbacks\_\-t::event\_\-invite} \hyperlink{libircclient_8h_63489434dcf78d454389b7744624c1e7}{irc\_\-cmd\_\-channel\_\-mode} \end{Desc}
+\hypertarget{libircclient_8h_4960c546c2a077e8fb01fc7aa5ae7add}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-join@{irc\_\-cmd\_\-join}}
+\index{irc\_\-cmd\_\-join@{irc\_\-cmd\_\-join}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-join]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-join ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel}, \/  const char $\ast$ {\em key})}}
+\label{libircclient_8h_4960c546c2a077e8fb01fc7aa5ae7add}
+
+
+Joins the new IRC channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name to join to. Must not be NULL. \item[{\em key}]Channel password. May be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to JOIN the IRC channel. If the channel is not exist, it will be automatically created by the IRC server. Note that to JOIN the password-protected channel, you must know the password, and specify it in the {\em key\/} argument.
+
+If join is successful, the \hyperlink{structirc__callbacks__t_8f24c0e2b05425c2308a0106dbaaffec}{irc\_\-callbacks\_\-t::event\_\-join} is called (with {\em origin\/} == your nickname), then you are sent the channel's topic (using \hyperlink{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}) and the list of users who are on the channel (using \hyperlink{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY}), which includes the user joining - namely you.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_c5bf83f758e914ca36d5f379e5819103}{LIBIRC\_\-RFC\_\-ERR\_\-BANNEDFROMCHAN}\item \hyperlink{libirc__rfcnumeric_8h_dfa3659a762a5023cd37615a54f70a2e}{LIBIRC\_\-RFC\_\-ERR\_\-INVITEONLYCHAN}\item \hyperlink{libirc__rfcnumeric_8h_04a2e9664d25bece875e5c207c6a2697}{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANNELKEY}\item \hyperlink{libirc__rfcnumeric_8h_8644827c4d45e5669a342b1d70a0904e}{LIBIRC\_\-RFC\_\-ERR\_\-CHANNELISFULL}\item \hyperlink{libirc__rfcnumeric_8h_6e40a8054eb0a0c0c6882cd97f344853}{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK}\item \hyperlink{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_784de3929f568ce298c37c42acb4bfef}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYCHANNELS}\end{itemize}
+
+
+And on success the following replies returned:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}\item \hyperlink{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY} \end{itemize}
+\hypertarget{libircclient_8h_47a6c7a2b3f96c9fe41e7df82f0dbd7c}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-kick@{irc\_\-cmd\_\-kick}}
+\index{irc\_\-cmd\_\-kick@{irc\_\-cmd\_\-kick}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-kick]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-kick ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em channel}, \/  const char $\ast$ {\em reason})}}
+\label{libircclient_8h_47a6c7a2b3f96c9fe41e7df82f0dbd7c}
+
+
+Kick some lazy ass out of channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nick}]A nick to kick. Must not be NULL. \item[{\em channel}]A channel to kick this nick out of. Must not be NULL. \item[{\em reason}]A reason to kick. May be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to kick a person out of channel. Note that you must be a channel operator to kick anyone.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_6e40a8054eb0a0c0c6882cd97f344853}{LIBIRC\_\-RFC\_\-ERR\_\-BADCHANMASK}\item \hyperlink{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}\end{itemize}
+
+
+On success the \hyperlink{structirc__callbacks__t_1a8194bfdbf2622e9384fbd1ac1a67d7}{irc\_\-callbacks\_\-t::event\_\-kick} event will be generated.
+
+\begin{Desc}
+\item[See also:]\hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric} \end{Desc}
+\hypertarget{libircclient_8h_1f49929bca3afb8d95b2986dfb480d42}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-list@{irc\_\-cmd\_\-list}}
+\index{irc\_\-cmd\_\-list@{irc\_\-cmd\_\-list}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-list]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-list ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel})}}
+\label{libircclient_8h_1f49929bca3afb8d95b2986dfb480d42}
+
+
+Obtains a list of active server channels with their topics. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name(s) to list. May be NULL, in which case all the channels will be listed. It is possible to specify more than a single channel, but several channel names should be separated by a comma.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to ask the IRC server for the active (existing) channels list. The list will be returned using LIBIRC\_\-RFC\_\-RPL\_\-LISTSTART - \hyperlink{libirc__rfcnumeric_8h_7cd68428c26cc9867a1b35a25b4acb64}{LIBIRC\_\-RFC\_\-RPL\_\-LIST} - \hyperlink{libirc__rfcnumeric_8h_b986ca08f325c8113fbada41a99c84bf}{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND} sequence. Note that \char`\"{}private\char`\"{} channels are listed (without their topics) as channel \char`\"{}Prv\char`\"{} unless the client generating the LIST query is actually on that channel. Likewise, secret channels are not listed at all unless the client is a member of the channel in question.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_8108addfd19326f00eacd71c26809348}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER}\end{itemize}
+
+
+And the channel list is returned using the following reply codes:\begin{itemize}
+\item LIBIRC\_\-RFC\_\-RPL\_\-LISTSTART\item \hyperlink{libirc__rfcnumeric_8h_b986ca08f325c8113fbada41a99c84bf}{LIBIRC\_\-RFC\_\-RPL\_\-LISTEND}\item \hyperlink{libirc__rfcnumeric_8h_7cd68428c26cc9867a1b35a25b4acb64}{LIBIRC\_\-RFC\_\-RPL\_\-LIST} \end{itemize}
+\hypertarget{libircclient_8h_09c7e471bf4062b57df10d31ee275fc5}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-me@{irc\_\-cmd\_\-me}}
+\index{irc\_\-cmd\_\-me@{irc\_\-cmd\_\-me}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-me]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-me ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nch}, \/  const char $\ast$ {\em text})}}
+\label{libircclient_8h_09c7e471bf4062b57df10d31ee275fc5}
+
+
+Sends the /me (CTCP ACTION) message to the nick or to the channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nch}]A target nick or channel. Must not be NULL. \item[{\em text}]Action message text. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to send the /me message to channel or private. As for irc\_\-cmd\_\-msg, the target is determined by {\em nch\/} argument.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+On success there is NOTHING generated. However, a \hyperlink{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{LIBIRC\_\-RFC\_\-RPL\_\-AWAY} reply can be also generated.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_8c2ec03f1a9ce7c739e11b64fd088ae5}{irc\_\-cmd\_\-msg} \end{Desc}
+\hypertarget{libircclient_8h_8c2ec03f1a9ce7c739e11b64fd088ae5}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-msg@{irc\_\-cmd\_\-msg}}
+\index{irc\_\-cmd\_\-msg@{irc\_\-cmd\_\-msg}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-msg]{\setlength{\rightskip}{0pt plus 5cm}irc\_\-cmd\_\-msg ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nch}, \/  const char $\ast$ {\em text})}}
+\label{libircclient_8h_8c2ec03f1a9ce7c739e11b64fd088ae5}
+
+
+Sends the message to the nick or to the channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nch}]A target nick or channel. Must not be NULL. \item[{\em text}]Message text. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to send the channel or private messages. The target is determined by {\em nch\/} argument: if it describes nick, this will be a private message, if a channel name - public (channel) message. Note that depending on channel modes, you may be required to join the channel to send the channel messages.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+On success there is NOTHING generated. \hypertarget{libircclient_8h_9b5d3f07ca8a44f0772fc48f677e5bdd}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-names@{irc\_\-cmd\_\-names}}
+\index{irc\_\-cmd\_\-names@{irc\_\-cmd\_\-names}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-names]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-names ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel})}}
+\label{libircclient_8h_9b5d3f07ca8a44f0772fc48f677e5bdd}
+
+
+Obtains a list of users who're in channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name(s) to obtain user list. Must not be NULL. It is possible to specify more than a single channel, but several channel names should be separated by a comma.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to ask the IRC server for the list of the users who're in specified channel. You can list all nicknames that are visible to you on any channel that you can see. The list of users will be returned using RPL\_\-NAMREPLY and RPL\_\-ENDOFNAMES numeric codes.
+
+The channel names are returned by \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric} using the following reply codes:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_7fc1ff023f7824d91d5f5567997f0fd3}{LIBIRC\_\-RFC\_\-RPL\_\-NAMREPLY}\item \hyperlink{libirc__rfcnumeric_8h_ed45893cd1a15247dc7200d16a224a76}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFNAMES} \end{itemize}
+\hypertarget{libircclient_8h_19ae1ad61caf031e5c2dc950e24b7370}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-nick@{irc\_\-cmd\_\-nick}}
+\index{irc\_\-cmd\_\-nick@{irc\_\-cmd\_\-nick}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-nick]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-nick ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em newnick})}}
+\label{libircclient_8h_19ae1ad61caf031e5c2dc950e24b7370}
+
+
+Changes your nick. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em newnick}]A new nick. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to change your current nick to another nick. Note that such a change is not always possible; for example you cannot change nick to the existing nick, or (on some servers) to the registered nick.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_c754b9522b1f4c4376f809d2e3acbee4}{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN}\item \hyperlink{libirc__rfcnumeric_8h_177a2b46f518e603271b3d55ae2f84ab}{LIBIRC\_\-RFC\_\-ERR\_\-ERRONEUSNICKNAME}\item \hyperlink{libirc__rfcnumeric_8h_2dabe26bb4ab3b90974a6a645f7d7545}{LIBIRC\_\-RFC\_\-ERR\_\-NICKNAMEINUSE}\item \hyperlink{libirc__rfcnumeric_8h_929657e2facbf0e46a540aa8e7516774}{LIBIRC\_\-RFC\_\-ERR\_\-NICKCOLLISION} \end{itemize}
+\hypertarget{libircclient_8h_f537698d7ec582701fa3473a2dd6775f}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-notice@{irc\_\-cmd\_\-notice}}
+\index{irc\_\-cmd\_\-notice@{irc\_\-cmd\_\-notice}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-notice]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-notice ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nch}, \/  const char $\ast$ {\em text})}}
+\label{libircclient_8h_f537698d7ec582701fa3473a2dd6775f}
+
+
+Sends the notice to the nick or to the channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nch}]A target nick or channel. Must not be NULL. \item[{\em text}]Notice text. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to send the channel or private notices. The target is determined by {\em nch\/} argument: if it describes nick, this will be a private message, if a channel name - public (channel) message. Note that depending on channel modes, you may be required to join the channel to send the channel notices.
+
+The only difference between message and notice is that, according to RFC 1459, you must not automatically reply to NOTICE messages.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+On success there is NOTHING generated. On notices sent to target nick, a \hyperlink{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{LIBIRC\_\-RFC\_\-RPL\_\-AWAY} reply may be generated.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_8c2ec03f1a9ce7c739e11b64fd088ae5}{irc\_\-cmd\_\-msg} \end{Desc}
+\hypertarget{libircclient_8h_db50b9a3a78693266fb0a257b997831b}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-part@{irc\_\-cmd\_\-part}}
+\index{irc\_\-cmd\_\-part@{irc\_\-cmd\_\-part}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-part]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-part ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel})}}
+\label{libircclient_8h_db50b9a3a78693266fb0a257b997831b}
+
+
+Leaves the IRC channel. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name to leave. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function is used to leave the IRC channel you've already joined to. An attempt to leave the channel you aren't in results a \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL} server error.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_2c0be54b246f18fb20c2c9edbc671649}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL} \end{itemize}
+\hypertarget{libircclient_8h_a89bd6efb6dacf53f25ca5518a5aa4ee}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-quit@{irc\_\-cmd\_\-quit}}
+\index{irc\_\-cmd\_\-quit@{irc\_\-cmd\_\-quit}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-quit]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-quit ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em reason})}}
+\label{libircclient_8h_a89bd6efb6dacf53f25ca5518a5aa4ee}
+
+
+Sends QUIT command to the IRC server. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em reason}]A reason to quit. May be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function sends the QUIT command to the IRC server. This command forces the IRC server to close the IRC connection, and terminate the session. \hypertarget{libircclient_8h_e088b8e83e3482875ea3d3f970dbb9a2}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-topic@{irc\_\-cmd\_\-topic}}
+\index{irc\_\-cmd\_\-topic@{irc\_\-cmd\_\-topic}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-topic]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-topic ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em channel}, \/  const char $\ast$ {\em topic})}}
+\label{libircclient_8h_e088b8e83e3482875ea3d3f970dbb9a2}
+
+
+Views or changes the channel topic. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em channel}]A channel name to invite to. Must not be NULL. \item[{\em topic}]A new topic to change. If NULL, the old topic will be returned, and topic won't changed.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+The \hyperlink{libircclient_8h_e088b8e83e3482875ea3d3f970dbb9a2}{irc\_\-cmd\_\-topic()} is used to change or view the topic of a channel. The topic for {\em channel\/} is returned if {\em topic\/} is NULL. If the {\em topic\/} is not NULL, the topic for the {\em channel\/} will be changed. Note that, depending on {\em +t\/} channel mode, you may be required to be a channel operator to change the channel topic.
+
+If the command succeed, the IRC server will generate a RPL\_\-NOTOPIC or RPL\_\-TOPIC message, containing either old or changed topic. Also the IRC server can (but not have to) generate the non-RFC RPL\_\-TOPIC\_\-EXTRA message, containing the nick of person, who's changed the topic, and the time of latest topic change.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_45e953e4c730a2f091d74430eeac1d57}{LIBIRC\_\-RFC\_\-ERR\_\-CHANOPRIVSNEEDED}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\end{itemize}
+
+
+And the topic information is returned using one of following reply codes:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_f467ce06debba2e77db229b14f5bbe38}{LIBIRC\_\-RFC\_\-RPL\_\-NOTOPIC}\item \hyperlink{libirc__rfcnumeric_8h_02d7f6f775a11abd3c09bca16d6cdc59}{LIBIRC\_\-RFC\_\-RPL\_\-TOPIC}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{structirc__callbacks__t_8a5ab3ffc89e19d5748c58bb675436b5}{irc\_\-callbacks\_\-t::event\_\-topic} \hyperlink{libircclient_8h_63489434dcf78d454389b7744624c1e7}{irc\_\-cmd\_\-channel\_\-mode} \end{Desc}
+\hypertarget{libircclient_8h_71b0c8a534600d2b354be35e28735513}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-user\_\-mode@{irc\_\-cmd\_\-user\_\-mode}}
+\index{irc\_\-cmd\_\-user\_\-mode@{irc\_\-cmd\_\-user\_\-mode}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-user\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-user\_\-mode ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em mode})}}
+\label{libircclient_8h_71b0c8a534600d2b354be35e28735513}
+
+
+Views or changes your own user mode. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em mode}]A user mode, described below. If NULL, the user mode is not changed, just the old mode is returned.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+The \hyperlink{libircclient_8h_71b0c8a534600d2b354be35e28735513}{irc\_\-cmd\_\-user\_\-mode()} is used to change or view the user modes. Note that, unlike channel modes, not all user modes can be changed. The user mode is returned if the {\em mode\/} is NULL. If the {\em mode\/} is not NULL, the mode for you will be changed, and new mode will be returned.
+
+Like channel mode, user mode is also represended by the letters combination. All the user mode letters are boolean (i.e. could only be set or reset), they are set by adding a plus sign before the letter, and reset by adding a minus sign before the letter.
+
+Here is the list of 'standard' user modes:
+
+\begin{itemize}
+\item {\em o\/} - represents an IRC operator status. Could not be set directly (but can be reset though), to set it use the IRC {\em OPER\/} command.\end{itemize}
+
+
+\begin{itemize}
+\item {\em i\/} - if set, marks a user as 'invisible' - that is, not seen by lookups if the user is not in a channel.\end{itemize}
+
+
+\begin{itemize}
+\item {\em w\/} - if set, marks a user as 'receiving wallops' - special messages generated by IRC operators using WALLOPS command.\end{itemize}
+
+
+\begin{itemize}
+\item {\em s\/} - if set, marks a user for receipt of server notices.\end{itemize}
+
+
+\begin{itemize}
+\item {\em r\/} - NON-STANDARD MODE. If set, user has been authenticated with NICKSERV IRC service.\end{itemize}
+
+
+\begin{itemize}
+\item {\em x\/} - NON-STANDARD MODE. If set, user's real IP is hidden by IRC servers, to prevent scriptkiddies to do nasty things to the user's computer.\end{itemize}
+
+
+Note that the actual list of user modes depends on the IRC server, and can be bigger. If you know the popular user modes, which aren't mentioned here - please contact me at \href{mailto:tim@krasnogorsk.ru}{\tt tim@krasnogorsk.ru}
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_b3fc9166c154ed2b99c0294f5ce31777}{LIBIRC\_\-RFC\_\-ERR\_\-NEEDMOREPARAMS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\item \hyperlink{libirc__rfcnumeric_8h_66d80c7acd49ba08f1a14b8775347ed1}{LIBIRC\_\-RFC\_\-ERR\_\-UNKNOWNMODE}\item \hyperlink{libirc__rfcnumeric_8h_109b90448c6e8f7e2537a5f4f323745b}{LIBIRC\_\-RFC\_\-ERR\_\-USERSDONTMATCH}\item \hyperlink{libirc__rfcnumeric_8h_0c3eb9db119a7f1b9c8c9be9e9b82ae1}{LIBIRC\_\-RFC\_\-ERR\_\-UMODEUNKNOWNFLAG}\end{itemize}
+
+
+And the mode information is given using reply code \hyperlink{libirc__rfcnumeric_8h_dad4d02196dcef34bd0627b428f60863}{LIBIRC\_\-RFC\_\-RPL\_\-UMODEIS} \hypertarget{libircclient_8h_7cfe0b48a060c5291ef1d59a3ea79b4f}{
+\index{libircclient.h@{libircclient.h}!irc\_\-cmd\_\-whois@{irc\_\-cmd\_\-whois}}
+\index{irc\_\-cmd\_\-whois@{irc\_\-cmd\_\-whois}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-cmd\_\-whois]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-cmd\_\-whois ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em nick})}}
+\label{libircclient_8h_7cfe0b48a060c5291ef1d59a3ea79b4f}
+
+
+Queries the information about the nick. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em nick}]A nick to query the information abour. Must not be NULL. A comma-separated list of several nicknames may be given.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function queries various information about the nick: username, real name, the IRC server used, the channels user is in, idle time, away mode and so on.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_8108addfd19326f00eacd71c26809348}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHSERVER}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\item \hyperlink{libirc__rfcnumeric_8h_c754b9522b1f4c4376f809d2e3acbee4}{LIBIRC\_\-RFC\_\-ERR\_\-NONICKNAMEGIVEN}\end{itemize}
+
+
+And the information is returned using the following reply codes. The whois query is completed when \hyperlink{libirc__rfcnumeric_8h_e8c2ae654f4d2502eeea46cd6116687f}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS} message is received.\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_401ee0bce20717f8fc20240158d9eed3}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISUSER}\item \hyperlink{libirc__rfcnumeric_8h_61c0201bfafc1f0b39f49dbadbffe4a9}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISCHANNELS}\item \hyperlink{libirc__rfcnumeric_8h_7df656c3ce9c9d2e0b9cf84e5672beca}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISSERVER}\item \hyperlink{libirc__rfcnumeric_8h_54aa2b97df3fc570572e68fc88647143}{LIBIRC\_\-RFC\_\-RPL\_\-AWAY}\item \hyperlink{libirc__rfcnumeric_8h_992b1c08e5c48abc86701826d25a2884}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISOPERATOR}\item \hyperlink{libirc__rfcnumeric_8h_af3e96b0ee5bb9b9e3a3e28e2d75f6e4}{LIBIRC\_\-RFC\_\-RPL\_\-WHOISIDLE}\item \hyperlink{libirc__rfcnumeric_8h_e8c2ae654f4d2502eeea46cd6116687f}{LIBIRC\_\-RFC\_\-RPL\_\-ENDOFWHOIS} \end{itemize}
+\hypertarget{libircclient_8h_bb894bace7c39c70b5582bcdb4052bea}{
+\index{libircclient.h@{libircclient.h}!irc\_\-color\_\-convert\_\-from\_\-mirc@{irc\_\-color\_\-convert\_\-from\_\-mirc}}
+\index{irc\_\-color\_\-convert\_\-from\_\-mirc@{irc\_\-color\_\-convert\_\-from\_\-mirc}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-color\_\-convert\_\-from\_\-mirc]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ irc\_\-color\_\-convert\_\-from\_\-mirc (const char $\ast$ {\em message})}}
+\label{libircclient_8h_bb894bace7c39c70b5582bcdb4052bea}
+
+
+Converts all the color codes and format options to libircclient colors. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]A message from IRC\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Returns a new message with converted mIRC color codes and format options. See the \hyperlink{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}{irc\_\-color\_\-convert\_\-to\_\-mirc()} help to see how the colors are converted.\par
+ Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore. If memory allocation failed, returns 0.\end{Desc}
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_2b94751f30cf4cdf444345808fe4ed6c}{irc\_\-color\_\-strip\_\-from\_\-mirc} \hyperlink{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}{irc\_\-color\_\-convert\_\-to\_\-mirc} \end{Desc}
+\hypertarget{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}{
+\index{libircclient.h@{libircclient.h}!irc\_\-color\_\-convert\_\-to\_\-mirc@{irc\_\-color\_\-convert\_\-to\_\-mirc}}
+\index{irc\_\-color\_\-convert\_\-to\_\-mirc@{irc\_\-color\_\-convert\_\-to\_\-mirc}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-color\_\-convert\_\-to\_\-mirc]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ irc\_\-color\_\-convert\_\-to\_\-mirc (const char $\ast$ {\em message})}}
+\label{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}
+
+
+Converts all the color codes from libircclient format to mIRC. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]A message with color codes\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Returns a new message with converted color codes and format options, or 0 if memory could not be allocated. Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore.\end{Desc}
+The color system of libircclient is designed to be easy to use, and portable between different IRC clients. Every color or format option is described using plain text commands written between square brackets. The possible codes are:\begin{itemize}
+\item \mbox{[}B\mbox{]} ... \mbox{[}/B\mbox{]} - bold format mode. Everything between \mbox{[}B\mbox{]} and \mbox{[}/B\mbox{]} is written in {\bf bold}.\item \mbox{[}I\mbox{]} ... \mbox{[}/I\mbox{]} - italic/reverse format mode. Everything between \mbox{[}I\mbox{]} and \mbox{[}/I\mbox{]} is written in {\tt italic}, or reversed (however, because some clients are incapable of rendering italic text, most clients display this as normal text with the background and foreground colors swapped).\item \mbox{[}U\mbox{]} ... \mbox{[}/U\mbox{]} - underline format mode. Everything between \mbox{[}U\mbox{]} and \mbox{[}/U\mbox{]} is written underlined.\item \mbox{[}COLOR=RED\mbox{]} ... \mbox{[}/COLOR\mbox{]} - write the text using specified foreground color. The color is set by using the {\tt COLOR} keyword, and equal sign followed by text color code (see below).\item \mbox{[}COLOR=RED/BLUE\mbox{]} ... \mbox{[}/COLOR\mbox{]} - write the text using specified foreground and background color. The color is set by using the {\tt COLOR} keyword, an equal sign followed by text foreground color code, a dash and a text background color code.\end{itemize}
+
+
+The supported text colors are:\begin{itemize}
+\item WHITE\item BLACK\item DARKBLUE\item DARKGREEN\item RED\item BROWN\item PURPLE\item OLIVE\item YELLOW\item GREEN\item TEAL\item CYAN\item BLUE\item MAGENTA\item DARKGRAY\item LIGHTGRAY\end{itemize}
+
+
+Examples of color sequences: 
+
+\begin{Code}\begin{verbatim} Hello, [B]Tim[/B]. 
+ [U]Arsenal[/U] got a [COLOR=RED]red card[/COLOR]
+ The tree[U]s[/U] are [COLOR=GREEN/BLACK]green[/COLOR]
+\end{verbatim}
+\end{Code}
+
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_2b94751f30cf4cdf444345808fe4ed6c}{irc\_\-color\_\-strip\_\-from\_\-mirc} \hyperlink{libircclient_8h_bb894bace7c39c70b5582bcdb4052bea}{irc\_\-color\_\-convert\_\-from\_\-mirc} \end{Desc}
+\hypertarget{libircclient_8h_2b94751f30cf4cdf444345808fe4ed6c}{
+\index{libircclient.h@{libircclient.h}!irc\_\-color\_\-strip\_\-from\_\-mirc@{irc\_\-color\_\-strip\_\-from\_\-mirc}}
+\index{irc\_\-color\_\-strip\_\-from\_\-mirc@{irc\_\-color\_\-strip\_\-from\_\-mirc}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-color\_\-strip\_\-from\_\-mirc]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ irc\_\-color\_\-strip\_\-from\_\-mirc (const char $\ast$ {\em message})}}
+\label{libircclient_8h_2b94751f30cf4cdf444345808fe4ed6c}
+
+
+Removes all the color codes and format options. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]A message from IRC\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Returns a new plain text message with stripped mIRC color codes. Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore. If memory allocation failed, returns 0.\end{Desc}
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_bb894bace7c39c70b5582bcdb4052bea}{irc\_\-color\_\-convert\_\-from\_\-mirc} \hyperlink{libircclient_8h_7a9a3490741e2883695759ba5f4adc1e}{irc\_\-color\_\-convert\_\-to\_\-mirc} \end{Desc}
+\hypertarget{libircclient_8h_121b23c9e131da651175ae779e1b6851}{
+\index{libircclient.h@{libircclient.h}!irc\_\-connect@{irc\_\-connect}}
+\index{irc\_\-connect@{irc\_\-connect}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-connect]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-connect ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em server}, \/  unsigned short {\em port}, \/  const char $\ast$ {\em server\_\-password}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em username}, \/  const char $\ast$ {\em realname})}}
+\label{libircclient_8h_121b23c9e131da651175ae779e1b6851}
+
+
+Initiates a connection to IRC server. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]A session to initiate connections on. Must not be NULL. \item[{\em server}]A domain name or an IP address of the IRC server to connect to. Cannot be NULL. If the library is built with SSL support and the first character is hash, tries to establish the SSL connection. For example, the connection to \char`\"{}irc.example.com\char`\"{} is assumed to be plaintext, and connection to \char`\"{}\#irc.example.com\char`\"{} is assumed to be secured by SSL. Note that SSL will only work if the library is built with the SSL support. \item[{\em port}]An IRC server port, usually 6667. \item[{\em server\_\-password}]An IRC server password, if the server requires it. May be NULL, in this case password will not be send to the IRC server. Vast majority of IRC servers do not require passwords. \item[{\em nick}]A nick, which libircclient will use to login to the IRC server. Must not be NULL. \item[{\em username}]A username of the account, which is used to connect to the IRC server. This is for information only, will be shown in \char`\"{}user properties\char`\"{} dialogs and returned by /whois request. May be NULL, in this case 'nobody' will be sent as username. \item[{\em realname}]A real name of the person, who connects to the IRC. Usually people put some wide-available information here (URL, small description or something else). This information also will be shown in \char`\"{}user properties\char`\"{} dialogs and returned by /whois request. May be NULL, in this case 'noname' will be sent as username.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function prepares and initiates a connection to the IRC server. The connection is done asynchronously (see \hyperlink{structirc__callbacks__t_7294e75ca74ba6dc2b5c18ef8e7795a2}{irc\_\-callbacks\_\-t::event\_\-connect}), so the success return value means that connection was initiated (but not completed!) successfully.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \end{Desc}
+\hypertarget{libircclient_8h_5729f584833d55510ae114c8ac3d8e99}{
+\index{libircclient.h@{libircclient.h}!irc\_\-connect6@{irc\_\-connect6}}
+\index{irc\_\-connect6@{irc\_\-connect6}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-connect6]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-connect6 ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em server}, \/  unsigned short {\em port}, \/  const char $\ast$ {\em server\_\-password}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em username}, \/  const char $\ast$ {\em realname})}}
+\label{libircclient_8h_5729f584833d55510ae114c8ac3d8e99}
+
+
+Initiates a connection to IRC server using IPv6. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]A session to initiate connections on. Must not be NULL. \item[{\em server}]A domain name or an IP address of the IRC server to connect to. Cannot be NULL. If the library is built with SSL support and the first character is hash, tries to establish the SSL connection. For example, the connection to \char`\"{}irc.example.com\char`\"{} is assumed to be plaintext, and connection to \char`\"{}\#irc.example.com\char`\"{} is assumed to be secured by SSL. Note that SSL will only work if the library is built with the SSL support. \item[{\em port}]An IRC server port, usually 6667. \item[{\em server\_\-password}]An IRC server password, if the server requires it. May be NULL, in this case password will not be send to the IRC server. Vast majority of IRC servers do not require passwords. \item[{\em nick}]A nick, which libircclient will use to login to the IRC server. Must not be NULL. \item[{\em username}]A username of the account, which is used to connect to the IRC server. This is for information only, will be shown in \char`\"{}user properties\char`\"{} dialogs and returned by /whois request. May be NULL, in this case 'nobody' will be sent as username. \item[{\em realname}]A real name of the person, who connects to the IRC. Usually people put some wide-available information here (URL, small description or something else). This information also will be shown in \char`\"{}user properties\char`\"{} dialogs and returned by /whois request. May be NULL, in this case 'noname' will be sent as username.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function prepares and initiates a connection to the IRC server. The connection is done asynchronously (see \hyperlink{structirc__callbacks__t_7294e75ca74ba6dc2b5c18ef8e7795a2}{irc\_\-callbacks\_\-t::event\_\-connect}), so the success return value means that connection was initiated (but not completed!) successfully.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \end{Desc}
+\hypertarget{libircclient_8h_c5dada35ee77795d8bb77b6701853b98}{
+\index{libircclient.h@{libircclient.h}!irc\_\-create\_\-session@{irc\_\-create\_\-session}}
+\index{irc\_\-create\_\-session@{irc\_\-create\_\-session}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-create\_\-session]{\setlength{\rightskip}{0pt plus 5cm}{\bf irc\_\-session\_\-t} $\ast$ irc\_\-create\_\-session ({\bf irc\_\-callbacks\_\-t} $\ast$ {\em callbacks})}}
+\label{libircclient_8h_c5dada35ee77795d8bb77b6701853b98}
+
+
+Creates and initiates a new IRC session. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em callbacks}]A structure, which defines several callbacks, which will be called on appropriate events. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]An \hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} object, or 0 if creation failed. Usually, failure is caused by out of memory error.\end{Desc}
+Every \hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} object describes a single IRC session - a connection to an IRC server, and possibly to some DCC clients. Almost every irc\_\-$\ast$ function requires this object to be passed to, and therefore this function should be called first.
+
+Every session created must be destroyed when it is not needed anymore by calling \hyperlink{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}{irc\_\-destroy\_\-session()}.
+
+The most common function sequence is: 
+
+\begin{Code}\begin{verbatim}  ... prepare irc_callbacks_t structure ...
+  irc_create_session();
+  irc_connect();
+  irc_run();
+  irc_destroy_session();
+\end{verbatim}
+\end{Code}
+
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}{irc\_\-destroy\_\-session} \end{Desc}
+\hypertarget{libircclient_8h_43f747d3b2252109f9d811ea8414745b}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-accept@{irc\_\-dcc\_\-accept}}
+\index{irc\_\-dcc\_\-accept@{irc\_\-dcc\_\-accept}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-accept]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-accept ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  {\bf irc\_\-dcc\_\-t} {\em dccid}, \/  void $\ast$ {\em ctx}, \/  {\bf irc\_\-dcc\_\-callback\_\-t} {\em callback})}}
+\label{libircclient_8h_43f747d3b2252109f9d811ea8414745b}
+
+
+Accepts a remote DCC CHAT or DCC RECVFILE request. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em dccid}]A DCC session ID, returned by appropriate callback. \item[{\em ctx}]A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. \item[{\em callback}]A DCC callback function, which will be called when anything is said by other party. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function accepts a remote DCC request - either DCC CHAT or DCC FILE. After the request is accepted, the supplied callback will be called, and you can start sending messages or receiving the file.
+
+This function should be called only after either event\_\-dcc\_\-chat\_\-req or event\_\-dcc\_\-send\_\-req events are generated, and should react to them. It is possible not to call irc\_\-dcc\_\-accept or irc\_\-dcc\_\-decline immediately in callback function - you may just return, and call it later. However, to prevent memory leaks, you must call either irc\_\-dcc\_\-decline or irc\_\-dcc\_\-accept for any incoming DCC request.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_3ff4ca78d346b7acf847cf28a7211bf4}{irc\_\-dcc\_\-decline} event\_\-dcc\_\-chat\_\-req event\_\-dcc\_\-send\_\-req \end{Desc}
+\hypertarget{libircclient_8h_d6958aac6d67f595966949d1ec5ae4a0}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-chat@{irc\_\-dcc\_\-chat}}
+\index{irc\_\-dcc\_\-chat@{irc\_\-dcc\_\-chat}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-chat]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-chat ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  void $\ast$ {\em ctx}, \/  const char $\ast$ {\em nick}, \/  {\bf irc\_\-dcc\_\-callback\_\-t} {\em callback}, \/  {\bf irc\_\-dcc\_\-t} $\ast$ {\em dccid})}}
+\label{libircclient_8h_d6958aac6d67f595966949d1ec5ae4a0}
+
+
+Initiates a DCC CHAT. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em ctx}]A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. \item[{\em nick}]A nick to DCC CHAT with. \item[{\em callback}]A DCC callback function, which will be called when anything is said by other party. Must not be NULL. \item[{\em dccid}]On success, DCC session ID will be stored in this var.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function requests a DCC CHAT between you and other user. For newbies, DCC chat is like private chat, but it goes directly between two users, and bypasses IRC server. DCC CHAT request must be accepted by other side before you can send anything.
+
+When the chat is accepted, terminated, or some data is received, the callback function is called. See the details in irc\_\-dcc\_\-callback\_\-t declaration.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} \hyperlink{libircclient_8h_b98b7ea58a36d7649c2dca6c4b3c8a7d}{irc\_\-dcc\_\-msg} \end{Desc}
+\hypertarget{libircclient_8h_3ff4ca78d346b7acf847cf28a7211bf4}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-decline@{irc\_\-dcc\_\-decline}}
+\index{irc\_\-dcc\_\-decline@{irc\_\-dcc\_\-decline}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-decline]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-decline ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  {\bf irc\_\-dcc\_\-t} {\em dccid})}}
+\label{libircclient_8h_3ff4ca78d346b7acf847cf28a7211bf4}
+
+
+Declines a remote DCC CHAT or DCC RECVFILE request. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em dccid}]A DCC session ID, returned by appropriate callback.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function declines a remote DCC request - either DCC CHAT or DCC FILE.
+
+This function should be called only after either event\_\-dcc\_\-chat\_\-req or event\_\-dcc\_\-send\_\-req events are generated, and should react to them. It is possible not to call irc\_\-dcc\_\-accept or irc\_\-dcc\_\-decline immediately in callback function - you may just return, and call it later. However, to prevent memory leaks, you must call either irc\_\-dcc\_\-decline or irc\_\-dcc\_\-accept for any incoming DCC request.
+
+Do not use this function to close the accepted or initiated DCC session. Use irc\_\-dcc\_\-destroy instead.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_43f747d3b2252109f9d811ea8414745b}{irc\_\-dcc\_\-accept} \hyperlink{structirc__callbacks__t_fbaf019778a64b544093ee29da5b3c81}{irc\_\-callbacks\_\-t::event\_\-dcc\_\-chat\_\-req} \hyperlink{structirc__callbacks__t_2ac9d08921faee2472ed16d41799887d}{irc\_\-callbacks\_\-t::event\_\-dcc\_\-send\_\-req} \hyperlink{libircclient_8h_8b8aa3363ee93cc395bc89ac5cc9501c}{irc\_\-dcc\_\-destroy} \end{Desc}
+\hypertarget{libircclient_8h_8b8aa3363ee93cc395bc89ac5cc9501c}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-destroy@{irc\_\-dcc\_\-destroy}}
+\index{irc\_\-dcc\_\-destroy@{irc\_\-dcc\_\-destroy}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-destroy]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-destroy ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  {\bf irc\_\-dcc\_\-t} {\em dccid})}}
+\label{libircclient_8h_8b8aa3363ee93cc395bc89ac5cc9501c}
+
+
+Destroys a DCC session. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em dccid}]A DCC session ID.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function closes the DCC connection (if available), and destroys the DCC session, freeing the used resources. It can be called in any moment, even from callbacks or from different threads.
+
+Note that when DCC session is finished (either with success or failure), you should not destroy it - it will be destroyed automatically. \hypertarget{libircclient_8h_b98b7ea58a36d7649c2dca6c4b3c8a7d}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-msg@{irc\_\-dcc\_\-msg}}
+\index{irc\_\-dcc\_\-msg@{irc\_\-dcc\_\-msg}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-msg]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-msg ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  {\bf irc\_\-dcc\_\-t} {\em dccid}, \/  const char $\ast$ {\em text})}}
+\label{libircclient_8h_b98b7ea58a36d7649c2dca6c4b3c8a7d}
+
+
+Sends the message to the specific DCC CHAT. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An IRC session. \item[{\em dccid}]A DCC session ID, which chat request must have been accepted. \item[{\em text}]Message text. Must not be NULL.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function is used to send the DCC CHAT messages. DCC CHAT request must be initiated and accepted first (or just accepted, if initiated by other side).
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_d6958aac6d67f595966949d1ec5ae4a0}{irc\_\-dcc\_\-chat} \end{Desc}
+\hypertarget{libircclient_8h_f9e8a307113cd27d08e082fda6264262}{
+\index{libircclient.h@{libircclient.h}!irc\_\-dcc\_\-sendfile@{irc\_\-dcc\_\-sendfile}}
+\index{irc\_\-dcc\_\-sendfile@{irc\_\-dcc\_\-sendfile}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-dcc\_\-sendfile]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-dcc\_\-sendfile ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  void $\ast$ {\em ctx}, \/  const char $\ast$ {\em nick}, \/  const char $\ast$ {\em filename}, \/  {\bf irc\_\-dcc\_\-callback\_\-t} {\em callback}, \/  {\bf irc\_\-dcc\_\-t} $\ast$ {\em dccid})}}
+\label{libircclient_8h_f9e8a307113cd27d08e082fda6264262}
+
+
+Sends a file via DCC. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em ctx}]A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. \item[{\em nick}]A nick to send file via DCC to. \item[{\em filename}]A file name to sent. Must be an existing file. \item[{\em callback}]A DCC callback function, which will be called when file sent operation is failed, progressed or completed. \item[{\em dccid}]On success, DCC session ID will be stored in this var.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function generates a DCC SEND request to send the file. When it is accepted, the file is sent to the remote party, and the DCC session is closed. The send operation progress and result can be checked in callback. See the details in irc\_\-dcc\_\-callback\_\-t declaration.
+
+Possible error responces for this command from the RFC1459:\begin{itemize}
+\item \hyperlink{libirc__rfcnumeric_8h_73d5c17577fddd176f2d89e15b657c1a}{LIBIRC\_\-RFC\_\-ERR\_\-NORECIPIENT}\item \hyperlink{libirc__rfcnumeric_8h_c9851022435108cc6074c8cab2311b58}{LIBIRC\_\-RFC\_\-ERR\_\-NOTEXTTOSEND}\item \hyperlink{libirc__rfcnumeric_8h_3624990fe128d867c11b213228e62df8}{LIBIRC\_\-RFC\_\-ERR\_\-CANNOTSENDTOCHAN}\item \hyperlink{libirc__rfcnumeric_8h_b20af2b80994d5c9d7c1e96d88f2e577}{LIBIRC\_\-RFC\_\-ERR\_\-NOTONCHANNEL}\item \hyperlink{libirc__rfcnumeric_8h_fcad763cc97b268aa585311350989dca}{LIBIRC\_\-RFC\_\-ERR\_\-NOTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_4cf5ceeec3305180731860436650c955}{LIBIRC\_\-RFC\_\-ERR\_\-WILDTOPLEVEL}\item \hyperlink{libirc__rfcnumeric_8h_807eab621113410281fd574de71236ea}{LIBIRC\_\-RFC\_\-ERR\_\-TOOMANYTARGETS}\item \hyperlink{libirc__rfcnumeric_8h_28f90d5f34a3056127516c0edc7c511f}{LIBIRC\_\-RFC\_\-ERR\_\-NOSUCHNICK}\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_92d4d3f7866bd8c4f1d6df8f05d939f9}{irc\_\-dcc\_\-callback\_\-t} \end{Desc}
+\hypertarget{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}{
+\index{libircclient.h@{libircclient.h}!irc\_\-destroy\_\-session@{irc\_\-destroy\_\-session}}
+\index{irc\_\-destroy\_\-session@{irc\_\-destroy\_\-session}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-destroy\_\-session]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-destroy\_\-session ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}
+
+
+Destroys previously created IRC session. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]A session to destroy. Must not be NULL.\end{description}
+\end{Desc}
+This function should be used to destroy an IRC session, close the connection to the IRC server, and free all the used resources. After calling this function, you should not use this session object anymore. \hypertarget{libircclient_8h_a5f6dd73d3f0bdecb53f53362e253aab}{
+\index{libircclient.h@{libircclient.h}!irc\_\-disconnect@{irc\_\-disconnect}}
+\index{irc\_\-disconnect@{irc\_\-disconnect}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-disconnect]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-disconnect ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_a5f6dd73d3f0bdecb53f53362e253aab}
+
+
+Disconnects a connection to IRC server. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An IRC session.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function closes the IRC connection. After that connection is closed, libircclient automatically leaves irc\_\-run loop.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect} \hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \end{Desc}
+\hypertarget{libircclient_8h_3a18336093ee74751244d996bc32247d}{
+\index{libircclient.h@{libircclient.h}!irc\_\-errno@{irc\_\-errno}}
+\index{irc\_\-errno@{irc\_\-errno}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-errno]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-errno ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_3a18336093ee74751244d996bc32247d}
+
+
+Returns the last error code. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated session.\end{description}
+\end{Desc}
+This function returns the last error code associated with last operation of this IRC session. Possible error codes are defined in \hyperlink{libirc__errors_8h}{libirc\_\-errors.h}
+
+As usual, next errno rules apply:\begin{itemize}
+\item \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()} should be called ONLY if the called function fails;\item \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()} doesn't return 0 if function succeed; actually, the return value will be undefined.\item you should call \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()} IMMEDIATELY after function fails, before calling any other libircclient function.\end{itemize}
+
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_fdc70ca04626818d2fd9a55da0b90e5f}{irc\_\-strerror} \end{Desc}
+\hypertarget{libircclient_8h_341a8954613f29c7ff5a92413398ce7d}{
+\index{libircclient.h@{libircclient.h}!irc\_\-get\_\-ctx@{irc\_\-get\_\-ctx}}
+\index{irc\_\-get\_\-ctx@{irc\_\-get\_\-ctx}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-get\_\-ctx]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ irc\_\-get\_\-ctx ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_341a8954613f29c7ff5a92413398ce7d}
+
+
+Returns the IRC session context. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated session.\end{description}
+\end{Desc}
+This function returns the IRC session context, which was set by \hyperlink{libircclient_8h_e0cf439a36aafce4abab8f4cce5ac5ff}{irc\_\-set\_\-ctx()}. If no context was set, this function returns NULL.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_e0cf439a36aafce4abab8f4cce5ac5ff}{irc\_\-set\_\-ctx} \end{Desc}
+\hypertarget{libircclient_8h_ebc090ad2392569b1998d7e2354c7bc7}{
+\index{libircclient.h@{libircclient.h}!irc\_\-get\_\-version@{irc\_\-get\_\-version}}
+\index{irc\_\-get\_\-version@{irc\_\-get\_\-version}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-get\_\-version]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-get\_\-version (unsigned int $\ast$ {\em high}, \/  unsigned int $\ast$ {\em low})}}
+\label{libircclient_8h_ebc090ad2392569b1998d7e2354c7bc7}
+
+
+Obtains a libircclient version. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em high}]A pointer to receive the high version part. \item[{\em low}]A pointer to receive the low version part.\end{description}
+\end{Desc}
+This function returns the libircclient version. You can use the version either to check whether required options are available, or to output the version. The preferred printf-like format string to output the version is:
+
+printf (\char`\"{}Version: \%d.\%02d\char`\"{}, high, low); \hypertarget{libircclient_8h_90f826583118cb2e34135cb0e9b26cf8}{
+\index{libircclient.h@{libircclient.h}!irc\_\-is\_\-connected@{irc\_\-is\_\-connected}}
+\index{irc\_\-is\_\-connected@{irc\_\-is\_\-connected}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-is\_\-connected]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-is\_\-connected ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_90f826583118cb2e34135cb0e9b26cf8}
+
+
+Checks whether the session is connecting/connected to the IRC server. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initialized IRC session.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 1 means that session is connecting or connected to the IRC server, zero value means that the session has been disconnected.\end{Desc}
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_121b23c9e131da651175ae779e1b6851}{irc\_\-connect} \hyperlink{libircclient_8h_112631b75eb9997868d73fede17440d0}{irc\_\-run} \end{Desc}
+\hypertarget{libircclient_8h_f56687ccad2045204ae23f70d2f54860}{
+\index{libircclient.h@{libircclient.h}!irc\_\-option\_\-reset@{irc\_\-option\_\-reset}}
+\index{irc\_\-option\_\-reset@{irc\_\-option\_\-reset}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-option\_\-reset]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-option\_\-reset ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  unsigned int {\em option})}}
+\label{libircclient_8h_f56687ccad2045204ae23f70d2f54860}
+
+
+Resets the libircclient option. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated session. \item[{\em option}]An option from \hyperlink{libirc__options_8h}{libirc\_\-options.h}\end{description}
+\end{Desc}
+This function removes the previously set libircclient option, changing libircclient behavior. See the option list for the meaning for every option.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_c5d81f651f1441690f3f59c3ddccaa48}{irc\_\-option\_\-set} \end{Desc}
+\hypertarget{libircclient_8h_c5d81f651f1441690f3f59c3ddccaa48}{
+\index{libircclient.h@{libircclient.h}!irc\_\-option\_\-set@{irc\_\-option\_\-set}}
+\index{irc\_\-option\_\-set@{irc\_\-option\_\-set}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-option\_\-set]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-option\_\-set ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  unsigned int {\em option})}}
+\label{libircclient_8h_c5d81f651f1441690f3f59c3ddccaa48}
+
+
+Sets the libircclient option. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated session. \item[{\em option}]An option from \hyperlink{libirc__options_8h}{libirc\_\-options.h}\end{description}
+\end{Desc}
+This function sets the libircclient option, changing libircclient behavior. See the option list for the meaning for every option.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_f56687ccad2045204ae23f70d2f54860}{irc\_\-option\_\-reset} \end{Desc}
+\hypertarget{libircclient_8h_4526d10056559eac7bd777437d440170}{
+\index{libircclient.h@{libircclient.h}!irc\_\-process\_\-select\_\-descriptors@{irc\_\-process\_\-select\_\-descriptors}}
+\index{irc\_\-process\_\-select\_\-descriptors@{irc\_\-process\_\-select\_\-descriptors}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-process\_\-select\_\-descriptors]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-process\_\-select\_\-descriptors ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  fd\_\-set $\ast$ {\em in\_\-set}, \/  fd\_\-set $\ast$ {\em out\_\-set})}}
+\label{libircclient_8h_4526d10056559eac7bd777437d440170}
+
+
+Processes the IRC socket(s), which descriptor(s) are set. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em in\_\-set}]A FD\_\-IN descriptor set for select() \item[{\em out\_\-set}]A FD\_\-OUT descriptor set for select()\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function should be used in pair with irc\_\-add\_\-select\_\-descriptors function. See irc\_\-add\_\-select\_\-descriptors description.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_75d2af4209ad2edbdbff77b0cfcabcab}{irc\_\-add\_\-select\_\-descriptors} \end{Desc}
+\hypertarget{libircclient_8h_112631b75eb9997868d73fede17440d0}{
+\index{libircclient.h@{libircclient.h}!irc\_\-run@{irc\_\-run}}
+\index{irc\_\-run@{irc\_\-run}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-run]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-run ({\bf irc\_\-session\_\-t} $\ast$ {\em session})}}
+\label{libircclient_8h_112631b75eb9997868d73fede17440d0}
+
+
+Goes into forever-loop, processing IRC events and generating callbacks. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}.\end{Desc}
+This function goes into forever loop, processing the IRC events, and calling appropriate callbacks. This function will not return until the server connection is terminated - either by server, or by calling irc\_\-cmd\_\-quit. This function should be used, if you don't need asynchronous request processing (i.e. your bot just reacts on the events, and doesn't generate it asynchronously). Even in last case, you still can call irc\_\-run, and start the asynchronous thread in event\_\-connect handler. See examples. \hypertarget{libircclient_8h_d69addf9c9e45d888a71d6295429e05c}{
+\index{libircclient.h@{libircclient.h}!irc\_\-send\_\-raw@{irc\_\-send\_\-raw}}
+\index{irc\_\-send\_\-raw@{irc\_\-send\_\-raw}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-send\_\-raw]{\setlength{\rightskip}{0pt plus 5cm}int irc\_\-send\_\-raw ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em format}, \/   {\em ...})}}
+\label{libircclient_8h_d69addf9c9e45d888a71d6295429e05c}
+
+
+Sends raw data to the IRC server. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated and connected session. \item[{\em format}]A printf-formatted string, followed by function args.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Return code 0 means success. Other value means error, the error code may be obtained through \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}. Any error, generated by the IRC server, is available through \hyperlink{structirc__callbacks__t_85951d45acff22aea37a822bb9c7aef7}{irc\_\-callbacks\_\-t::event\_\-numeric}.\end{Desc}
+This function sends the raw data as-is to the IRC server. Use it to generate a server command, which is not (yet) provided by libircclient directly. \hypertarget{libircclient_8h_e0cf439a36aafce4abab8f4cce5ac5ff}{
+\index{libircclient.h@{libircclient.h}!irc\_\-set\_\-ctx@{irc\_\-set\_\-ctx}}
+\index{irc\_\-set\_\-ctx@{irc\_\-set\_\-ctx}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-set\_\-ctx]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-set\_\-ctx ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  void $\ast$ {\em ctx})}}
+\label{libircclient_8h_e0cf439a36aafce4abab8f4cce5ac5ff}
+
+
+Sets the IRC session context. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em session}]An initiated session. \item[{\em ctx}]A context.\end{description}
+\end{Desc}
+This function sets the user-defined context for this IRC session. This context is not used by libircclient. Its purpose is to store session-specific user data, which may be obtained later by calling \hyperlink{libircclient_8h_341a8954613f29c7ff5a92413398ce7d}{irc\_\-get\_\-ctx()}. Note that libircclient just 'carries out' this pointer. If you allocate some memory, and store its address in ctx (most common usage), it is your responsibility to free it before calling \hyperlink{libircclient_8h_30c6cea4f149632d1905b097a3a573f7}{irc\_\-destroy\_\-session()}.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_341a8954613f29c7ff5a92413398ce7d}{irc\_\-get\_\-ctx} \end{Desc}
+\hypertarget{libircclient_8h_fdc70ca04626818d2fd9a55da0b90e5f}{
+\index{libircclient.h@{libircclient.h}!irc\_\-strerror@{irc\_\-strerror}}
+\index{irc\_\-strerror@{irc\_\-strerror}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-strerror]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ irc\_\-strerror (int {\em ircerrno})}}
+\label{libircclient_8h_fdc70ca04626818d2fd9a55da0b90e5f}
+
+
+Returns the text error message associated with this error code. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ircerrno}]A numeric error code returned by \hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()}\end{description}
+\end{Desc}
+This function returns the text representation of the given error code.
+
+\begin{Desc}
+\item[See also:]\hyperlink{libircclient_8h_3a18336093ee74751244d996bc32247d}{irc\_\-errno()} \end{Desc}
+\hypertarget{libircclient_8h_5929f96c251be831d1de66e6bba6299c}{
+\index{libircclient.h@{libircclient.h}!irc\_\-target\_\-get\_\-host@{irc\_\-target\_\-get\_\-host}}
+\index{irc\_\-target\_\-get\_\-host@{irc\_\-target\_\-get\_\-host}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-target\_\-get\_\-host]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-target\_\-get\_\-host (const char $\ast$ {\em target}, \/  char $\ast$ {\em nick}, \/  size\_\-t {\em size})}}
+\label{libircclient_8h_5929f96c251be831d1de66e6bba6299c}
+
+
+Gets the host part from the target. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em target}]A nick in common IRC server form like tim!root@mydomain.com \item[{\em nick}]A buffer to hold the nickname. \item[{\em size}]A buffer size. If nick is longer than buffer size, it will be truncated.\end{description}
+\end{Desc}
+For most events IRC server returns 'origin' (i.e. the person, who generated this event) in i.e. \char`\"{}common\char`\"{} form, like nick!host@domain. I don't know any command, which requires host, but it may be useful :) This function parses this origin, and gets the host, storing it into user-provided buffer. \hypertarget{libircclient_8h_217df7c7c7dc5e60678dd14e24e41f03}{
+\index{libircclient.h@{libircclient.h}!irc\_\-target\_\-get\_\-nick@{irc\_\-target\_\-get\_\-nick}}
+\index{irc\_\-target\_\-get\_\-nick@{irc\_\-target\_\-get\_\-nick}!libircclient.h@{libircclient.h}}
+\subsubsection[irc\_\-target\_\-get\_\-nick]{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-target\_\-get\_\-nick (const char $\ast$ {\em target}, \/  char $\ast$ {\em nick}, \/  size\_\-t {\em size})}}
+\label{libircclient_8h_217df7c7c7dc5e60678dd14e24e41f03}
+
+
+Gets the nick part from the target. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em target}]A nick in common IRC server form like tim!root@mycomain.com \item[{\em nick}]A buffer to hold the nickname. \item[{\em size}]A buffer size. If nick is longer than buffer size, it will be truncated.\end{description}
+\end{Desc}
+For most events IRC server returns 'origin' (i.e. the person, who generated this event) in i.e. \char`\"{}common\char`\"{} form, like nick!host@domain. However, all the irc\_\-cmd\_\-$\ast$ functions require just a nick/ This function parses this origin, and gets the nick, storing it into user-provided buffer. A buffer of size 90 should be enough for most nicks :) 

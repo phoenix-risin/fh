@@ -1,0 +1,66 @@
+.TH "sqlite3_mutex_methods" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sqlite3_mutex_methods \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sqlite3.h>\fP
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int(* \fBxMutexInit\fP )(void)"
+.br
+.ti -1c
+.RI "int(* \fBxMutexEnd\fP )(void)"
+.br
+.ti -1c
+.RI "\fBsqlite3_mutex\fP *(* \fBxMutexAlloc\fP )(int)"
+.br
+.ti -1c
+.RI "void(* \fBxMutexFree\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.ti -1c
+.RI "void(* \fBxMutexEnter\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxMutexTry\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.ti -1c
+.RI "void(* \fBxMutexLeave\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxMutexHeld\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxMutexNotheld\fP )(\fBsqlite3_mutex\fP *)"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int(* \fBsqlite3_mutex_methods::xMutexInit\fP)(void)"
+.PP
+.SS "int(* \fBsqlite3_mutex_methods::xMutexEnd\fP)(void)"
+.PP
+.SS "\fBsqlite3_mutex\fP*(* \fBsqlite3_mutex_methods::xMutexAlloc\fP)(int)"
+.PP
+.SS "void(* \fBsqlite3_mutex_methods::xMutexFree\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+.SS "void(* \fBsqlite3_mutex_methods::xMutexEnter\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+.SS "int(* \fBsqlite3_mutex_methods::xMutexTry\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+.SS "void(* \fBsqlite3_mutex_methods::xMutexLeave\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+.SS "int(* \fBsqlite3_mutex_methods::xMutexHeld\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+.SS "int(* \fBsqlite3_mutex_methods::xMutexNotheld\fP)(\fBsqlite3_mutex\fP *)"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

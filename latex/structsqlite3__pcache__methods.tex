@@ -1,0 +1,116 @@
+\hypertarget{structsqlite3__pcache__methods}{
+\section{sqlite3\_\-pcache\_\-methods Struct Reference}
+\label{structsqlite3__pcache__methods}\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}}
+}
+{\tt \#include $<$sqlite3.h$>$}
+
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+void $\ast$ \hyperlink{structsqlite3__pcache__methods_c71a23fce5a94ac9bc6babdbbaf1b5b4}{pArg}
+\item 
+int($\ast$ \hyperlink{structsqlite3__pcache__methods_b5f54101f6060de1af0c87b2456231ad}{xInit} )(void $\ast$)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_a88bb238d288631e7e06f4da232c3dbb}{xShutdown} )(void $\ast$)
+\item 
+\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$($\ast$ \hyperlink{structsqlite3__pcache__methods_5c4d6839290d34cb3121f5210ddfb2ae}{xCreate} )(int szPage, int bPurgeable)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_9cf385dbec7f0d19793e2616a73a3b7f}{xCachesize} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$, int nCachesize)
+\item 
+int($\ast$ \hyperlink{structsqlite3__pcache__methods_0ab192dc811798e8f17c445dbf379989}{xPagecount} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$)
+\item 
+void $\ast$($\ast$ \hyperlink{structsqlite3__pcache__methods_9e183d8bc9f625a08fa71734d2477dff}{xFetch} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$, unsigned key, int createFlag)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_de2ab50cc6896be03ee86541877fa85e}{xUnpin} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$, void $\ast$, int discard)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_dc5552190f1de86eb95d91e9cf8430e6}{xRekey} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$, void $\ast$, unsigned oldKey, unsigned newKey)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_ad73f9335999770bcd2dc6a2d914b4f0}{xTruncate} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$, unsigned iLimit)
+\item 
+void($\ast$ \hyperlink{structsqlite3__pcache__methods_ac18fc581d8d63550a6657016c24ba5d}{xDestroy} )(\hyperlink{sqlite3_8h_096c453d937d51f7926d7d31c8e0bd2f}{sqlite3\_\-pcache} $\ast$)
+\end{CompactItemize}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structsqlite3__pcache__methods_c71a23fce5a94ac9bc6babdbbaf1b5b4}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!pArg@{pArg}}
+\index{pArg@{pArg}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[pArg]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf sqlite3\_\-pcache\_\-methods::pArg}}}
+\label{structsqlite3__pcache__methods_c71a23fce5a94ac9bc6babdbbaf1b5b4}
+
+
+\hypertarget{structsqlite3__pcache__methods_b5f54101f6060de1af0c87b2456231ad}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xInit@{xInit}}
+\index{xInit@{xInit}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xInit]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xInit})(void $\ast$)}}
+\label{structsqlite3__pcache__methods_b5f54101f6060de1af0c87b2456231ad}
+
+
+\hypertarget{structsqlite3__pcache__methods_a88bb238d288631e7e06f4da232c3dbb}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xShutdown@{xShutdown}}
+\index{xShutdown@{xShutdown}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xShutdown]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xShutdown})(void $\ast$)}}
+\label{structsqlite3__pcache__methods_a88bb238d288631e7e06f4da232c3dbb}
+
+
+\hypertarget{structsqlite3__pcache__methods_5c4d6839290d34cb3121f5210ddfb2ae}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xCreate@{xCreate}}
+\index{xCreate@{xCreate}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xCreate]{\setlength{\rightskip}{0pt plus 5cm}{\bf sqlite3\_\-pcache}$\ast$($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xCreate})(int szPage, int bPurgeable)}}
+\label{structsqlite3__pcache__methods_5c4d6839290d34cb3121f5210ddfb2ae}
+
+
+\hypertarget{structsqlite3__pcache__methods_9cf385dbec7f0d19793e2616a73a3b7f}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xCachesize@{xCachesize}}
+\index{xCachesize@{xCachesize}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xCachesize]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xCachesize})({\bf sqlite3\_\-pcache} $\ast$, int nCachesize)}}
+\label{structsqlite3__pcache__methods_9cf385dbec7f0d19793e2616a73a3b7f}
+
+
+\hypertarget{structsqlite3__pcache__methods_0ab192dc811798e8f17c445dbf379989}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xPagecount@{xPagecount}}
+\index{xPagecount@{xPagecount}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xPagecount]{\setlength{\rightskip}{0pt plus 5cm}int($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xPagecount})({\bf sqlite3\_\-pcache} $\ast$)}}
+\label{structsqlite3__pcache__methods_0ab192dc811798e8f17c445dbf379989}
+
+
+\hypertarget{structsqlite3__pcache__methods_9e183d8bc9f625a08fa71734d2477dff}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xFetch@{xFetch}}
+\index{xFetch@{xFetch}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xFetch]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xFetch})({\bf sqlite3\_\-pcache} $\ast$, unsigned key, int createFlag)}}
+\label{structsqlite3__pcache__methods_9e183d8bc9f625a08fa71734d2477dff}
+
+
+\hypertarget{structsqlite3__pcache__methods_de2ab50cc6896be03ee86541877fa85e}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xUnpin@{xUnpin}}
+\index{xUnpin@{xUnpin}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xUnpin]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xUnpin})({\bf sqlite3\_\-pcache} $\ast$, void $\ast$, int discard)}}
+\label{structsqlite3__pcache__methods_de2ab50cc6896be03ee86541877fa85e}
+
+
+\hypertarget{structsqlite3__pcache__methods_dc5552190f1de86eb95d91e9cf8430e6}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xRekey@{xRekey}}
+\index{xRekey@{xRekey}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xRekey]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xRekey})({\bf sqlite3\_\-pcache} $\ast$, void $\ast$, unsigned oldKey, unsigned newKey)}}
+\label{structsqlite3__pcache__methods_dc5552190f1de86eb95d91e9cf8430e6}
+
+
+\hypertarget{structsqlite3__pcache__methods_ad73f9335999770bcd2dc6a2d914b4f0}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xTruncate@{xTruncate}}
+\index{xTruncate@{xTruncate}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xTruncate]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xTruncate})({\bf sqlite3\_\-pcache} $\ast$, unsigned iLimit)}}
+\label{structsqlite3__pcache__methods_ad73f9335999770bcd2dc6a2d914b4f0}
+
+
+\hypertarget{structsqlite3__pcache__methods_ac18fc581d8d63550a6657016c24ba5d}{
+\index{sqlite3\_\-pcache\_\-methods@{sqlite3\_\-pcache\_\-methods}!xDestroy@{xDestroy}}
+\index{xDestroy@{xDestroy}!sqlite3_pcache_methods@{sqlite3\_\-pcache\_\-methods}}
+\subsubsection[xDestroy]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf sqlite3\_\-pcache\_\-methods::xDestroy})({\bf sqlite3\_\-pcache} $\ast$)}}
+\label{structsqlite3__pcache__methods_ac18fc581d8d63550a6657016c24ba5d}
+
+
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+include/\hyperlink{sqlite3_8h}{sqlite3.h}\end{CompactItemize}

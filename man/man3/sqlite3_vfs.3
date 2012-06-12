@@ -1,0 +1,131 @@
+.TH "sqlite3_vfs" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sqlite3_vfs \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sqlite3.h>\fP
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBiVersion\fP"
+.br
+.ti -1c
+.RI "int \fBszOsFile\fP"
+.br
+.ti -1c
+.RI "int \fBmxPathname\fP"
+.br
+.ti -1c
+.RI "\fBsqlite3_vfs\fP * \fBpNext\fP"
+.br
+.ti -1c
+.RI "const char * \fBzName\fP"
+.br
+.ti -1c
+.RI "void * \fBpAppData\fP"
+.br
+.ti -1c
+.RI "int(* \fBxOpen\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, \fBsqlite3_file\fP *, int flags, int *pOutFlags)"
+.br
+.ti -1c
+.RI "int(* \fBxDelete\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int syncDir)"
+.br
+.ti -1c
+.RI "int(* \fBxAccess\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int flags, int *pResOut)"
+.br
+.ti -1c
+.RI "int(* \fBxFullPathname\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int nOut, char *zOut)"
+.br
+.ti -1c
+.RI "void *(* \fBxDlOpen\fP )(\fBsqlite3_vfs\fP *, const char *zFilename)"
+.br
+.ti -1c
+.RI "void(* \fBxDlError\fP )(\fBsqlite3_vfs\fP *, int nByte, char *zErrMsg)"
+.br
+.ti -1c
+.RI "void(*(* \fBxDlSym\fP )(\fBsqlite3_vfs\fP *, void *, const char *zSymbol))(void)"
+.br
+.ti -1c
+.RI "void(* \fBxDlClose\fP )(\fBsqlite3_vfs\fP *, void *)"
+.br
+.ti -1c
+.RI "int(* \fBxRandomness\fP )(\fBsqlite3_vfs\fP *, int nByte, char *zOut)"
+.br
+.ti -1c
+.RI "int(* \fBxSleep\fP )(\fBsqlite3_vfs\fP *, int microseconds)"
+.br
+.ti -1c
+.RI "int(* \fBxCurrentTime\fP )(\fBsqlite3_vfs\fP *, double *)"
+.br
+.ti -1c
+.RI "int(* \fBxGetLastError\fP )(\fBsqlite3_vfs\fP *, int, char *)"
+.br
+.ti -1c
+.RI "int(* \fBxCurrentTimeInt64\fP )(\fBsqlite3_vfs\fP *, \fBsqlite3_int64\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxSetSystemCall\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, \fBsqlite3_syscall_ptr\fP)"
+.br
+.ti -1c
+.RI "\fBsqlite3_syscall_ptr\fP(* \fBxGetSystemCall\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP)"
+.br
+.ti -1c
+.RI "const char *(* \fBxNextSystemCall\fP )(\fBsqlite3_vfs\fP *, const char *\fBzName\fP)"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBsqlite3_vfs::iVersion\fP"
+.PP
+.SS "int \fBsqlite3_vfs::szOsFile\fP"
+.PP
+.SS "int \fBsqlite3_vfs::mxPathname\fP"
+.PP
+.SS "\fBsqlite3_vfs\fP* \fBsqlite3_vfs::pNext\fP"
+.PP
+.SS "const char* \fBsqlite3_vfs::zName\fP"
+.PP
+.SS "void* \fBsqlite3_vfs::pAppData\fP"
+.PP
+.SS "int(* \fBsqlite3_vfs::xOpen\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, \fBsqlite3_file\fP *, int flags, int *pOutFlags)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xDelete\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int syncDir)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xAccess\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int flags, int *pResOut)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xFullPathname\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, int nOut, char *zOut)"
+.PP
+.SS "void*(* \fBsqlite3_vfs::xDlOpen\fP)(\fBsqlite3_vfs\fP *, const char *zFilename)"
+.PP
+.SS "void(* \fBsqlite3_vfs::xDlError\fP)(\fBsqlite3_vfs\fP *, int nByte, char *zErrMsg)"
+.PP
+.SS "void(*(* \fBsqlite3_vfs::xDlSym\fP)(\fBsqlite3_vfs\fP *, void *, const char *zSymbol))(void)"
+.PP
+.SS "void(* \fBsqlite3_vfs::xDlClose\fP)(\fBsqlite3_vfs\fP *, void *)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xRandomness\fP)(\fBsqlite3_vfs\fP *, int nByte, char *zOut)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xSleep\fP)(\fBsqlite3_vfs\fP *, int microseconds)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xCurrentTime\fP)(\fBsqlite3_vfs\fP *, double *)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xGetLastError\fP)(\fBsqlite3_vfs\fP *, int, char *)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xCurrentTimeInt64\fP)(\fBsqlite3_vfs\fP *, \fBsqlite3_int64\fP *)"
+.PP
+.SS "int(* \fBsqlite3_vfs::xSetSystemCall\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP, \fBsqlite3_syscall_ptr\fP)"
+.PP
+.SS "\fBsqlite3_syscall_ptr\fP(* \fBsqlite3_vfs::xGetSystemCall\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP)"
+.PP
+.SS "const char*(* \fBsqlite3_vfs::xNextSystemCall\fP)(\fBsqlite3_vfs\fP *, const char *\fBzName\fP)"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

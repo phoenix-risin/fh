@@ -1,0 +1,113 @@
+.TH "include/irc.h" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/irc.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBirc_ctx_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBconnect\fP (\fBirc_callbacks_t\fP *callbacks, \fBirc_ctx_t\fP *ctx, \fBirc_session_t\fP *session, char *server, char *nick, char *channel)"
+.br
+.ti -1c
+.RI "void \fBevent_connect\fP (\fBirc_session_t\fP *session, const char *event, const char *origin, const char **params, unsigned int count)"
+.br
+.ti -1c
+.RI "void \fBevent_join\fP (\fBirc_session_t\fP *session, const char *event, const char *origin, const char **params, unsigned int count)"
+.br
+.RI "\fIIRC callback. \fP"
+.ti -1c
+.RI "void \fBevent_channel\fP (\fBirc_session_t\fP *session, const char *event, const char *origin, const char **params, unsigned int count)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int connect (\fBirc_callbacks_t\fP * callbacks, \fBirc_ctx_t\fP * ctx, \fBirc_session_t\fP * session, char * server, char * nick, char * channel)"
+.PP
+Join to Irc server with nick and join channel
+.PP
+\fBParameters:\fP
+.RS 4
+\fI\fBirc_callbacks_t\fP\fP callbacks 
+.br
+\fI\fBirc_ctx_t\fP\fP ctx 
+.br
+\fIirc_session_t\fP session 
+.br
+\fIchar\fP server 
+.br
+\fIchar\fP nick 
+.br
+\fIchar\fP channel
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+int 
+.RE
+.PP
+
+.SS "void event_channel (\fBirc_session_t\fP * session, const char * event, const char * origin, const char ** params, unsigned int count)"
+.PP
+Event for channel operations
+.PP
+\fBParameters:\fP
+.RS 4
+\fIirc_session_t\fP session 
+.br
+\fIchar\fP event 
+.br
+\fIchar\fP origin 
+.br
+\fIchar\fP params 
+.br
+\fIin\fP count
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void event_connect (\fBirc_session_t\fP * session, const char * event, const char * origin, const char ** params, unsigned int count)"
+.PP
+Event for connecting to server
+.PP
+\fBParameters:\fP
+.RS 4
+\fIirc_session_t\fP session 
+.br
+\fIchar\fP event 
+.br
+\fIchar\fP origin 
+.br
+\fIchar\fP params 
+.br
+\fIin\fP count
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void event_join (\fBirc_session_t\fP * session, const char * event, const char * origin, const char ** params, unsigned int count)"
+.PP
+IRC callback. 
+.PP
+Wird bei einem connect event ausgeführt. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

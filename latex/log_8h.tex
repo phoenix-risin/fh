@@ -1,0 +1,160 @@
+\hypertarget{log_8h}{
+\section{include/log.h File Reference}
+\label{log_8h}\index{include/log.h@{include/log.h}}
+}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{log_8h_4c690e12a8f39387c04f4b6cd3493d1c}{log\_\-event} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{log_8h_b6e109ae6961b1da118d77a73890180c}{insert\_\-log} (const char $\ast$event, const char $\ast$origin, int count, char $\ast$buffer)
+\item 
+int \hyperlink{log_8h_f9c324e80cd817a9eea07063c900a37e}{activate\_\-log} (\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$\hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db})
+\item 
+int \hyperlink{log_8h_89d3299c309950f7449ac0c64036c9dc}{create\_\-table} (\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$\hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db})
+\item 
+int \hyperlink{log_8h_167a58b9fe7978b19524f6302e9b967b}{open\_\-database} (\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$\hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db})
+\item 
+void \hyperlink{log_8h_9574b2d3aeefb1ab9beec1f3b8a745c2}{stop\_\-log} (\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$\hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db})
+\item 
+char $\ast$ \hyperlink{log_8h_034ade2d0e48475f3d48201110823350}{get\_\-log} (\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$\hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+int \hyperlink{log_8h_c7f113e68a6a0fed383fbfbe2e71600d}{enableLog}
+\item 
+\hyperlink{sqlite3_8h_0ef6f2646262c8a9b24368d8ac140f69}{sqlite3} $\ast$ \hyperlink{log_8h_d6e663497d2c934364b3bcf07496b30b}{db}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{log_8h_f9c324e80cd817a9eea07063c900a37e}{
+\index{log.h@{log.h}!activate\_\-log@{activate\_\-log}}
+\index{activate\_\-log@{activate\_\-log}!log.h@{log.h}}
+\subsubsection[activate\_\-log]{\setlength{\rightskip}{0pt plus 5cm}int activate\_\-log ({\bf sqlite3} $\ast$ {\em db})}}
+\label{log_8h_f9c324e80cd817a9eea07063c900a37e}
+
+
+Start logging
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqlite3}]db\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int \end{Desc}
+\hypertarget{log_8h_89d3299c309950f7449ac0c64036c9dc}{
+\index{log.h@{log.h}!create\_\-table@{create\_\-table}}
+\index{create\_\-table@{create\_\-table}!log.h@{log.h}}
+\subsubsection[create\_\-table]{\setlength{\rightskip}{0pt plus 5cm}int create\_\-table ({\bf sqlite3} $\ast$ {\em db})}}
+\label{log_8h_89d3299c309950f7449ac0c64036c9dc}
+
+
+Create table for log files
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqlite3}]db\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int \end{Desc}
+\hypertarget{log_8h_034ade2d0e48475f3d48201110823350}{
+\index{log.h@{log.h}!get\_\-log@{get\_\-log}}
+\index{get\_\-log@{get\_\-log}!log.h@{log.h}}
+\subsubsection[get\_\-log]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\_\-log ({\bf sqlite3} $\ast$ {\em db})}}
+\label{log_8h_034ade2d0e48475f3d48201110823350}
+
+
+Get complete log
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqlite3}]db\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]char \end{Desc}
+\hypertarget{log_8h_b6e109ae6961b1da118d77a73890180c}{
+\index{log.h@{log.h}!insert\_\-log@{insert\_\-log}}
+\index{insert\_\-log@{insert\_\-log}!log.h@{log.h}}
+\subsubsection[insert\_\-log]{\setlength{\rightskip}{0pt plus 5cm}void insert\_\-log (const char $\ast$ {\em event}, \/  const char $\ast$ {\em origin}, \/  int {\em count}, \/  char $\ast$ {\em buffer})}}
+\label{log_8h_b6e109ae6961b1da118d77a73890180c}
+
+
+Insert into logfile
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em char}]event \item[{\em char}]origin \item[{\em int}]count \item[{\em char}]buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+\hypertarget{log_8h_4c690e12a8f39387c04f4b6cd3493d1c}{
+\index{log.h@{log.h}!log\_\-event@{log\_\-event}}
+\index{log\_\-event@{log\_\-event}!log.h@{log.h}}
+\subsubsection[log\_\-event]{\setlength{\rightskip}{0pt plus 5cm}void log\_\-event ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em event}, \/  const char $\ast$ {\em origin}, \/  const char $\ast$$\ast$ {\em params}, \/  unsigned int {\em count})}}
+\label{log_8h_4c690e12a8f39387c04f4b6cd3493d1c}
+
+
+Log each event
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em irc\_\-session\_\-t}]session \item[{\em char}]event \item[{\em char}]origin \item[{\em char}]params \item[{\em int}]count\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+\hypertarget{log_8h_167a58b9fe7978b19524f6302e9b967b}{
+\index{log.h@{log.h}!open\_\-database@{open\_\-database}}
+\index{open\_\-database@{open\_\-database}!log.h@{log.h}}
+\subsubsection[open\_\-database]{\setlength{\rightskip}{0pt plus 5cm}int open\_\-database ({\bf sqlite3} $\ast$ {\em db})}}
+\label{log_8h_167a58b9fe7978b19524f6302e9b967b}
+
+
+Open database connection
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqlite3}]db\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]in \end{Desc}
+\hypertarget{log_8h_9574b2d3aeefb1ab9beec1f3b8a745c2}{
+\index{log.h@{log.h}!stop\_\-log@{stop\_\-log}}
+\index{stop\_\-log@{stop\_\-log}!log.h@{log.h}}
+\subsubsection[stop\_\-log]{\setlength{\rightskip}{0pt plus 5cm}void stop\_\-log ({\bf sqlite3} $\ast$ {\em db})}}
+\label{log_8h_9574b2d3aeefb1ab9beec1f3b8a745c2}
+
+
+Stop logging
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqlite3}]db\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{log_8h_d6e663497d2c934364b3bcf07496b30b}{
+\index{log.h@{log.h}!db@{db}}
+\index{db@{db}!log.h@{log.h}}
+\subsubsection[db]{\setlength{\rightskip}{0pt plus 5cm}{\bf sqlite3}$\ast$ {\bf db}}}
+\label{log_8h_d6e663497d2c934364b3bcf07496b30b}
+
+
+\hypertarget{log_8h_c7f113e68a6a0fed383fbfbe2e71600d}{
+\index{log.h@{log.h}!enableLog@{enableLog}}
+\index{enableLog@{enableLog}!log.h@{log.h}}
+\subsubsection[enableLog]{\setlength{\rightskip}{0pt plus 5cm}int {\bf enableLog}}}
+\label{log_8h_c7f113e68a6a0fed383fbfbe2e71600d}
+
+

@@ -1,0 +1,136 @@
+.TH "sqlite3_module" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sqlite3_module \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sqlite3.h>\fP
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBiVersion\fP"
+.br
+.ti -1c
+.RI "int(* \fBxCreate\fP )(\fBsqlite3\fP *, void *pAux, int argc, const char *const *argv, \fBsqlite3_vtab\fP **ppVTab, char **)"
+.br
+.ti -1c
+.RI "int(* \fBxConnect\fP )(\fBsqlite3\fP *, void *pAux, int argc, const char *const *argv, \fBsqlite3_vtab\fP **ppVTab, char **)"
+.br
+.ti -1c
+.RI "int(* \fBxBestIndex\fP )(\fBsqlite3_vtab\fP *pVTab, \fBsqlite3_index_info\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxDisconnect\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxDestroy\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxOpen\fP )(\fBsqlite3_vtab\fP *pVTab, \fBsqlite3_vtab_cursor\fP **ppCursor)"
+.br
+.ti -1c
+.RI "int(* \fBxClose\fP )(\fBsqlite3_vtab_cursor\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxFilter\fP )(\fBsqlite3_vtab_cursor\fP *, int idxNum, const char *idxStr, int argc, \fBsqlite3_value\fP **argv)"
+.br
+.ti -1c
+.RI "int(* \fBxNext\fP )(\fBsqlite3_vtab_cursor\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxEof\fP )(\fBsqlite3_vtab_cursor\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxColumn\fP )(\fBsqlite3_vtab_cursor\fP *, \fBsqlite3_context\fP *, int)"
+.br
+.ti -1c
+.RI "int(* \fBxRowid\fP )(\fBsqlite3_vtab_cursor\fP *, \fBsqlite3_int64\fP *pRowid)"
+.br
+.ti -1c
+.RI "int(* \fBxUpdate\fP )(\fBsqlite3_vtab\fP *, int, \fBsqlite3_value\fP **, \fBsqlite3_int64\fP *)"
+.br
+.ti -1c
+.RI "int(* \fBxBegin\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxSync\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxCommit\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxRollback\fP )(\fBsqlite3_vtab\fP *pVTab)"
+.br
+.ti -1c
+.RI "int(* \fBxFindFunction\fP )(\fBsqlite3_vtab\fP *pVtab, int nArg, const char *zName, void(**pxFunc)(\fBsqlite3_context\fP *, int, \fBsqlite3_value\fP **), void **ppArg)"
+.br
+.ti -1c
+.RI "int(* \fBxRename\fP )(\fBsqlite3_vtab\fP *pVtab, const char *zNew)"
+.br
+.ti -1c
+.RI "int(* \fBxSavepoint\fP )(\fBsqlite3_vtab\fP *pVTab, int)"
+.br
+.ti -1c
+.RI "int(* \fBxRelease\fP )(\fBsqlite3_vtab\fP *pVTab, int)"
+.br
+.ti -1c
+.RI "int(* \fBxRollbackTo\fP )(\fBsqlite3_vtab\fP *pVTab, int)"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBsqlite3_module::iVersion\fP"
+.PP
+.SS "int(* \fBsqlite3_module::xCreate\fP)(\fBsqlite3\fP *, void *pAux, int argc, const char *const *argv, \fBsqlite3_vtab\fP **ppVTab, char **)"
+.PP
+.SS "int(* \fBsqlite3_module::xConnect\fP)(\fBsqlite3\fP *, void *pAux, int argc, const char *const *argv, \fBsqlite3_vtab\fP **ppVTab, char **)"
+.PP
+.SS "int(* \fBsqlite3_module::xBestIndex\fP)(\fBsqlite3_vtab\fP *pVTab, \fBsqlite3_index_info\fP *)"
+.PP
+.SS "int(* \fBsqlite3_module::xDisconnect\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xDestroy\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xOpen\fP)(\fBsqlite3_vtab\fP *pVTab, \fBsqlite3_vtab_cursor\fP **ppCursor)"
+.PP
+.SS "int(* \fBsqlite3_module::xClose\fP)(\fBsqlite3_vtab_cursor\fP *)"
+.PP
+.SS "int(* \fBsqlite3_module::xFilter\fP)(\fBsqlite3_vtab_cursor\fP *, int idxNum, const char *idxStr, int argc, \fBsqlite3_value\fP **argv)"
+.PP
+.SS "int(* \fBsqlite3_module::xNext\fP)(\fBsqlite3_vtab_cursor\fP *)"
+.PP
+.SS "int(* \fBsqlite3_module::xEof\fP)(\fBsqlite3_vtab_cursor\fP *)"
+.PP
+.SS "int(* \fBsqlite3_module::xColumn\fP)(\fBsqlite3_vtab_cursor\fP *, \fBsqlite3_context\fP *, int)"
+.PP
+.SS "int(* \fBsqlite3_module::xRowid\fP)(\fBsqlite3_vtab_cursor\fP *, \fBsqlite3_int64\fP *pRowid)"
+.PP
+.SS "int(* \fBsqlite3_module::xUpdate\fP)(\fBsqlite3_vtab\fP *, int, \fBsqlite3_value\fP **, \fBsqlite3_int64\fP *)"
+.PP
+.SS "int(* \fBsqlite3_module::xBegin\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xSync\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xCommit\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xRollback\fP)(\fBsqlite3_vtab\fP *pVTab)"
+.PP
+.SS "int(* \fBsqlite3_module::xFindFunction\fP)(\fBsqlite3_vtab\fP *pVtab, int nArg, const char *zName, void(**pxFunc)(\fBsqlite3_context\fP *, int, \fBsqlite3_value\fP **), void **ppArg)"
+.PP
+.SS "int(* \fBsqlite3_module::xRename\fP)(\fBsqlite3_vtab\fP *pVtab, const char *zNew)"
+.PP
+.SS "int(* \fBsqlite3_module::xSavepoint\fP)(\fBsqlite3_vtab\fP *pVTab, int)"
+.PP
+.SS "int(* \fBsqlite3_module::xRelease\fP)(\fBsqlite3_vtab\fP *pVTab, int)"
+.PP
+.SS "int(* \fBsqlite3_module::xRollbackTo\fP)(\fBsqlite3_vtab\fP *pVTab, int)"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

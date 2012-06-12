@@ -1,0 +1,173 @@
+.TH "include/log.h" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/log.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBlog_event\fP (\fBirc_session_t\fP *session, const char *event, const char *origin, const char **params, unsigned int count)"
+.br
+.ti -1c
+.RI "void \fBinsert_log\fP (const char *event, const char *origin, int count, char *buffer)"
+.br
+.ti -1c
+.RI "int \fBactivate_log\fP (\fBsqlite3\fP *\fBdb\fP)"
+.br
+.ti -1c
+.RI "int \fBcreate_table\fP (\fBsqlite3\fP *\fBdb\fP)"
+.br
+.ti -1c
+.RI "int \fBopen_database\fP (\fBsqlite3\fP *\fBdb\fP)"
+.br
+.ti -1c
+.RI "void \fBstop_log\fP (\fBsqlite3\fP *\fBdb\fP)"
+.br
+.ti -1c
+.RI "char * \fBget_log\fP (\fBsqlite3\fP *\fBdb\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBenableLog\fP"
+.br
+.ti -1c
+.RI "\fBsqlite3\fP * \fBdb\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int activate_log (\fBsqlite3\fP * db)"
+.PP
+Start logging
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsqlite3\fP db
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+int 
+.RE
+.PP
+
+.SS "int create_table (\fBsqlite3\fP * db)"
+.PP
+Create table for log files
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsqlite3\fP db
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+int 
+.RE
+.PP
+
+.SS "char* get_log (\fBsqlite3\fP * db)"
+.PP
+Get complete log
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsqlite3\fP db
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+char 
+.RE
+.PP
+
+.SS "void insert_log (const char * event, const char * origin, int count, char * buffer)"
+.PP
+Insert into logfile
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchar\fP event 
+.br
+\fIchar\fP origin 
+.br
+\fIint\fP count 
+.br
+\fIchar\fP buffer
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void log_event (\fBirc_session_t\fP * session, const char * event, const char * origin, const char ** params, unsigned int count)"
+.PP
+Log each event
+.PP
+\fBParameters:\fP
+.RS 4
+\fIirc_session_t\fP session 
+.br
+\fIchar\fP event 
+.br
+\fIchar\fP origin 
+.br
+\fIchar\fP params 
+.br
+\fIint\fP count
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "int open_database (\fBsqlite3\fP * db)"
+.PP
+Open database connection
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsqlite3\fP db
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+in 
+.RE
+.PP
+
+.SS "void stop_log (\fBsqlite3\fP * db)"
+.PP
+Stop logging
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsqlite3\fP db
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBsqlite3\fP* \fBdb\fP"
+.PP
+.SS "int \fBenableLog\fP"
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.

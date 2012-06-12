@@ -1,0 +1,83 @@
+\hypertarget{irc_8cpp}{
+\section{src/irc.cpp File Reference}
+\label{irc_8cpp}\index{src/irc.cpp@{src/irc.cpp}}
+}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include \char`\"{}../include/sqlite3.h\char`\"{}}\par
+{\tt \#include \char`\"{}../include/libircclient.h\char`\"{}}\par
+{\tt \#include \char`\"{}../include/irc.h\char`\"{}}\par
+{\tt \#include \char`\"{}../include/log.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{irc_8cpp_16fff293c8b50f13dc8ac4852a8f975e}{event\_\-connect} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{irc_8cpp_b06113e3e2ae5140242ff7c15937ad17}{event\_\-join} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\begin{CompactList}\small\item\em IRC callback. \item\end{CompactList}\item 
+void \hyperlink{irc_8cpp_47003e205a689e88df1c189a3a25bb0e}{event\_\-channel} (\hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+int \hyperlink{irc_8cpp_224131ae41f520d54e9aa6e3238859a5}{connect} (\hyperlink{structirc__callbacks__t}{irc\_\-callbacks\_\-t} $\ast$callbacks, \hyperlink{structirc__ctx__t}{irc\_\-ctx\_\-t} $\ast$ctx, \hyperlink{libircclient_8h_0030a976ab3e6a247d57e30fd5979cd5}{irc\_\-session\_\-t} $\ast$session, char $\ast$server, char $\ast$nick, char $\ast$channel)
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{irc_8cpp_224131ae41f520d54e9aa6e3238859a5}{
+\index{irc.cpp@{irc.cpp}!connect@{connect}}
+\index{connect@{connect}!irc.cpp@{irc.cpp}}
+\subsubsection[connect]{\setlength{\rightskip}{0pt plus 5cm}int connect ({\bf irc\_\-callbacks\_\-t} $\ast$ {\em callbacks}, \/  {\bf irc\_\-ctx\_\-t} $\ast$ {\em ctx}, \/  {\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  char $\ast$ {\em server}, \/  char $\ast$ {\em nick}, \/  char $\ast$ {\em channel})}}
+\label{irc_8cpp_224131ae41f520d54e9aa6e3238859a5}
+
+
+Join to Irc server with nick and join channel
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \hyperlink{structirc__callbacks__t}{irc\_\-callbacks\_\-t}}]callbacks \item[{\em \hyperlink{structirc__ctx__t}{irc\_\-ctx\_\-t}}]ctx \item[{\em irc\_\-session\_\-t}]session \item[{\em char}]server \item[{\em char}]nick \item[{\em char}]channel\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]int \end{Desc}
+\hypertarget{irc_8cpp_47003e205a689e88df1c189a3a25bb0e}{
+\index{irc.cpp@{irc.cpp}!event\_\-channel@{event\_\-channel}}
+\index{event\_\-channel@{event\_\-channel}!irc.cpp@{irc.cpp}}
+\subsubsection[event\_\-channel]{\setlength{\rightskip}{0pt plus 5cm}void event\_\-channel ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em event}, \/  const char $\ast$ {\em origin}, \/  const char $\ast$$\ast$ {\em params}, \/  unsigned int {\em count})}}
+\label{irc_8cpp_47003e205a689e88df1c189a3a25bb0e}
+
+
+Event for channel operations
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em irc\_\-session\_\-t}]session \item[{\em char}]event \item[{\em char}]origin \item[{\em char}]params \item[{\em in}]count\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+\hypertarget{irc_8cpp_16fff293c8b50f13dc8ac4852a8f975e}{
+\index{irc.cpp@{irc.cpp}!event\_\-connect@{event\_\-connect}}
+\index{event\_\-connect@{event\_\-connect}!irc.cpp@{irc.cpp}}
+\subsubsection[event\_\-connect]{\setlength{\rightskip}{0pt plus 5cm}void event\_\-connect ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em event}, \/  const char $\ast$ {\em origin}, \/  const char $\ast$$\ast$ {\em params}, \/  unsigned int {\em count})}}
+\label{irc_8cpp_16fff293c8b50f13dc8ac4852a8f975e}
+
+
+Event for connecting to server
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em irc\_\-session\_\-t}]session \item[{\em char}]event \item[{\em char}]origin \item[{\em char}]params \item[{\em in}]count\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+\hypertarget{irc_8cpp_b06113e3e2ae5140242ff7c15937ad17}{
+\index{irc.cpp@{irc.cpp}!event\_\-join@{event\_\-join}}
+\index{event\_\-join@{event\_\-join}!irc.cpp@{irc.cpp}}
+\subsubsection[event\_\-join]{\setlength{\rightskip}{0pt plus 5cm}void event\_\-join ({\bf irc\_\-session\_\-t} $\ast$ {\em session}, \/  const char $\ast$ {\em event}, \/  const char $\ast$ {\em origin}, \/  const char $\ast$$\ast$ {\em params}, \/  unsigned int {\em count})}}
+\label{irc_8cpp_b06113e3e2ae5140242ff7c15937ad17}
+
+
+IRC callback. 
+
+Wird bei einem connect event ausgeführt. 

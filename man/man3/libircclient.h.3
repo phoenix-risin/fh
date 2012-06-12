@@ -1,0 +1,1812 @@
+.TH "include/libircclient.h" 3 "12 Jun 2012" "Bot" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/libircclient.h \- This file defines all prototypes and functions to use libircclient. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/select.h>\fP
+.br
+\fC#include 'libirc_errors.h'\fP
+.br
+\fC#include 'libirc_events.h'\fP
+.br
+\fC#include 'libirc_options.h'\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIN_INCLUDE_LIBIRC_H\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct irc_session_s \fBirc_session_t\fP"
+.br
+.RI "\fIA libircclient IRC session. \fP"
+.ti -1c
+.RI "typedef struct irc_dcc_session_s \fBirc_dcc_session_t\fP"
+.br
+.RI "\fIA libircclient DCC session. \fP"
+.ti -1c
+.RI "typedef unsigned int \fBirc_dcc_t\fP"
+.br
+.RI "\fIA DCC session identifier. \fP"
+.ti -1c
+.RI "typedef void(* \fBirc_dcc_callback_t\fP )(\fBirc_session_t\fP *session, \fBirc_dcc_t\fP id, int status, void *ctx, const char *data, unsigned int length)"
+.br
+.RI "\fIA common DCC callback, used to inform you about the current DCC state or event. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBirc_session_t\fP * \fBirc_create_session\fP (\fBirc_callbacks_t\fP *callbacks)"
+.br
+.RI "\fICreates and initiates a new IRC session. \fP"
+.ti -1c
+.RI "void \fBirc_destroy_session\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIDestroys previously created IRC session. \fP"
+.ti -1c
+.RI "int \fBirc_connect\fP (\fBirc_session_t\fP *session, const char *server, unsigned short port, const char *server_password, const char *nick, const char *username, const char *realname)"
+.br
+.RI "\fIInitiates a connection to IRC server. \fP"
+.ti -1c
+.RI "int \fBirc_connect6\fP (\fBirc_session_t\fP *session, const char *server, unsigned short port, const char *server_password, const char *nick, const char *username, const char *realname)"
+.br
+.RI "\fIInitiates a connection to IRC server using IPv6. \fP"
+.ti -1c
+.RI "void \fBirc_disconnect\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIDisconnects a connection to IRC server. \fP"
+.ti -1c
+.RI "int \fBirc_is_connected\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIChecks whether the session is connecting/connected to the IRC server. \fP"
+.ti -1c
+.RI "int \fBirc_run\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIGoes into forever-loop, processing IRC events and generating callbacks. \fP"
+.ti -1c
+.RI "int \fBirc_add_select_descriptors\fP (\fBirc_session_t\fP *session, fd_set *in_set, fd_set *out_set, int *maxfd)"
+.br
+.RI "\fIAdds IRC socket(s) for the descriptor set to use in select(). \fP"
+.ti -1c
+.RI "int \fBirc_process_select_descriptors\fP (\fBirc_session_t\fP *session, fd_set *in_set, fd_set *out_set)"
+.br
+.RI "\fIProcesses the IRC socket(s), which descriptor(s) are set. \fP"
+.ti -1c
+.RI "int \fBirc_send_raw\fP (\fBirc_session_t\fP *session, const char *format,...)"
+.br
+.RI "\fISends raw data to the IRC server. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_quit\fP (\fBirc_session_t\fP *session, const char *reason)"
+.br
+.RI "\fISends QUIT command to the IRC server. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_join\fP (\fBirc_session_t\fP *session, const char *channel, const char *key)"
+.br
+.RI "\fIJoins the new IRC channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_part\fP (\fBirc_session_t\fP *session, const char *channel)"
+.br
+.RI "\fILeaves the IRC channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_invite\fP (\fBirc_session_t\fP *session, const char *nick, const char *channel)"
+.br
+.RI "\fIInvites a user to invite-only channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_names\fP (\fBirc_session_t\fP *session, const char *channel)"
+.br
+.RI "\fIObtains a list of users who're in channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_list\fP (\fBirc_session_t\fP *session, const char *channel)"
+.br
+.RI "\fIObtains a list of active server channels with their topics. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_topic\fP (\fBirc_session_t\fP *session, const char *channel, const char *topic)"
+.br
+.RI "\fIViews or changes the channel topic. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_channel_mode\fP (\fBirc_session_t\fP *session, const char *channel, const char *mode)"
+.br
+.RI "\fIViews or changes the channel mode. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_user_mode\fP (\fBirc_session_t\fP *session, const char *mode)"
+.br
+.RI "\fIViews or changes your own user mode. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_nick\fP (\fBirc_session_t\fP *session, const char *newnick)"
+.br
+.RI "\fIChanges your nick. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_whois\fP (\fBirc_session_t\fP *session, const char *nick)"
+.br
+.RI "\fIQueries the information about the nick. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_msg\fP (\fBirc_session_t\fP *session, const char *nch, const char *text)"
+.br
+.RI "\fISends the message to the nick or to the channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_me\fP (\fBirc_session_t\fP *session, const char *nch, const char *text)"
+.br
+.RI "\fISends the /me (CTCP ACTION) message to the nick or to the channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_notice\fP (\fBirc_session_t\fP *session, const char *nch, const char *text)"
+.br
+.RI "\fISends the notice to the nick or to the channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_kick\fP (\fBirc_session_t\fP *session, const char *nick, const char *channel, const char *reason)"
+.br
+.RI "\fIKick some lazy ass out of channel. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_ctcp_request\fP (\fBirc_session_t\fP *session, const char *nick, const char *request)"
+.br
+.RI "\fIGenerates a CTCP request. \fP"
+.ti -1c
+.RI "int \fBirc_cmd_ctcp_reply\fP (\fBirc_session_t\fP *session, const char *nick, const char *reply)"
+.br
+.RI "\fIGenerates a reply to the CTCP request. \fP"
+.ti -1c
+.RI "void \fBirc_target_get_nick\fP (const char *target, char *nick, size_t size)"
+.br
+.RI "\fIGets the nick part from the target. \fP"
+.ti -1c
+.RI "void \fBirc_target_get_host\fP (const char *target, char *nick, size_t size)"
+.br
+.RI "\fIGets the host part from the target. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_chat\fP (\fBirc_session_t\fP *session, void *ctx, const char *nick, \fBirc_dcc_callback_t\fP callback, \fBirc_dcc_t\fP *dccid)"
+.br
+.RI "\fIInitiates a DCC CHAT. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_msg\fP (\fBirc_session_t\fP *session, \fBirc_dcc_t\fP dccid, const char *text)"
+.br
+.RI "\fISends the message to the specific DCC CHAT. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_accept\fP (\fBirc_session_t\fP *session, \fBirc_dcc_t\fP dccid, void *ctx, \fBirc_dcc_callback_t\fP callback)"
+.br
+.RI "\fIAccepts a remote DCC CHAT or DCC RECVFILE request. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_decline\fP (\fBirc_session_t\fP *session, \fBirc_dcc_t\fP dccid)"
+.br
+.RI "\fIDeclines a remote DCC CHAT or DCC RECVFILE request. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_sendfile\fP (\fBirc_session_t\fP *session, void *ctx, const char *nick, const char *filename, \fBirc_dcc_callback_t\fP callback, \fBirc_dcc_t\fP *dccid)"
+.br
+.RI "\fISends a file via DCC. \fP"
+.ti -1c
+.RI "int \fBirc_dcc_destroy\fP (\fBirc_session_t\fP *session, \fBirc_dcc_t\fP dccid)"
+.br
+.RI "\fIDestroys a DCC session. \fP"
+.ti -1c
+.RI "void \fBirc_get_version\fP (unsigned int *high, unsigned int *low)"
+.br
+.RI "\fIObtains a libircclient version. \fP"
+.ti -1c
+.RI "void \fBirc_set_ctx\fP (\fBirc_session_t\fP *session, void *ctx)"
+.br
+.RI "\fISets the IRC session context. \fP"
+.ti -1c
+.RI "void * \fBirc_get_ctx\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIReturns the IRC session context. \fP"
+.ti -1c
+.RI "int \fBirc_errno\fP (\fBirc_session_t\fP *session)"
+.br
+.RI "\fIReturns the last error code. \fP"
+.ti -1c
+.RI "const char * \fBirc_strerror\fP (int ircerrno)"
+.br
+.RI "\fIReturns the text error message associated with this error code. \fP"
+.ti -1c
+.RI "void \fBirc_option_set\fP (\fBirc_session_t\fP *session, unsigned int option)"
+.br
+.RI "\fISets the libircclient option. \fP"
+.ti -1c
+.RI "void \fBirc_option_reset\fP (\fBirc_session_t\fP *session, unsigned int option)"
+.br
+.RI "\fIResets the libircclient option. \fP"
+.ti -1c
+.RI "char * \fBirc_color_strip_from_mirc\fP (const char *message)"
+.br
+.RI "\fIRemoves all the color codes and format options. \fP"
+.ti -1c
+.RI "char * \fBirc_color_convert_from_mirc\fP (const char *message)"
+.br
+.RI "\fIConverts all the color codes and format options to libircclient colors. \fP"
+.ti -1c
+.RI "char * \fBirc_color_convert_to_mirc\fP (const char *message)"
+.br
+.RI "\fIConverts all the color codes from libircclient format to mIRC. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file defines all prototypes and functions to use libircclient. 
+
+\fBAuthor:\fP
+.RS 4
+George Yunaev 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1.5 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+01.2012 libircclient is a small but powerful library, which implements client-server IRC protocol. It is designed to be small, fast, portable and compatible to RFC standards, and most IRC clients. libircclient features include:
+.IP "\(bu" 2
+Full multi-threading support.
+.IP "\(bu" 2
+Single threads handles all the IRC processing.
+.IP "\(bu" 2
+Support for single-threaded applications, and socket-based applications, which use select()
+.IP "\(bu" 2
+Synchronous and asynchronous interfaces.
+.IP "\(bu" 2
+CTCP support with optional build-in reply code.
+.IP "\(bu" 2
+Flexible DCC support, including both DCC chat, and DCC file transfer.
+.IP "\(bu" 2
+Can both initiate and react to initiated DCC.
+.IP "\(bu" 2
+Can accept or decline DCC sessions asynchronously.
+.IP "\(bu" 2
+Plain C interface and implementation (possible to use from C++ code, obviously)
+.IP "\(bu" 2
+Compatible with RFC 1459 and most IRC clients.
+.IP "\(bu" 2
+SSL support if compiled with --enable-openssl.
+.IP "\(bu" 2
+Free, licensed under LGPL license.
+.PP
+.RE
+.PP
+Note that to use libircclient, only \fBlibircclient.h\fP should be included into your program. Do not include other libirc_* headers. 
+.SH "Define Documentation"
+.PP 
+.SS "#define IN_INCLUDE_LIBIRC_H"
+.PP
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef void(* \fBirc_dcc_callback_t\fP)(\fBirc_session_t\fP *session, \fBirc_dcc_t\fP id, int status, void *ctx, const char *data, unsigned int length)"
+.PP
+A common DCC callback, used to inform you about the current DCC state or event. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An IRC session which generates the callback 
+.br
+\fIid\fP A DCC session id. 
+.br
+\fIstatus\fP An error status. 0 means no error, otherwise error code. 
+.br
+\fIctx\fP A user-supplied context. 
+.br
+\fIdata\fP Data supplied (if available) 
+.br
+\fIlength\fP data length (if available)
+.RE
+.PP
+This callback is called for all DCC functions when state change occurs.
+.PP
+For DCC CHAT, the callback is called in next circumstances:
+.IP "\(bu" 2
+\fIstatus\fP is LIBIRC_ERR_CLOSED: connection is closed by remote peer. After returning from the callback, the DCC session is automatically destroyed.
+.IP "\(bu" 2
+\fIstatus\fP is neither 0 nor LIBIRC_ERR_CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.
+.IP "\(bu" 2
+\fIstatus\fP is 0: new chat message received, \fIdata\fP contains the message (null-terminated string), \fIlength\fP contains the message length.
+.PP
+.PP
+For DCC SEND, while file is sending, callback called in next circumstances:
+.IP "\(bu" 2
+\fIstatus\fP is neither 0 nor LIBIRC_ERR_CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.
+.IP "\(bu" 2
+\fIstatus\fP is 0: new data received, \fIdata\fP contains the data received, \fIlength\fP contains the amount of data received.
+.PP
+.PP
+For DCC RECV, while file is sending, callback called in next circumstances:
+.IP "\(bu" 2
+\fIstatus\fP is neither 0 nor LIBIRC_ERR_CLOSED: socket I/O error (connect error, accept error, recv error, send error). After returning from the callback, the DCC session is automatically destroyed.
+.IP "\(bu" 2
+\fIstatus\fP is 0, and \fIdata\fP is 0: file has been received successfully. After returning from the callback, the DCC session is automatically destroyed.
+.IP "\(bu" 2
+\fIstatus\fP is 0, and \fIdata\fP is not 0: new data received, \fIdata\fP contains the data received, \fIlength\fP contains the amount of data received. 
+.PP
+
+.SS "typedef struct irc_dcc_session_s \fBirc_dcc_session_t\fP"
+.PP
+A libircclient DCC session. 
+.PP
+This structure describes a DCC session used by libircclient. Its members are internal to libircclient, and should not be used directly. 
+.SS "typedef unsigned int \fBirc_dcc_t\fP"
+.PP
+A DCC session identifier. 
+.PP
+The irc_dcc_t type is a DCC session identifier, used to identify the DCC sessions in callbacks and various functions. 
+.SS "typedef struct irc_session_s \fBirc_session_t\fP"
+.PP
+A libircclient IRC session. 
+.PP
+This structure describes an IRC session. Its members are internal to libircclient, and should not be used directly. 
+.SH "Function Documentation"
+.PP 
+.SS "int irc_add_select_descriptors (\fBirc_session_t\fP * session, fd_set * in_set, fd_set * out_set, int * maxfd)"
+.PP
+Adds IRC socket(s) for the descriptor set to use in select(). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIin_set\fP A FD_IN descriptor set for select() 
+.br
+\fIout_set\fP A FD_OUT descriptor set for select() 
+.br
+\fImaxfd\fP A max descriptor found.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function should be used when you already have a program with select() based data processing. You prepare your descriptors, call this function to add session's descriptor(s) into set, and then call select(). When it returns, you should call irc_add_select_descriptors, which sends/recvs all available data, parses received data, calls your callbacks(!), and returns. Then you can process your sockets from set. See the example.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_process_select_descriptors\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_channel_mode (\fBirc_session_t\fP * session, const char * channel, const char * mode)"
+.PP
+Views or changes the channel mode. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name to invite to. Must not be NULL. 
+.br
+\fImode\fP A channel mode, described below. If NULL, the channel mode is not changed, just the old mode is returned.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+The \fBirc_cmd_channel_mode()\fP is used to change or view the channel modes. The \fIchannel\fP mode is returned if the \fImode\fP is NULL. If the \fImode\fP is not NULL, the mode for the \fIchannel\fP will be changed. Note that, only channel operators can change the channel modes.
+.PP
+Channel mode is represended by the letters combination. Every letter has its own meaning in channel modes. Most channel mode letters are boolean (i.e. could only be set or reset), but a few channel mode letters accept a parameter. All channel options are set by adding a plus sign before the letter, and reset by adding a minus sign before the letter.
+.PP
+Here is the list of 'standard' channel modes:
+.PP
+.IP "\(bu" 2
+\fIo\fP \fInickname\fP - gives (+o nick) or takes (-o nick) the channel operator privileges from a \fInickname\fP. This mode affects the users in channel, not the channel itself. Examples: '+o tim', '-o watson'.
+.PP
+.PP
+.IP "\(bu" 2
+\fIp\fP - sets (+p) or resets (-p) private channel flag. Private channels are shown in channel list as 'Prv', without the topic.
+.PP
+.PP
+.IP "\(bu" 2
+\fIs\fP - sets (+p) or resets (-p) secret channel flag. Secret channels aren't shown in channel list at all.
+.PP
+.PP
+.IP "\(bu" 2
+\fIi\fP - sets (+i) or resets (-i) invite-only channel flag. When the flag is set, only the people who are invited by \fBirc_cmd_invite()\fP, can join this channel.
+.PP
+.PP
+.IP "\(bu" 2
+\fIt\fP - sets (+t) or resets (-t) topic settable by channel operator only flag. When the flag is set, only the channel operators can change the channel topic.
+.PP
+.PP
+.IP "\(bu" 2
+\fIn\fP - sets (+n) or resets (-n) the protection from the clients outside the channel. When the \fI+n\fP mode is set, only the clients, who are in channel, can send the messages to the channel.
+.PP
+.PP
+.IP "\(bu" 2
+\fIm\fP - sets (+m) or resets (-m) the moderation of the channel. When the moderation mode is set, only channel operators and the users who have the \fI+v\fP user mode can speak in the channel.
+.PP
+.PP
+.IP "\(bu" 2
+\fIv\fP \fInickname\fP - gives (+v nick) or takes (-v nick) from user the ability to speak on a moderated channel. Examples: '+v tim', '-v watson'.
+.PP
+.PP
+.IP "\(bu" 2
+\fIl\fP \fInumber\fP - sets (+l 20) or removes (-l) the restriction of maximum users in channel. When the restriction is set, and there is a number of users in the channel, no one can join the channel anymore.
+.PP
+.PP
+.IP "\(bu" 2
+\fIk\fP \fIkey\fP - sets (+k secret) or removes (-k) the password from the channel. When the restriction is set, any user joining the channel required to provide a channel key.
+.PP
+.PP
+.IP "\(bu" 2
+\fIb\fP \fImask\fP - sets (+b *!*@*.mil) or removes (-b *!*@*.mil) the ban mask on a user to keep him out of channel. Note that to remove the ban you must specify the ban mask to remove, not just '-b'.
+.PP
+.PP
+Note that the actual list of channel modes depends on the IRC server, and can be bigger. If you know the popular channel modes, which aren't mentioned here - please contact me at tim@krasnogorsk.ru
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CHANOPRIVSNEEDED\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_KEYSET\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_UNKNOWNMODE\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHCHANNEL\fP
+.PP
+.PP
+And the mode information is given using following reply codes:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_CHANNELMODEIS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_BANLIST\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_ENDOFBANLIST\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_cmd_topic\fP \fBirc_cmd_list\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_ctcp_reply (\fBirc_session_t\fP * session, const char * nick, const char * reply)"
+.PP
+Generates a reply to the CTCP request. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInick\fP A target nick to send request to. Must not be NULL. 
+.br
+\fIreply\fP A reply string. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to send a reply to the CTCP request, generated by \fBirc_callbacks_t::event_ctcp_req\fP. Note that you will not receive this event unless you specify your own handler as \fCevent_ctcp_req\fP callback during the IRC session initialization.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP 
+.PP
+
+.SS "int irc_cmd_ctcp_request (\fBirc_session_t\fP * session, const char * nick, const char * request)"
+.PP
+Generates a CTCP request. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInick\fP A target nick to send request to. Must not be NULL. 
+.br
+\fIrequest\fP A request string. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to send a CTCP request. There are four CTCP requests supported by Mirc: VERSION - get the client software name and version FINGER - get the client username, host and real name. PING - get the client delay. TIME - get the client local time.
+.PP
+A reply to the CTCP request will be sent by the \fBirc_callbacks_t::event_ctcp_rep\fP callback; be sure to define it.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_callbacks_t::event_ctcp_rep\fP \fBirc_callbacks_t::event_numeric\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_invite (\fBirc_session_t\fP * session, const char * nick, const char * channel)"
+.PP
+Invites a user to invite-only channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInick\fP A nick to invite. Must not be NULL. 
+.br
+\fIchannel\fP A channel name to invite to. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to invite someone to invite-only channel. 'Invite-only' is a channel mode, which restricts anyone, except invided, to join this channel. After invitation, the user could join this channel. The user, who is invited, will receive the \fBirc_callbacks_t::event_invite\fP event. Note that you must be a channel operator to INVITE the users.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+LIBIRC_RFC_ERR_ERR_USERONCHANNEL
+.IP "\(bu" 2
+LIBIRC_RFC_ERR_ERR_CHANOPRIVSNEEDED
+.PP
+.PP
+And on success one of the following replies returned:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_INVITING\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_AWAY\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_callbacks_t::event_invite\fP \fBirc_cmd_channel_mode\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_join (\fBirc_session_t\fP * session, const char * channel, const char * key)"
+.PP
+Joins the new IRC channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name to join to. Must not be NULL. 
+.br
+\fIkey\fP Channel password. May be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to JOIN the IRC channel. If the channel is not exist, it will be automatically created by the IRC server. Note that to JOIN the password-protected channel, you must know the password, and specify it in the \fIkey\fP argument.
+.PP
+If join is successful, the \fBirc_callbacks_t::event_join\fP is called (with \fIorigin\fP == your nickname), then you are sent the channel's topic (using \fBLIBIRC_RFC_RPL_TOPIC\fP) and the list of users who are on the channel (using \fBLIBIRC_RFC_RPL_NAMREPLY\fP), which includes the user joining - namely you.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_BANNEDFROMCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_INVITEONLYCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_BADCHANNELKEY\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CHANNELISFULL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_BADCHANMASK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYCHANNELS\fP
+.PP
+.PP
+And on success the following replies returned:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_TOPIC\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_NAMREPLY\fP 
+.PP
+
+.SS "int irc_cmd_kick (\fBirc_session_t\fP * session, const char * nick, const char * channel, const char * reason)"
+.PP
+Kick some lazy ass out of channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInick\fP A nick to kick. Must not be NULL. 
+.br
+\fIchannel\fP A channel to kick this nick out of. Must not be NULL. 
+.br
+\fIreason\fP A reason to kick. May be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to kick a person out of channel. Note that you must be a channel operator to kick anyone.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_BADCHANMASK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CHANOPRIVSNEEDED\fP
+.PP
+.PP
+On success the \fBirc_callbacks_t::event_kick\fP event will be generated.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_callbacks_t::event_numeric\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_list (\fBirc_session_t\fP * session, const char * channel)"
+.PP
+Obtains a list of active server channels with their topics. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name(s) to list. May be NULL, in which case all the channels will be listed. It is possible to specify more than a single channel, but several channel names should be separated by a comma.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to ask the IRC server for the active (existing) channels list. The list will be returned using LIBIRC_RFC_RPL_LISTSTART - \fBLIBIRC_RFC_RPL_LIST\fP - \fBLIBIRC_RFC_RPL_LISTEND\fP sequence. Note that 'private' channels are listed (without their topics) as channel 'Prv' unless the client generating the LIST query is actually on that channel. Likewise, secret channels are not listed at all unless the client is a member of the channel in question.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHSERVER\fP
+.PP
+.PP
+And the channel list is returned using the following reply codes:
+.IP "\(bu" 2
+LIBIRC_RFC_RPL_LISTSTART
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_LISTEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_LIST\fP 
+.PP
+
+.SS "int irc_cmd_me (\fBirc_session_t\fP * session, const char * nch, const char * text)"
+.PP
+Sends the /me (CTCP ACTION) message to the nick or to the channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInch\fP A target nick or channel. Must not be NULL. 
+.br
+\fItext\fP Action message text. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to send the /me message to channel or private. As for irc_cmd_msg, the target is determined by \fInch\fP argument.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+On success there is NOTHING generated. However, a \fBLIBIRC_RFC_RPL_AWAY\fP reply can be also generated.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_cmd_msg\fP 
+.RE
+.PP
+
+.SS "irc_cmd_msg (\fBirc_session_t\fP * session, const char * nch, const char * text)"
+.PP
+Sends the message to the nick or to the channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInch\fP A target nick or channel. Must not be NULL. 
+.br
+\fItext\fP Message text. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to send the channel or private messages. The target is determined by \fInch\fP argument: if it describes nick, this will be a private message, if a channel name - public (channel) message. Note that depending on channel modes, you may be required to join the channel to send the channel messages.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+On success there is NOTHING generated. 
+.SS "int irc_cmd_names (\fBirc_session_t\fP * session, const char * channel)"
+.PP
+Obtains a list of users who're in channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name(s) to obtain user list. Must not be NULL. It is possible to specify more than a single channel, but several channel names should be separated by a comma.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to ask the IRC server for the list of the users who're in specified channel. You can list all nicknames that are visible to you on any channel that you can see. The list of users will be returned using RPL_NAMREPLY and RPL_ENDOFNAMES numeric codes.
+.PP
+The channel names are returned by \fBirc_callbacks_t::event_numeric\fP using the following reply codes:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_NAMREPLY\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_ENDOFNAMES\fP 
+.PP
+
+.SS "int irc_cmd_nick (\fBirc_session_t\fP * session, const char * newnick)"
+.PP
+Changes your nick. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInewnick\fP A new nick. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to change your current nick to another nick. Note that such a change is not always possible; for example you cannot change nick to the existing nick, or (on some servers) to the registered nick.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NONICKNAMEGIVEN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_ERRONEUSNICKNAME\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NICKNAMEINUSE\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NICKCOLLISION\fP 
+.PP
+
+.SS "int irc_cmd_notice (\fBirc_session_t\fP * session, const char * nch, const char * text)"
+.PP
+Sends the notice to the nick or to the channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInch\fP A target nick or channel. Must not be NULL. 
+.br
+\fItext\fP Notice text. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to send the channel or private notices. The target is determined by \fInch\fP argument: if it describes nick, this will be a private message, if a channel name - public (channel) message. Note that depending on channel modes, you may be required to join the channel to send the channel notices.
+.PP
+The only difference between message and notice is that, according to RFC 1459, you must not automatically reply to NOTICE messages.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+On success there is NOTHING generated. On notices sent to target nick, a \fBLIBIRC_RFC_RPL_AWAY\fP reply may be generated.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_cmd_msg\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_part (\fBirc_session_t\fP * session, const char * channel)"
+.PP
+Leaves the IRC channel. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name to leave. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function is used to leave the IRC channel you've already joined to. An attempt to leave the channel you aren't in results a \fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP server error.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP 
+.PP
+
+.SS "int irc_cmd_quit (\fBirc_session_t\fP * session, const char * reason)"
+.PP
+Sends QUIT command to the IRC server. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIreason\fP A reason to quit. May be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function sends the QUIT command to the IRC server. This command forces the IRC server to close the IRC connection, and terminate the session. 
+.SS "int irc_cmd_topic (\fBirc_session_t\fP * session, const char * channel, const char * topic)"
+.PP
+Views or changes the channel topic. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIchannel\fP A channel name to invite to. Must not be NULL. 
+.br
+\fItopic\fP A new topic to change. If NULL, the old topic will be returned, and topic won't changed.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+The \fBirc_cmd_topic()\fP is used to change or view the topic of a channel. The topic for \fIchannel\fP is returned if \fItopic\fP is NULL. If the \fItopic\fP is not NULL, the topic for the \fIchannel\fP will be changed. Note that, depending on \fI+t\fP channel mode, you may be required to be a channel operator to change the channel topic.
+.PP
+If the command succeed, the IRC server will generate a RPL_NOTOPIC or RPL_TOPIC message, containing either old or changed topic. Also the IRC server can (but not have to) generate the non-RFC RPL_TOPIC_EXTRA message, containing the nick of person, who's changed the topic, and the time of latest topic change.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CHANOPRIVSNEEDED\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.PP
+.PP
+And the topic information is returned using one of following reply codes:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_NOTOPIC\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_TOPIC\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_callbacks_t::event_topic\fP \fBirc_cmd_channel_mode\fP 
+.RE
+.PP
+
+.SS "int irc_cmd_user_mode (\fBirc_session_t\fP * session, const char * mode)"
+.PP
+Views or changes your own user mode. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fImode\fP A user mode, described below. If NULL, the user mode is not changed, just the old mode is returned.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+The \fBirc_cmd_user_mode()\fP is used to change or view the user modes. Note that, unlike channel modes, not all user modes can be changed. The user mode is returned if the \fImode\fP is NULL. If the \fImode\fP is not NULL, the mode for you will be changed, and new mode will be returned.
+.PP
+Like channel mode, user mode is also represended by the letters combination. All the user mode letters are boolean (i.e. could only be set or reset), they are set by adding a plus sign before the letter, and reset by adding a minus sign before the letter.
+.PP
+Here is the list of 'standard' user modes:
+.PP
+.IP "\(bu" 2
+\fIo\fP - represents an IRC operator status. Could not be set directly (but can be reset though), to set it use the IRC \fIOPER\fP command.
+.PP
+.PP
+.IP "\(bu" 2
+\fIi\fP - if set, marks a user as 'invisible' - that is, not seen by lookups if the user is not in a channel.
+.PP
+.PP
+.IP "\(bu" 2
+\fIw\fP - if set, marks a user as 'receiving wallops' - special messages generated by IRC operators using WALLOPS command.
+.PP
+.PP
+.IP "\(bu" 2
+\fIs\fP - if set, marks a user for receipt of server notices.
+.PP
+.PP
+.IP "\(bu" 2
+\fIr\fP - NON-STANDARD MODE. If set, user has been authenticated with NICKSERV IRC service.
+.PP
+.PP
+.IP "\(bu" 2
+\fIx\fP - NON-STANDARD MODE. If set, user's real IP is hidden by IRC servers, to prevent scriptkiddies to do nasty things to the user's computer.
+.PP
+.PP
+Note that the actual list of user modes depends on the IRC server, and can be bigger. If you know the popular user modes, which aren't mentioned here - please contact me at tim@krasnogorsk.ru
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NEEDMOREPARAMS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_UNKNOWNMODE\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_USERSDONTMATCH\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_UMODEUNKNOWNFLAG\fP
+.PP
+.PP
+And the mode information is given using reply code \fBLIBIRC_RFC_RPL_UMODEIS\fP 
+.SS "int irc_cmd_whois (\fBirc_session_t\fP * session, const char * nick)"
+.PP
+Queries the information about the nick. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fInick\fP A nick to query the information abour. Must not be NULL. A comma-separated list of several nicknames may be given.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function queries various information about the nick: username, real name, the IRC server used, the channels user is in, idle time, away mode and so on.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHSERVER\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NONICKNAMEGIVEN\fP
+.PP
+.PP
+And the information is returned using the following reply codes. The whois query is completed when \fBLIBIRC_RFC_RPL_ENDOFWHOIS\fP message is received.
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_WHOISUSER\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_WHOISCHANNELS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_WHOISSERVER\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_AWAY\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_WHOISOPERATOR\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_WHOISIDLE\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_RPL_ENDOFWHOIS\fP 
+.PP
+
+.SS "char * irc_color_convert_from_mirc (const char * message)"
+.PP
+Converts all the color codes and format options to libircclient colors. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImessage\fP A message from IRC
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns a new message with converted mIRC color codes and format options. See the \fBirc_color_convert_to_mirc()\fP help to see how the colors are converted.
+.br
+ Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore. If memory allocation failed, returns 0.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_color_strip_from_mirc\fP \fBirc_color_convert_to_mirc\fP 
+.RE
+.PP
+
+.SS "char * irc_color_convert_to_mirc (const char * message)"
+.PP
+Converts all the color codes from libircclient format to mIRC. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImessage\fP A message with color codes
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns a new message with converted color codes and format options, or 0 if memory could not be allocated. Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore.
+.RE
+.PP
+The color system of libircclient is designed to be easy to use, and portable between different IRC clients. Every color or format option is described using plain text commands written between square brackets. The possible codes are:
+.IP "\(bu" 2
+[B] ... [/B] - bold format mode. Everything between [B] and [/B] is written in \fBbold\fP.
+.IP "\(bu" 2
+[I] ... [/I] - italic/reverse format mode. Everything between [I] and [/I] is written in \fCitalic\fP, or reversed (however, because some clients are incapable of rendering italic text, most clients display this as normal text with the background and foreground colors swapped).
+.IP "\(bu" 2
+[U] ... [/U] - underline format mode. Everything between [U] and [/U] is written underlined.
+.IP "\(bu" 2
+[COLOR=RED] ... [/COLOR] - write the text using specified foreground color. The color is set by using the \fCCOLOR\fP keyword, and equal sign followed by text color code (see below).
+.IP "\(bu" 2
+[COLOR=RED/BLUE] ... [/COLOR] - write the text using specified foreground and background color. The color is set by using the \fCCOLOR\fP keyword, an equal sign followed by text foreground color code, a dash and a text background color code.
+.PP
+.PP
+The supported text colors are:
+.IP "\(bu" 2
+WHITE
+.IP "\(bu" 2
+BLACK
+.IP "\(bu" 2
+DARKBLUE
+.IP "\(bu" 2
+DARKGREEN
+.IP "\(bu" 2
+RED
+.IP "\(bu" 2
+BROWN
+.IP "\(bu" 2
+PURPLE
+.IP "\(bu" 2
+OLIVE
+.IP "\(bu" 2
+YELLOW
+.IP "\(bu" 2
+GREEN
+.IP "\(bu" 2
+TEAL
+.IP "\(bu" 2
+CYAN
+.IP "\(bu" 2
+BLUE
+.IP "\(bu" 2
+MAGENTA
+.IP "\(bu" 2
+DARKGRAY
+.IP "\(bu" 2
+LIGHTGRAY
+.PP
+.PP
+Examples of color sequences: 
+.PP
+.nf
+ Hello, [B]Tim[/B]. 
+ [U]Arsenal[/U] got a [COLOR=RED]red card[/COLOR]
+ The tree[U]s[/U] are [COLOR=GREEN/BLACK]green[/COLOR]
+
+.fi
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_color_strip_from_mirc\fP \fBirc_color_convert_from_mirc\fP 
+.RE
+.PP
+
+.SS "char * irc_color_strip_from_mirc (const char * message)"
+.PP
+Removes all the color codes and format options. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImessage\fP A message from IRC
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns a new plain text message with stripped mIRC color codes. Note that the memory for the new message is allocated using malloc(), so you should free it using free() when it is not used anymore. If memory allocation failed, returns 0.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_color_convert_from_mirc\fP \fBirc_color_convert_to_mirc\fP 
+.RE
+.PP
+
+.SS "int irc_connect (\fBirc_session_t\fP * session, const char * server, unsigned short port, const char * server_password, const char * nick, const char * username, const char * realname)"
+.PP
+Initiates a connection to IRC server. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP A session to initiate connections on. Must not be NULL. 
+.br
+\fIserver\fP A domain name or an IP address of the IRC server to connect to. Cannot be NULL. If the library is built with SSL support and the first character is hash, tries to establish the SSL connection. For example, the connection to 'irc.example.com' is assumed to be plaintext, and connection to '#irc.example.com' is assumed to be secured by SSL. Note that SSL will only work if the library is built with the SSL support. 
+.br
+\fIport\fP An IRC server port, usually 6667. 
+.br
+\fIserver_password\fP An IRC server password, if the server requires it. May be NULL, in this case password will not be send to the IRC server. Vast majority of IRC servers do not require passwords. 
+.br
+\fInick\fP A nick, which libircclient will use to login to the IRC server. Must not be NULL. 
+.br
+\fIusername\fP A username of the account, which is used to connect to the IRC server. This is for information only, will be shown in 'user properties' dialogs and returned by /whois request. May be NULL, in this case 'nobody' will be sent as username. 
+.br
+\fIrealname\fP A real name of the person, who connects to the IRC. Usually people put some wide-available information here (URL, small description or something else). This information also will be shown in 'user properties' dialogs and returned by /whois request. May be NULL, in this case 'noname' will be sent as username.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function prepares and initiates a connection to the IRC server. The connection is done asynchronously (see \fBirc_callbacks_t::event_connect\fP), so the success return value means that connection was initiated (but not completed!) successfully.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_run\fP 
+.RE
+.PP
+
+.SS "int irc_connect6 (\fBirc_session_t\fP * session, const char * server, unsigned short port, const char * server_password, const char * nick, const char * username, const char * realname)"
+.PP
+Initiates a connection to IRC server using IPv6. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP A session to initiate connections on. Must not be NULL. 
+.br
+\fIserver\fP A domain name or an IP address of the IRC server to connect to. Cannot be NULL. If the library is built with SSL support and the first character is hash, tries to establish the SSL connection. For example, the connection to 'irc.example.com' is assumed to be plaintext, and connection to '#irc.example.com' is assumed to be secured by SSL. Note that SSL will only work if the library is built with the SSL support. 
+.br
+\fIport\fP An IRC server port, usually 6667. 
+.br
+\fIserver_password\fP An IRC server password, if the server requires it. May be NULL, in this case password will not be send to the IRC server. Vast majority of IRC servers do not require passwords. 
+.br
+\fInick\fP A nick, which libircclient will use to login to the IRC server. Must not be NULL. 
+.br
+\fIusername\fP A username of the account, which is used to connect to the IRC server. This is for information only, will be shown in 'user properties' dialogs and returned by /whois request. May be NULL, in this case 'nobody' will be sent as username. 
+.br
+\fIrealname\fP A real name of the person, who connects to the IRC. Usually people put some wide-available information here (URL, small description or something else). This information also will be shown in 'user properties' dialogs and returned by /whois request. May be NULL, in this case 'noname' will be sent as username.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function prepares and initiates a connection to the IRC server. The connection is done asynchronously (see \fBirc_callbacks_t::event_connect\fP), so the success return value means that connection was initiated (but not completed!) successfully.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_run\fP 
+.RE
+.PP
+
+.SS "\fBirc_session_t\fP * irc_create_session (\fBirc_callbacks_t\fP * callbacks)"
+.PP
+Creates and initiates a new IRC session. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcallbacks\fP A structure, which defines several callbacks, which will be called on appropriate events. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+An \fBirc_session_t\fP object, or 0 if creation failed. Usually, failure is caused by out of memory error.
+.RE
+.PP
+Every \fBirc_session_t\fP object describes a single IRC session - a connection to an IRC server, and possibly to some DCC clients. Almost every irc_* function requires this object to be passed to, and therefore this function should be called first.
+.PP
+Every session created must be destroyed when it is not needed anymore by calling \fBirc_destroy_session()\fP.
+.PP
+The most common function sequence is: 
+.PP
+.nf
+  ... prepare irc_callbacks_t structure ...
+  irc_create_session();
+  irc_connect();
+  irc_run();
+  irc_destroy_session();
+
+.fi
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_destroy_session\fP 
+.RE
+.PP
+
+.SS "int irc_dcc_accept (\fBirc_session_t\fP * session, \fBirc_dcc_t\fP dccid, void * ctx, \fBirc_dcc_callback_t\fP callback)"
+.PP
+Accepts a remote DCC CHAT or DCC RECVFILE request. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIdccid\fP A DCC session ID, returned by appropriate callback. 
+.br
+\fIctx\fP A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. 
+.br
+\fIcallback\fP A DCC callback function, which will be called when anything is said by other party. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function accepts a remote DCC request - either DCC CHAT or DCC FILE. After the request is accepted, the supplied callback will be called, and you can start sending messages or receiving the file.
+.PP
+This function should be called only after either event_dcc_chat_req or event_dcc_send_req events are generated, and should react to them. It is possible not to call irc_dcc_accept or irc_dcc_decline immediately in callback function - you may just return, and call it later. However, to prevent memory leaks, you must call either irc_dcc_decline or irc_dcc_accept for any incoming DCC request.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_dcc_decline\fP event_dcc_chat_req event_dcc_send_req 
+.RE
+.PP
+
+.SS "int irc_dcc_chat (\fBirc_session_t\fP * session, void * ctx, const char * nick, \fBirc_dcc_callback_t\fP callback, \fBirc_dcc_t\fP * dccid)"
+.PP
+Initiates a DCC CHAT. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIctx\fP A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. 
+.br
+\fInick\fP A nick to DCC CHAT with. 
+.br
+\fIcallback\fP A DCC callback function, which will be called when anything is said by other party. Must not be NULL. 
+.br
+\fIdccid\fP On success, DCC session ID will be stored in this var.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function requests a DCC CHAT between you and other user. For newbies, DCC chat is like private chat, but it goes directly between two users, and bypasses IRC server. DCC CHAT request must be accepted by other side before you can send anything.
+.PP
+When the chat is accepted, terminated, or some data is received, the callback function is called. See the details in irc_dcc_callback_t declaration.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_dcc_callback_t\fP \fBirc_dcc_msg\fP 
+.RE
+.PP
+
+.SS "int irc_dcc_decline (\fBirc_session_t\fP * session, \fBirc_dcc_t\fP dccid)"
+.PP
+Declines a remote DCC CHAT or DCC RECVFILE request. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIdccid\fP A DCC session ID, returned by appropriate callback.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function declines a remote DCC request - either DCC CHAT or DCC FILE.
+.PP
+This function should be called only after either event_dcc_chat_req or event_dcc_send_req events are generated, and should react to them. It is possible not to call irc_dcc_accept or irc_dcc_decline immediately in callback function - you may just return, and call it later. However, to prevent memory leaks, you must call either irc_dcc_decline or irc_dcc_accept for any incoming DCC request.
+.PP
+Do not use this function to close the accepted or initiated DCC session. Use irc_dcc_destroy instead.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_dcc_accept\fP \fBirc_callbacks_t::event_dcc_chat_req\fP \fBirc_callbacks_t::event_dcc_send_req\fP \fBirc_dcc_destroy\fP 
+.RE
+.PP
+
+.SS "int irc_dcc_destroy (\fBirc_session_t\fP * session, \fBirc_dcc_t\fP dccid)"
+.PP
+Destroys a DCC session. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIdccid\fP A DCC session ID.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function closes the DCC connection (if available), and destroys the DCC session, freeing the used resources. It can be called in any moment, even from callbacks or from different threads.
+.PP
+Note that when DCC session is finished (either with success or failure), you should not destroy it - it will be destroyed automatically. 
+.SS "int irc_dcc_msg (\fBirc_session_t\fP * session, \fBirc_dcc_t\fP dccid, const char * text)"
+.PP
+Sends the message to the specific DCC CHAT. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An IRC session. 
+.br
+\fIdccid\fP A DCC session ID, which chat request must have been accepted. 
+.br
+\fItext\fP Message text. Must not be NULL.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function is used to send the DCC CHAT messages. DCC CHAT request must be initiated and accepted first (or just accepted, if initiated by other side).
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_dcc_chat\fP 
+.RE
+.PP
+
+.SS "int irc_dcc_sendfile (\fBirc_session_t\fP * session, void * ctx, const char * nick, const char * filename, \fBirc_dcc_callback_t\fP callback, \fBirc_dcc_t\fP * dccid)"
+.PP
+Sends a file via DCC. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIctx\fP A user-supplied DCC session context, which will be passed to the DCC callback function. May be NULL. 
+.br
+\fInick\fP A nick to send file via DCC to. 
+.br
+\fIfilename\fP A file name to sent. Must be an existing file. 
+.br
+\fIcallback\fP A DCC callback function, which will be called when file sent operation is failed, progressed or completed. 
+.br
+\fIdccid\fP On success, DCC session ID will be stored in this var.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function generates a DCC SEND request to send the file. When it is accepted, the file is sent to the remote party, and the DCC session is closed. The send operation progress and result can be checked in callback. See the details in irc_dcc_callback_t declaration.
+.PP
+Possible error responces for this command from the RFC1459:
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NORECIPIENT\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTEXTTOSEND\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_CANNOTSENDTOCHAN\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTONCHANNEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_WILDTOPLEVEL\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_TOOMANYTARGETS\fP
+.IP "\(bu" 2
+\fBLIBIRC_RFC_ERR_NOSUCHNICK\fP
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_dcc_callback_t\fP 
+.RE
+.PP
+
+.SS "void irc_destroy_session (\fBirc_session_t\fP * session)"
+.PP
+Destroys previously created IRC session. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP A session to destroy. Must not be NULL.
+.RE
+.PP
+This function should be used to destroy an IRC session, close the connection to the IRC server, and free all the used resources. After calling this function, you should not use this session object anymore. 
+.SS "void irc_disconnect (\fBirc_session_t\fP * session)"
+.PP
+Disconnects a connection to IRC server. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An IRC session.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function closes the IRC connection. After that connection is closed, libircclient automatically leaves irc_run loop.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_connect\fP \fBirc_run\fP 
+.RE
+.PP
+
+.SS "int irc_errno (\fBirc_session_t\fP * session)"
+.PP
+Returns the last error code. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated session.
+.RE
+.PP
+This function returns the last error code associated with last operation of this IRC session. Possible error codes are defined in \fBlibirc_errors.h\fP
+.PP
+As usual, next errno rules apply:
+.IP "\(bu" 2
+\fBirc_errno()\fP should be called ONLY if the called function fails;
+.IP "\(bu" 2
+\fBirc_errno()\fP doesn't return 0 if function succeed; actually, the return value will be undefined.
+.IP "\(bu" 2
+you should call \fBirc_errno()\fP IMMEDIATELY after function fails, before calling any other libircclient function.
+.PP
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_strerror\fP 
+.RE
+.PP
+
+.SS "void * irc_get_ctx (\fBirc_session_t\fP * session)"
+.PP
+Returns the IRC session context. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated session.
+.RE
+.PP
+This function returns the IRC session context, which was set by \fBirc_set_ctx()\fP. If no context was set, this function returns NULL.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_set_ctx\fP 
+.RE
+.PP
+
+.SS "void irc_get_version (unsigned int * high, unsigned int * low)"
+.PP
+Obtains a libircclient version. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhigh\fP A pointer to receive the high version part. 
+.br
+\fIlow\fP A pointer to receive the low version part.
+.RE
+.PP
+This function returns the libircclient version. You can use the version either to check whether required options are available, or to output the version. The preferred printf-like format string to output the version is:
+.PP
+printf ('Version: %d.%02d', high, low); 
+.SS "int irc_is_connected (\fBirc_session_t\fP * session)"
+.PP
+Checks whether the session is connecting/connected to the IRC server. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initialized IRC session.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 1 means that session is connecting or connected to the IRC server, zero value means that the session has been disconnected.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_connect\fP \fBirc_run\fP 
+.RE
+.PP
+
+.SS "void irc_option_reset (\fBirc_session_t\fP * session, unsigned int option)"
+.PP
+Resets the libircclient option. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated session. 
+.br
+\fIoption\fP An option from \fBlibirc_options.h\fP
+.RE
+.PP
+This function removes the previously set libircclient option, changing libircclient behavior. See the option list for the meaning for every option.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_option_set\fP 
+.RE
+.PP
+
+.SS "void irc_option_set (\fBirc_session_t\fP * session, unsigned int option)"
+.PP
+Sets the libircclient option. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated session. 
+.br
+\fIoption\fP An option from \fBlibirc_options.h\fP
+.RE
+.PP
+This function sets the libircclient option, changing libircclient behavior. See the option list for the meaning for every option.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_option_reset\fP 
+.RE
+.PP
+
+.SS "int irc_process_select_descriptors (\fBirc_session_t\fP * session, fd_set * in_set, fd_set * out_set)"
+.PP
+Processes the IRC socket(s), which descriptor(s) are set. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIin_set\fP A FD_IN descriptor set for select() 
+.br
+\fIout_set\fP A FD_OUT descriptor set for select()
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function should be used in pair with irc_add_select_descriptors function. See irc_add_select_descriptors description.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_add_select_descriptors\fP 
+.RE
+.PP
+
+.SS "int irc_run (\fBirc_session_t\fP * session)"
+.PP
+Goes into forever-loop, processing IRC events and generating callbacks. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP.
+.RE
+.PP
+This function goes into forever loop, processing the IRC events, and calling appropriate callbacks. This function will not return until the server connection is terminated - either by server, or by calling irc_cmd_quit. This function should be used, if you don't need asynchronous request processing (i.e. your bot just reacts on the events, and doesn't generate it asynchronously). Even in last case, you still can call irc_run, and start the asynchronous thread in event_connect handler. See examples. 
+.SS "int irc_send_raw (\fBirc_session_t\fP * session, const char * format,  ...)"
+.PP
+Sends raw data to the IRC server. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated and connected session. 
+.br
+\fIformat\fP A printf-formatted string, followed by function args.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return code 0 means success. Other value means error, the error code may be obtained through \fBirc_errno()\fP. Any error, generated by the IRC server, is available through \fBirc_callbacks_t::event_numeric\fP.
+.RE
+.PP
+This function sends the raw data as-is to the IRC server. Use it to generate a server command, which is not (yet) provided by libircclient directly. 
+.SS "void irc_set_ctx (\fBirc_session_t\fP * session, void * ctx)"
+.PP
+Sets the IRC session context. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsession\fP An initiated session. 
+.br
+\fIctx\fP A context.
+.RE
+.PP
+This function sets the user-defined context for this IRC session. This context is not used by libircclient. Its purpose is to store session-specific user data, which may be obtained later by calling \fBirc_get_ctx()\fP. Note that libircclient just 'carries out' this pointer. If you allocate some memory, and store its address in ctx (most common usage), it is your responsibility to free it before calling \fBirc_destroy_session()\fP.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_get_ctx\fP 
+.RE
+.PP
+
+.SS "const char * irc_strerror (int ircerrno)"
+.PP
+Returns the text error message associated with this error code. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIircerrno\fP A numeric error code returned by \fBirc_errno()\fP
+.RE
+.PP
+This function returns the text representation of the given error code.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBirc_errno()\fP 
+.RE
+.PP
+
+.SS "void irc_target_get_host (const char * target, char * nick, size_t size)"
+.PP
+Gets the host part from the target. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItarget\fP A nick in common IRC server form like tim!root@mydomain.com 
+.br
+\fInick\fP A buffer to hold the nickname. 
+.br
+\fIsize\fP A buffer size. If nick is longer than buffer size, it will be truncated.
+.RE
+.PP
+For most events IRC server returns 'origin' (i.e. the person, who generated this event) in i.e. 'common' form, like nick!host@domain. I don't know any command, which requires host, but it may be useful :) This function parses this origin, and gets the host, storing it into user-provided buffer. 
+.SS "void irc_target_get_nick (const char * target, char * nick, size_t size)"
+.PP
+Gets the nick part from the target. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItarget\fP A nick in common IRC server form like tim!root@mycomain.com 
+.br
+\fInick\fP A buffer to hold the nickname. 
+.br
+\fIsize\fP A buffer size. If nick is longer than buffer size, it will be truncated.
+.RE
+.PP
+For most events IRC server returns 'origin' (i.e. the person, who generated this event) in i.e. 'common' form, like nick!host@domain. However, all the irc_cmd_* functions require just a nick/ This function parses this origin, and gets the nick, storing it into user-provided buffer. A buffer of size 90 should be enough for most nicks :) 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bot from the source code.
