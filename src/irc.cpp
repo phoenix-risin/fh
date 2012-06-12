@@ -23,8 +23,9 @@ void event_connect(irc_session_t* session, const char* event, const char* origin
 	irc_ctx_t* ctx = (irc_ctx_t*) irc_get_ctx(session);
 	irc_cmd_join(session, ctx->channel, 0);
 
-	if (loggingEnabled)
+	if (enableLog) {
 		log_event(session, event, origin, params, count);
+	}
 }
 
 /**
@@ -43,8 +44,9 @@ void event_join(irc_session_t* session, const char* event, const char* origin, c
 	irc_cmd_user_mode(session, "+i");
 	irc_cmd_msg(session, params[0], "FH-Bot bereit.");
 
-	if (loggingEnabled)
+	if (enableLog) {
 		log_event(session, event, origin, params, count);
+	}
 }
 
 /**
@@ -65,44 +67,37 @@ void event_channel(irc_session_t* session, const char* event, const char* origin
 	if (!strcmp(params[1], ctx->nick))
 		irc_cmd_msg(session, params[0], "Ja bitte?");
 
-	if ( !strcmp (params[1], "!quit") )
-	{
+	if (!strcmp (params[1], "!quit")) {
 		stop_log(db);
 		irc_cmd_quit (session, "Ich beende.");
 	}
 
-	if ( !strcmp (params[1], "!log") )
-	{
-		if (loggingEnabled)
-		{
+	if (!strcmp (params[1], "!log")) {
+		if (enableLog) {
 			stop_log(db);
 			irc_cmd_msg(session, params[0], "Logging ausgeschaltet.");
-		}
-		else
-		{
-			start_log(db);
+		} else {
+			activate_log(db);
 			irc_cmd_msg(session, params[0], "Logging eingeschaltet.");
 		}
 	}
 
-	if ( !strcmp (params[1], "!post_log") )
-	{
-		if (loggingEnabled)
-		{
+	if (!strcmp (params[1], "!post_log")) {
+		if (enableLog) {
 			irc_cmd_msg(session, params[0], "Poste log:");
 			irc_cmd_msg(session, params[0], get_log(db));
-		}
-		else
-		{
+		} else {
 			irc_cmd_msg(session, params[0], "Logging ausgeschaltet, kann nicht posten.");
 		}
 	}
 
-	if ( strstr (params[1], "!nick ") == params[1] )
+	if (strstr (params[1], "!nick ") == params[1]) {
 		irc_cmd_nick (session, params[1] + 6);
+	}
 
-	if (loggingEnabled)
+	if (enableLog) {
 		log_event(session, event, origin, params, count);
+	}
 }
 
 /**
@@ -141,8 +136,7 @@ int connect(irc_callbacks_t* callbacks, irc_ctx_t* ctx, irc_session_t* session, 
 
 	session = irc_create_session(callbacks);
 
-	if ( !session )
-	{
+	if (!session) {
 		printf ("Could not create session\n");
 		return 1;
 	}
@@ -154,23 +148,21 @@ int connect(irc_callbacks_t* callbacks, irc_ctx_t* ctx, irc_session_t* session, 
 
 	irc_set_ctx(session, ctx);
 
-	if ( strchr( server, ':' ) != 0 )
+	if (strchr( server, ':' ) != 0) {
 		port = 0;
+	}
 
-	if ( server[0] == '#' && server[1] == '#' )
-	{
+	if (server[0] == '#' && server[1] == '#') {
 		server++;	
 		irc_option_set(session, LIBIRC_OPTION_SSL_NO_VERIFY);
 	}
 
-	if (irc_connect (session, server, port, 0, nick, 0, 0))
-	{
+	if (irc_connect (session, server, port, 0, nick, 0, 0)) {
 		printf("Could not connect: %s\n", irc_strerror(irc_errno(session)));
 		return 1;
 	}
 
-	if (irc_run(session))
-	{
+	if (irc_run(session)) {
 		printf("Could not connect or I/O error: %s\n", irc_strerror(irc_errno(session)));
 		return 1;
 	}
